@@ -1,15 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import School from '@/views/School.vue'
+import Us from '@/views/Us.vue'
+import Ui from '@/views/Ui.vue'
+import Php from '@/views/Php.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
+    // school
     path: '/',
+    name: 'School',
+    component: School
+  },
+  {
+    // 
+    path: '/php',
+    name: 'Php',
+    component: Php
+  },
+  {
+    // 
+    path: '/ui',
+    name: 'Ui',
+    component: Ui
+  },
+  {
+    // 
+    path: '/us',
+    name: 'Us',
+    component: Us
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
-  },
+  }, 
   {
     path: '/about',
     name: 'About',
