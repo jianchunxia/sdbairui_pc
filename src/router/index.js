@@ -1,12 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Index from '../views/Index.vue'
+import Design from '../views/Design.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  //首页index
   {
     path: '/',
+    name: 'Index',
+    component: Index
+  },
+  // 柏瑞设计
+  {
+    path: '/design',
+    name: 'Design',
+    component: Design
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
