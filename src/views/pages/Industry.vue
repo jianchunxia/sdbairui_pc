@@ -2,7 +2,7 @@
   <div id="industry">
     <swiper :slides-per-view="3" :space-between="50" class="swiper">
       <swiper-slide v-for="(item, index) in banner" :key="index">
-        <img :src="item.src" alt="" id="banner">
+        <img :src="item.src" alt="" id="banner" />
       </swiper-slide>
     </swiper>
 
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide, } from "vue-awesome-swiper";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
@@ -87,7 +87,6 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-
   },
   data() {
     return {
@@ -114,17 +113,18 @@ export default {
 </script>
 <style scoped lang="scss">
 #industry {
-    .swiper{
+  .swiper {
     height: 580px;
     width: 100%;
-  swiper-slide{
-    width: 100%;
-    height: 580px;
+    swiper-slide {
+      width: 100%;
+      height: 580px;
+    }
   }
-}
-#banner{
-  height: 580px;width: 100% !important;
-}
+  #banner {
+    height: 580px;
+    width: 100% !important;
+  }
   .main {
     .title {
       font-size: 24px;
@@ -283,17 +283,18 @@ export default {
 
   // 媒体查询
   @media only screen and (max-width: 1080px) {
-       .swiper{
-    height: 250px;
-    width: 100%;
-  swiper-slide{
-    width: 100%;
-    height: 250px;
-  }
-}
-#banner{
-  height: 250px;width: 100% !important;
-}
+    .swiper {
+      height: 250px;
+      width: 100%;
+      swiper-slide {
+        width: 100%;
+        height: 250px;
+      }
+    }
+    #banner {
+      height: 250px;
+      width: 100% !important;
+    }
     .main1 {
       width: 90%;
       margin: 0 auto;
@@ -307,7 +308,9 @@ export default {
           text-align: center;
           width: 100%;
           border: 1px solid red;
-          img{width: 100%;}
+          img {
+            width: 100%;
+          }
         }
         dd {
           width: 100%;
@@ -316,108 +319,108 @@ export default {
         }
       }
     }
-     .main2 {
-    width: 95%;
-    margin: 0 auto;
-    img {
-      width: 100%;
-    }
-  }
-    .main3 {
-    .project {
-      color: #333333;
-      font-size: 24px;
-      text-align: center;
-      font-weight: 400;
-      margin: 0;
-    }
-  }
-   .main4 {
-    width: 95%;
-    margin: 0 auto;
-    img {
-      width: 100%;
-    }
-  }
-   .main5 {
-    font-size: 18px;
-    color: #333333;
-    font-weight: 400;
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-  }
-   .main6 {
-    width: 95%;
-    margin: 5% auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    .main6left {
-      width: 100%;
-      background: #ffffff;
-      box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
-      border-radius: 5px;
-    }
-    .main6right {
-      width: 100%;
-      background: #ffffff;
-      box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
-      border-radius: 5px;
-    }
-    .main6head {
-      display: flex;
-      margin-left: 40px;
-      padding-top: 30px;
-      position: relative;
-      .sw {
-        width: 10px;
-        height: 10px;
-        background: #20b09f;
-        transform: rotate(50deg);
-        position: absolute;
-        top: 43%;
-        left: -20px;
-      }
-    }
-    .main6head1 {
-      display: flex;
-      margin-left: 40px;
-
-      p {
-        margin-top: 0;
-      }
-      position: relative;
-      .sw {
-        width: 10px;
-        height: 10px;
-        background: #20b09f;
-        transform: rotate(50deg);
-        position: absolute;
-        top: 10%;
-        left: -20px;
-      }
-    }
-    .main6img {
-      width: 90%;
-      margin: 5% auto;
+    .main2 {
+      width: 95%;
+      margin: 0 auto;
       img {
         width: 100%;
+      }
+    }
+    .main3 {
+      .project {
+        color: #333333;
+        font-size: 24px;
+        text-align: center;
+        font-weight: 400;
+        margin: 0;
+      }
+    }
+    .main4 {
+      width: 95%;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+    .main5 {
+      font-size: 18px;
+      color: #333333;
+      font-weight: 400;
+      text-align: center;
+      width: 80%;
+      margin: 0 auto;
+    }
+    .main6 {
+      width: 95%;
+      margin: 5% auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .main6left {
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
+        border-radius: 5px;
+      }
+      .main6right {
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
+        border-radius: 5px;
+      }
+      .main6head {
+        display: flex;
+        margin-left: 40px;
+        padding-top: 30px;
+        position: relative;
+        .sw {
+          width: 10px;
+          height: 10px;
+          background: #20b09f;
+          transform: rotate(50deg);
+          position: absolute;
+          top: 43%;
+          left: -20px;
+        }
+      }
+      .main6head1 {
+        display: flex;
+        margin-left: 40px;
+
+        p {
+          margin-top: 0;
+        }
+        position: relative;
+        .sw {
+          width: 10px;
+          height: 10px;
+          background: #20b09f;
+          transform: rotate(50deg);
+          position: absolute;
+          top: 10%;
+          left: -20px;
+        }
+      }
+      .main6img {
+        width: 90%;
+        margin: 5% auto;
+        img {
+          width: 100%;
+          height: 300px;
+        }
         height: 300px;
       }
-      height: 300px;
     }
-  }
     .foot {
-    background: url(../../assets/foot.png) no-repeat;
-    height: 120px;
-    font-size: 20px;
-    font-family: Microsoft YaHei;
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 120px;
-    text-align: center;
-  }
+      background: url(../../assets/foot.png) no-repeat;
+      height: 120px;
+      font-size: 20px;
+      font-family: Microsoft YaHei;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 120px;
+      text-align: center;
+    }
   }
 }
 </style>
