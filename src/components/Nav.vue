@@ -91,7 +91,7 @@ export default {
     };
   },
   watch: {
-    $route(to, from) {
+    $route(to) {
       // console.log(from.path); //从哪来
       // console.log(to.path); //到哪去
       this.toback(to.path);
