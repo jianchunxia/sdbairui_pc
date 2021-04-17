@@ -63,21 +63,24 @@ export default {
     return {
       location: { lng: 116.8087874398422, lat: 36.5170277099317 },
       zoom: 16,
-      ban: require("../assets/conban.png"),
+      ban: require("../../assets/conban.png"),
       lianxi: [
-        { img: require("../assets/lianxi.png"), text: "联系我们" },
+        { img: require("../../assets/lianxi.png"), text: "联系我们" },
         {
-          img: require("../assets/qiye.png"),
+          img: require("../../assets/qiye.png"),
           text: "山东柏瑞软件科技有限公司",
         },
-        { img: require("../assets/tel.png"), text: "0538-2110108" },
-        { img: require("../assets/email.png"), text: "wf18661349342@163.com" },
+        { img: require("../../assets/tel.png"), text: "0538-2110108" },
         {
-          img: require("../assets/dizhi.png"),
+          img: require("../../assets/email.png"),
+          text: "wf18661349342@163.com",
+        },
+        {
+          img: require("../../assets/dizhi.png"),
           text: "济南市长清区崮云湖街道芙蓉路中国创新谷西城软件园A3楼503室",
         },
       ],
-      liuyan: require("../assets/liuy.png"),
+      liuyan: require("../../assets/liuy.png"),
       liuy: "填写留言",
     };
   },

@@ -92,35 +92,35 @@ export default {
       numindex: null,
       zhize: "我们的职责范围",
       zzfw: [
-        { img: require("../assets/zhaos.png"), text: "独立招生" },
-        { img: require("../assets/guanl.png"), text: "90%教学+学生管理" },
-        { img: require("../assets/shix.png"), text: "实训实习" },
-        { img: require("../assets/jiuye.png"), text: "就业安置" },
+        { img: require("../../assets/zhaos.png"), text: "独立招生" },
+        { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
+        { img: require("../../assets/shix.png"), text: "实训实习" },
+        { img: require("../../assets/jiuye.png"), text: "就业安置" },
       ],
       xiao: [
         {
           xiao: "山东交通职业学院泰山校区",
           nei: [
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
@@ -131,25 +131,25 @@ export default {
           xiao: "山东省城市服务技师学院",
           nei: [
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
@@ -160,25 +160,25 @@ export default {
           xiao: "淄博市技师学院",
           nei: [
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
             },
             {
-              img: require("../assets/10.png"),
+              img: require("../../assets/10.png"),
               name: "办公楼",
               text:
                 " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
@@ -188,14 +188,20 @@ export default {
       ],
       liang: "特色亮点",
       tese: [
-        { img: require("../assets/shuju.png"), text: "因材施教，分层培养。" },
         {
-          img: require("../assets/shuju.png"),
+          img: require("../../assets/shuju.png"),
+          text: "因材施教，分层培养。",
+        },
+        {
+          img: require("../../assets/shuju.png"),
           text: "24小时陪伴，保姆式管理。",
         },
-        { img: require("../assets/hezuo.png"), text: "时时教育，机会教育。" },
         {
-          img: require("../assets/shouc.png"),
+          img: require("../../assets/hezuo.png"),
+          text: "时时教育，机会教育。",
+        },
+        {
+          img: require("../../assets/shouc.png"),
           text: "技能+综合素养，双线培养。",
         },
       ],
@@ -203,46 +209,46 @@ export default {
       yuanx: "我们一直与众多院校建立友好的合作关系",
       yuanxi: [
         {
-          img: require("../assets/30.png"),
+          img: require("../../assets/30.png"),
           name: "山东交通职业学院",
           text:
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
         {
-          img: require("../assets/30.png"),
+          img: require("../../assets/30.png"),
           name: "山东交通职业学院",
           text:
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
         {
-          img: require("../assets/30.png"),
+          img: require("../../assets/30.png"),
           name: "山东交通职业学院",
           text:
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
         {
-          img: require("../assets/30.png"),
+          img: require("../../assets/30.png"),
           name: "山东交通职业学院",
           text:
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
         {
-          img: require("../assets/30.png"),
+          img: require("../../assets/30.png"),
           name: "山东交通职业学院",
           text:
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
         {
-          img: require("../assets/30.png"),
+          img: require("../../assets/30.png"),
           name: "山东交通职业学院",
           text:
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
       ],
       banner: [
-        { ban: require("../assets/schban.png") },
-        { ban: require("../assets/schban.png") },
-        { ban: require("../assets/schban.png") },
+        { ban: require("../../assets/schban.png") },
+        { ban: require("../../assets/schban.png") },
+        { ban: require("../../assets/schban.png") },
       ],
     };
   },
@@ -315,7 +321,7 @@ export default {
       }
 
       .bg {
-        background: url("../assets/zhize.png") no-repeat center center;
+        background: url("../../assets/zhize.png") no-repeat center center;
         background-size: 100% 100%;
         margin: 1rem auto 0;
       }
@@ -351,7 +357,7 @@ export default {
       }
 
       .bg {
-        background: url("../assets/xue.png") no-repeat center center;
+        background: url("../../assets/xue.png") no-repeat center center;
         background-size: 100% 100%;
         margin: 1rem auto;
       }
