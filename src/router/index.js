@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Industry from '../views/Industry/Industry.vue'
-import About from '../views/About us/About us.vue'
-import Javadel from '../views/Javadel/Javadel.vue'
-import webdel from '../views/webdel/webdel.vue'
+import Industry from '../views/pages/Industry.vue'
+import About from '../views/About pages/About us.vue'
+import Javadel from '../views/pages/Javadel.vue'
+import webdel from '../views/pages/webdel.vue'
 Vue.use(VueRouter)
 
 const routes = [
