@@ -86,20 +86,20 @@
 <script>
 // import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 // import "swiper/swiper-bundle.css";
-import { getData} from '../../api/http.js'
+import { getData } from "../../api/http.js";
 
 export default {
   name: "School",
   components: {
     // Swiper,
     // SwiperSlide,
-    },
+  },
   data() {
     return {
-      swiperOption:{
-        loop:true,
-        pagination:{
-          el:"swiper-pagination",
+      swiperOption: {
+        loop: true,
+        pagination: {
+          el: "swiper-pagination",
           // type:'bullets',
           // clickble:true,
           // dynamicBullets:false
@@ -110,9 +110,9 @@ export default {
         //   disableOnInteraction:false
         // },
         // effect:'slide',
-        navigation:{
-          nextEl:'swiper-button-prev',
-          prevEl:'swiper-button-next',
+        navigation: {
+          nextEl: "swiper-button-prev",
+          prevEl: "swiper-button-next",
         },
       },
       numindex: null,
@@ -308,13 +308,13 @@ export default {
     // getData()
     this.setindex();
   },
-  setindex(){
-    var that =this;
-    getData().then((res)=>{
-      console.log(res)
-      that .banner=res.data.data.img
-    })
-  }
+  setindex() {
+    var that = this;
+    getData().then((res) => {
+      console.log(res);
+      that.banner = res.data.data.img;
+    });
+  },
 };
 </script>
 
@@ -330,17 +330,17 @@ export default {
 }
 
 .swiper {
-    height: 580px;
+  height: 580px;
+  width: 100%;
+  swiper-slide {
     width: 100%;
-    swiper-slide {
-      width: 100%;
-      height: 580px;
-    }
-  }
-  #banner {
     height: 580px;
-    width: 100% !important;
   }
+}
+#banner {
+  height: 580px;
+  width: 100% !important;
+}
 
 .my-swipe .van-swipe-item {
   color: #fff;

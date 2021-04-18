@@ -11,23 +11,24 @@
         {{ jie }}
       </div>
     </div>
-    <!-- <div class="element width">
-      <div class="item">
-        <img :src="dataList[currentIndex]">
-        <div>
-          <img :src="dataList[currentIndex].img" alt="">
-        </div>
-      </div>
-      <div class="page" v-if="this.dataList.length > 1">
-    <ul>
-      <li @click="gotoPage(prevIndex)">&lt;</li>
-      <div v-for="(item,index) in dataList" :key="index" @click="gotoPage(index)"  :class="{'current':currentIndex == index}" >
-      </div>
-      <li @click="gotoPage(nextIndex)">&gt;</li>
-    </ul>
-  </div> -->
-    <!-- </div> -->
-
+    <el-carousel height="180px" class=" width ban one" :autoplay="false"  arrow="always">
+        <el-carousel-item v-for="(item, index) in banners" :key="index">
+          <h3 class="small">
+            <img :src="item.src1" alt="" />
+            <img :src="item.src1" alt="" />
+            <img :src="item.src1" alt="" />
+          </h3>
+        </el-carousel-item>
+      </el-carousel>
+      <el-carousel height="480px" class=" width ban two" :autoplay="false"  arrow="always">
+        <el-carousel-item v-for="(item, index) in banners" :key="index">
+          <h3 class="small">
+            <img :src="item.src1" alt="" />
+            <img :src="item.src2" alt="" />
+            <img :src="item.src3" alt="" />
+          </h3>
+        </el-carousel-item>
+      </el-carousel>
     <div class="soft width" v-for="(item, index) in soft" :key="index">
       <div class="title">
         <p class="t1">{{ item.title2 }}</p>
@@ -46,6 +47,27 @@
 export default {
   data() {
     return {
+      banners:[
+        {
+          src1:require('../../assets/design3.jpeg'),
+          src2:require('../../assets/design3.jpeg'),
+          src3:require('../../assets/design3.jpeg'),
+          src4:require('../../assets/design3.jpeg'),
+        },
+        {
+          src1:require('../../assets/design3.jpeg'),
+          src2:require('../../assets/design3.jpeg'),
+          src3:require('../../assets/design3.jpeg'),
+          src4:require('../../assets/design3.jpeg'),
+        },
+        {
+          src1:require('../../assets/design3.jpeg'),
+          src2:require('../../assets/design3.jpeg'),
+          src3:require('../../assets/design3.jpeg'),
+          src4:require('../../assets/design3.jpeg'),
+        },
+      ],
+
       dataList: [
         "https://i1.mifile.cn/a4/xmad_15535933141925_ulkYv.jpg",
         "https://i1.mifile.cn/a4/xmad_15532384207972_iJXSx.jpg",
@@ -154,29 +176,12 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
 
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
 
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
 
 * {
   margin: 0;
   padding: 0;
-}
-
-img {
-  object-fit: cover;
 }
 
 a {
@@ -192,115 +197,74 @@ li {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 #design {
   width: 100%;
+
   .banner {
     width: 100%;
+
     img {
       width: 100%;
-      height: 484px;
+      // height: 170px;
+      height: 100%;
     }
   }
+
   .jie {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
     box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
     border-radius: 5px;
+    margin-bottom: 30px;
     .name {
       width: 96px;
       color: #20b09f;
       font-size: 48px;
       padding: 20px;
-      // border: 1px solid #000;
-    }
-
-    .shao {
-      width: 75%;
-      padding: 20px;
-      font-size: 24px;
-      // border: 1px solid #000;
     }
   }
-
-  .element {
-    margin-top: 34px;
-    position: relative;
-    // ul li {
-    //     list-style: none;
-    //     float: left;
-    //     width: 30px;
-    //     height: 40px;
-    //     line-height: 40px;
-    //     text-align: center;
-    //     cursor: pointer;
-    //     color: rgba(255,255,255,.8);
-    //     font-size: 14px;
-    // }
-    .item {
-      max-width: 100%;
-      margin: 0 auto;
-      position: relative;
-      margin-top: 60px;
-    }
-    .item img {
-      width: 100%;
-      display: block;
-    }
-    .page {
-      // background: rgba(0,0,0,.5);
-      // position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-    }
-    .page ul {
-      text-align: center;
-      width: 20%;
+  .ban {
+  // margin-top: 30px;
+  box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.36);
+  border-radius: 8px;
+    h3 {
+      padding: 40px 0px;
       display: flex;
-      justify-content: space-between;
-      // border: 1px solid #000;
-      margin: 0 auto;
-      text-align: center;
-      cursor: pointer;
-      height: 20px;
-      line-height: 20px;
-      // color: rgba(255,255,255,.8);
-      color: #20b09f;
-      div {
-        width: 6px;
-        height: 6px;
-        background: #6a6a6a;
-        border-radius: 3px;
+      justify-content: center;
+      img {
+        width: 24%;
+        // height: 120px;
+        margin: 0 10px;
       }
     }
-    .current {
-      background: #20b09f !important;
-      z-index: 1234;
-    }
+   .ban >>> .el-carousel__button {
+  background: #FF4545;
+} 
+  
+}
+  .two {
+    display: none;
   }
-
   .soft {
-    margin-top: 84px;
+    padding-bottom: 60px;
+
     .title {
-      width: 30%;
       margin: 0 auto;
       text-align: center;
+
       .t1 {
         color: #20ae9e;
-        font-size: 28px;
-        line-height: 36px;
+        font-weight: 600;
         border-bottom: 2px solid #20ae9e;
       }
+
       .p1 {
         width: 100%;
         margin: 0 auto;
         color: #333333;
         line-height: 30px;
-        font-size: 22px;
-        padding-top: 15px;
       }
     }
 
@@ -310,19 +274,159 @@ li {
       justify-content: space-between;
       flex-wrap: wrap;
       text-align: center;
-      margin-top: 49px;
+
       dl {
-        width: 32%;
+
         dt {
           overflow: hidden;
+
           img {
             width: 100%;
-            height: 286px;
+            // height: 286px;
           }
         }
 
         dd {
           padding: 21px 0px 22px 0px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1085px) {
+    .ban {
+  // margin-top: 30px;
+    box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.36);
+    border-radius: 8px;
+    .one {
+      padding: 40px 0px;
+      display: flex;
+      justify-content: center;
+      img {
+        width: 4%;
+        height: 100px;
+        margin: 0 10px;
+      }
+    }
+  
+}
+
+
+    .banner {
+
+      img {
+        height: 484px;
+      }
+    }
+
+    .jie {
+      margin-top: 40px;
+
+      .name {
+        width: 96px;
+        font-size: 48px;
+      }
+
+      .shao {
+        width: 75%;
+        padding: 20px;
+        font-size: 24px;
+      }
+    }
+    .one {
+      display: none;
+      img {
+        width: 10%;
+        height: 100%;
+      }
+    }
+    .two {
+      display: block;
+    }
+
+    .soft {
+      margin-top: 6%;
+
+      .title {
+        width: 30%;
+        margin: 0 auto;
+        text-align: center;
+        
+        .t1 {
+          font-size: 38px;
+          line-height: 50px;
+        }
+
+        .p1 {
+          font-size: 22px;
+          padding-top: 15px;
+        }
+      }
+
+      .list {
+        margin-top: 49px;
+
+        dl {
+          width: 32%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1080px) {
+    .banner {
+
+      img {
+        height: 154px;
+      }
+    }
+
+    .jie {
+      margin-top: 0px;
+      padding: 10px 0px;
+
+      .name {
+        width: 100px;
+        font-size: 38px;
+      }
+
+      .shao {
+        width: 74%;
+        padding: 10px;
+        font-size: 16px;
+      }
+    }
+
+    .soft {
+      width: 94%;
+      margin: 0px auto;
+      margin-top: 8%;
+
+      .title {
+        width: 70%;
+        margin: 0 auto;
+        text-align: center;
+
+        .t1 {
+          color: #20ae9e;
+          font-size: 25px;
+          font-weight: 600;
+          line-height: 36px;
+          border-bottom: 2px solid #20ae9e;
+        }
+
+        .p1 {
+          font-size: 18px;
+          padding-top: 10px;
+        }
+      }
+
+      .list {
+        text-align: center;
+        margin-top: 6%;
+
+        dl {
+          width: 48%;
         }
       }
     }

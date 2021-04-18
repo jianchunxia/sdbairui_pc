@@ -222,6 +222,10 @@ export default {
           title: "产业事业部",
         },
         {
+          url: "/design",
+          title: "柏瑞设计",
+        },
+        {
           url: "/about",
           title: "关于我们",
         },

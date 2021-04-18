@@ -1,7 +1,12 @@
 <template>
   <div class="index">
     <div class="banner">
-      <el-carousel height="580px">
+      <el-carousel height="580px" class="pc">
+        <el-carousel-item v-for="(item, index) in banner" :key="index">
+          <h3 class="small"><img :src="item.src" alt="" /></h3>
+        </el-carousel-item>
+      </el-carousel>
+      <el-carousel height="320px" class="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <h3 class="small"><img :src="item.src" alt="" /></h3>
         </el-carousel-item>
@@ -41,7 +46,7 @@
                 <h4>{{ item.title }}</h4>
                 <p>{{ item.content }}</p>
                 <div class="tiao">
-                  {{ item.more }}
+                  <router-link :to="item.url">{{ item.more }}</router-link>
                 </div>
               </div>
             </div>
@@ -136,7 +141,6 @@
             <p>{{ perap }}</p>
           </div>
         </div>
-
         <dl>
           <dt v-for="(item, index) in dt" :key="index">
             <img :src="item.dt" alt="" />
@@ -148,9 +152,18 @@
 </template>
 
 <script>
+// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+
+// Import Swiper styles
+// import "swiper/swiper-bundle.css";
+// import {getIndexBan} from "../../api/http.js"
 export default {
   name: "Index",
-  components: {},
+  components: {
+    // getIndexBan
+    // Swiper,
+    // SwiperSlide,
+  },
   data() {
     return {
       currenta: 0,
@@ -173,6 +186,7 @@ export default {
           title: "校区事业部",
           content:
             "  校区事业部主要负责学生后期的职业技能培养。下设四个校区，分别是济南创新谷软件工厂、山东交通职业学院泰山校区、山东省城市服务技师学院和淄博市技师学院。泰安、烟台和淄博三个校区主要负责学生基本技能的学习和培养。济南创新谷软件工厂主要负责学生后期专业技能的提升和后期的真实项目实训，实现与招聘单位的无缝对接，确保高薪对口就业。",
+            url:'/School',
           more: "查看更多>>",
         },
         {
@@ -180,6 +194,7 @@ export default {
           title: "产业事业部",
           content:
             " 产业事业部负责学生工学交替、实训实习，下设软件工厂。软件工厂是山东柏瑞为践行 “深度产教融合”而打造的产业基地，同时以“校中厂”的形式进行组织工学交替，学生在实际工作中打磨技术能力，在为项目交付的努力中体会用户体验。经过一年左右的项目研发，积累实际工作经验，把毕业后找工作变为向更高平台的“跳槽”。",
+            url:'Industry',
           more: "查看更多>>",
         },
         {
@@ -187,6 +202,7 @@ export default {
           title: "柏瑞设计",
           content:
             "最有价值的培养模式，最符合企业需求的课程体系，最科学的授课方式，最完善的就业保障体系，最具有口碑竞争力的教育机构。",
+            url:'Design',
           more: "查看更多>>",
         },
       ],
@@ -331,6 +347,16 @@ export default {
       this.currenta = index;
     },
   },
+  // created() {
+  //   this.indexBan()
+  // },
+  // indexBan() {
+  //   var that = this
+  //   getIndexBan().then(res =>{
+  //     console.log(res)
+  //     that.banner = res.data.data
+  //   })
+  // }
 };
 </script>
 <style lang="scss" scoped>
@@ -357,66 +383,42 @@ li {
   color: #20b09f;
 }
 
-.el-carousel__item h3 {
-  width: 100%;
-  height: 580px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
 .index {
-  // border: 1px solid #000;
   background: #fff;
+  
   .center {
     .core {
       width: 100%;
       margin-top: 71px;
-      //  background: olive;
       .bo {
         text-align: center;
         .title {
           display: inline-block;
           text-align: center;
-          font-size: 24px;
           margin: 0 auto;
-          margin-top: 59px;
           margin-bottom: 30px;
           background: url(../../assets/indexBg1.png) left top no-repeat,
             url(../../assets/indexBg12.png) right bottom no-repeat;
-          padding: 30px;
           background-size: 6% 14%;
           p {
             color: #666666;
             font-size: 14px;
             margin-top: 5px;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 5;
-            overflow: hidden;
           }
         }
       }
 
       .card {
         width: 100%;
-        margin-top: 30px;
         .list {
-          width: 50%;
           margin: 0 auto;
           display: flex;
           justify-content: space-around;
-          font-size: 22px;
         }
 
         .xia {
-          height: 379px;
-          // border: 1px solid #000;
-          margin-top: 36px;
           border-top: 6px solid #20b09f;
           box-shadow: 0px 0px 35px 0px rgba(106, 106, 106, 0.31);
-          // border-radius: 8px;
           border-bottom-left-radius: 8px;
           border-bottom-right-radius: 8px;
           .cards {
@@ -425,9 +427,8 @@ li {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            // border: 1px solid #000  ;
+            align-items: center;
             .image {
-              max-width: 292px;
               margin-top: 62px;
               img {
                 width: 100%;
@@ -439,15 +440,9 @@ li {
               overflow: hidden;
               position: relative;
               height: 100%;
-              // border: 1px solid #000;
-              h4 {
-                font-size: 22px;
-                margin: 62px 0px 34px 0px;
-              }
+              
 
               p {
-                font-size: 18px;
-                line-height: 40px;
                 text-indent: 2em;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
@@ -456,9 +451,8 @@ li {
               }
 
               .tiao {
-                width: 96px;
-                height: 40px;
-                line-height: 40px;
+                a {
+                  display: block;
                 text-align: center;
                 background: #20b09f;
                 color: #fff;
@@ -468,6 +462,8 @@ li {
                 position: absolute;
                 bottom: 0;
                 right: 0;
+                }
+                
               }
             }
           }
@@ -476,10 +472,7 @@ li {
     }
 
     .teacher {
-      width: 100%;
       margin: 0 auto;
-      margin-top: 62px;
-      margin-bottom: 52px;
       .teacherTit {
         width: 79%;
         margin: 0 auto;
@@ -492,40 +485,20 @@ li {
         margin: 0 auto;
         margin-top: 50px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 4rem;
         .teacherli {
-          width: 100%;
           border: 2px solid #20b09f;
-          //  box-sizing: border-box;
-          border-radius: 13px;
           box-shadow: 0px 0px 22px 10px rgba(120, 118, 118, 0.26);
           .title {
             background: #20b09f;
             text-align: center;
             color: #fff;
-            height: 61px;
-            line-height: 61px;
-            border-radius: 10px;
             img {
-              width: 26px;
-              height: 30px;
               vertical-align: middle;
               margin-right: 2%;
             }
           }
           p {
-            padding: 10%;
             text-indent: 2em;
-          }
-        }
-
-        .teacherli:last-child {
-          .title {
-            img {
-              width: 27px;
-              height: 27px;
-            }
           }
         }
       }
@@ -535,22 +508,17 @@ li {
       width: 100%;
       background: #f6f6f6;
       padding-top: 49px;
-      padding-bottom: 57px;
-      margin-bottom: 30px;
       .width {
         .bo {
           text-align: center;
           .title {
             display: inline-block;
             text-align: center;
-            font-size: 24px;
             margin: 0 auto;
-            margin-top: 59px;
             margin-bottom: 30px;
             background: url(../../assets/indexBg1.png) left top no-repeat,
               url(../../assets/indexBg12.png) right bottom no-repeat;
             background-size: 6% 14%;
-            padding: 30px;
             p {
               color: #666666;
               font-size: 14px;
@@ -560,61 +528,42 @@ li {
         }
 
         .list {
-          // padding-bottom: 30px;
           display: flex;
           justify-self: unset;
           justify-content: space-around;
           flex-wrap: wrap;
           dl {
-            width: 23%;
-            // background: #fff;
-            padding: 20px 15px 14px 13px;
             box-sizing: border-box;
             dt {
-              // border: 1px solid #000;
               text-align: center;
-              img {
-                max-width: 117px;
-                max-height: 107px;
-                // margin: 0 auto;
-                // border: 1px solid #000;
-              }
               img:nth-child(2) {
                 display: none;
               }
             }
 
             .tit {
-              font-size: 20px;
               font-weight: bold;
               text-align: center;
               margin: 10px 0;
             }
             .con {
               width: 100%;
-              // background: #f00;
               text-indent: 1em;
-              // display: none;
               visibility: hidden;
             }
           }
 
           dl:hover {
-            // position: absolute;
             background: #fff;
             box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
             border-radius: 8px;
-
-            // transform:scale(1.2);
             dt:hover {
               text-align: center;
               img:nth-child(1) {
                 display: none;
-                // border: 1px solid #000;
               }
               img:nth-child(2) {
                 display: block;
-                // border: 1px solid #000;
                 margin: 0 auto;
               }
             }
@@ -630,15 +579,14 @@ li {
       width: 100%;
       background: url("../../assets/indexBg2.png");
       background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
       max-height: 300px;
-      padding-top: 49px;
       .width {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        padding: 105px 0px 84px 0px;
         ul {
-          width: 25%;
           text-align: center;
           color: #fff;
           font-size: 24px;
@@ -649,7 +597,6 @@ li {
             }
 
             .big {
-              font-size: 60px;
               margin-right: 10px;
             }
           }
@@ -668,12 +615,9 @@ li {
         .title {
           display: inline-block;
           text-align: center;
-          font-size: 24px;
           margin: 0 auto;
-          margin-top: 59px;
           background: url(../../assets/indexBg1.png) left top no-repeat,
             url(../../assets/indexBg12.png) right bottom no-repeat;
-          padding: 30px;
           background-size: 6% 14%;
           p {
             color: #666666;
@@ -694,8 +638,8 @@ li {
       .list {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         dl {
-          width: 30%;
           background: #ffffff;
           box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.51);
           border-radius: 0px 0px 8px 8px;
@@ -707,11 +651,9 @@ li {
           }
           div {
             box-sizing: border-box;
-            padding: 23px;
             .tit {
               font-weight: bold;
               text-align: center;
-              font-size: 18px;
               line-height: 40px;
               color: #333333;
             }
@@ -727,13 +669,10 @@ li {
             }
 
             .last {
-              font-size: 16px;
               color: #666666;
-              //  border: 1px solid #000;
               overflow: hidden;
               line-height: 40px;
               .more {
-                //  border: 1px solid #000;
                 float: right;
                 a {
                   color: #333333;
@@ -752,17 +691,14 @@ li {
         .title {
           display: inline-block;
           text-align: center;
-          font-size: 24px;
           margin: 0 auto;
-          margin-top: 59px;
           margin-bottom: 30px;
           background: url(../../assets/indexBg1.png) left top no-repeat,
             url(../../assets/indexBg12.png) right bottom no-repeat;
-          padding: 30px;
           background-size: 6% 14%;
           p {
             color: #666666;
-            font-size: 14px;
+            font-size: 10px;
             margin-top: 5px;
           }
         }
@@ -772,10 +708,7 @@ li {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        margin-top: 20px;
         dt {
-          width: 18%;
-          margin-bottom: 35px;
           background: #fff;
           border: 2px solid #cecece;
           border-radius: 10px;
@@ -790,52 +723,305 @@ li {
       }
     }
   }
-  @media screen and (max-width: 1080px) {
-    .center {
-      .core {
-        .bo {
-          .title {
-            font-size: 20px;
-            // background: #20b09f;
-            // border:1px solid #000;
-            padding: 10px;
-            margin-top: 0px;
 
-            p {
-              font-size: 16px;
-              margin-top: 5px;
+  @media screen and (min-width: 1085px) {
+    .banner {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .phone {
+        display: none;
+        // img {
+        //   width: 100%;
+        //   height: 100%;
+        // }
+      }
+    }
+
+    .center {
+
+      .core {
+
+        .bo {
+          
+          .title {
+            font-size: 24px;
+            padding: 30px;
+            margin-top: 59px;
+          }
+        }
+
+        .card {
+          margin-top: 30px;
+
+          .list {
+            width: 50%;
+            font-size: 22px;
+          }
+
+          .xia {
+            margin: 0 auto;
+            height: 379px;
+            margin-top: 36px;
+
+            .cards {
+              width: 100%;
+
+              .image {
+              max-width: 292px;
+              }
+
+              .content {
+                max-width: 684px;
+
+                h4 {
+                  font-size: 22px;
+                  margin: 62px 0px 34px 0px;
+                }
+
+                p {
+                  font-size: 18px;
+                  line-height: 40px;
+                }
+
+                .tiao {
+                  width: 96px;
+                  height: 40px;
+                  line-height: 40px;
+                }
+              }
             }
           }
-          // background: #20b09f;
+        }
+      }
+
+      .teacher {
+        width: 100%;
+        margin-top: 62px;
+        margin-bottom: 52px;
+
+        .teacherTit {
+          width: 79%;
+
+          img {
+            width: 100%;
+          }
+        }
+        .teacherList {
+           grid-template-columns: repeat(3, 1fr);
+           grid-gap: 4rem;
+
+          .teacherli {
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 13px;
+
+            .title {
+              height: 61px;
+              line-height: 61px;
+              border-radius: 10px;
+
+              img {
+                width: 26px;
+                height: 30px;
+              }
+            }
+
+            p {
+              padding: 10%;
+              font-size: 13px;
+              line-height: 26px;
+            }
+          }
+
+          .teacherli:last-child {
+            .title {
+              img {
+                width: 27px;
+                height: 27px;
+              }
+            }
+          }
+        }
+      }
+
+      .foster {
+        padding-bottom: 57px;
+        margin-bottom: 30px;
+
+        .width {
+
+          .bo {
+
+            .title {
+              font-size: 24px;
+              padding: 30px;
+              margin-top: 59px;
+            }
+          }
+
+          .list {
+
+            dl {
+              width: 23%;
+              padding: 20px 15px 14px 13px;
+
+              dt {
+
+                img {
+                  max-width: 117px;
+                  max-height: 107px;
+                }
+              }
+
+              .tit {
+                font-size: 20px;
+              }
+            }
+
+          }
+        }
+      }
+
+      .bbg {
+        background-size: 100% 100%;
+        padding-top: 49px;
+
+        .width {
+          padding: 105px 0px 84px 0px;
+
+          ul {
+            width: 25%;
+
+            li {
+
+              .big {
+                font-size: 60px;
+              }
+            }
+
+            li:last-child {
+              padding-top: 20px;
+            }
+          }
+        }
+      }
+      .news {
+
+        .bo {
+
+          .title {
+            font-size: 24px;
+            margin-top: 59px;
+            padding: 30px;
+
+          }
+
+          .more {
+            margin-top: -10px;
+            margin-bottom: 30px;
+          }
+        }
+
+        .list {
+
+          dl {
+            width: 30%;
+
+            div {
+              padding: 23px;
+
+              .tit {
+                font-size: 18px;
+              }
+
+              .last {
+                font-size: 16px;
+                
+              }
+            }
+          }
+        }
+      }
+
+      .pera {
+
+        .bo {
+
+          .title {
+            font-size: 24px;
+            margin-top: 59px;
+            padding: 30px;
+          }
+        }
+
+        dl {
+          margin-top: 20px;
+
+          dt {
+            width: 18%;
+            margin-bottom: 35px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1080px) {
+    .banner {
+      .pc {
+        display: none;
+      }
+      .phone {
+        display: block;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .center {
+
+      .core {
+
+        .bo {
+          
+          .title {
+            font-size: 20px;
+            padding: 10px;
+            margin-top: 0px;
+          }
         }
 
         .card {
           margin-top: 0px;
+
           .list {
             width: 90%;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
             font-size: 16px;
           }
+
           .xia {
             width: 94%;
             margin: 0 auto;
             height: 239px;
             margin-top: 26px;
+
             .cards {
               width: 98%;
               margin: 0 auto;
+
               .image {
-                max-width: 30%;
-                img {
-                  width: 100%;
-                  margin: auto;
-                }
+                max-width: 24%;
               }
+
               .content {
                 max-width: 66%;
                 margin: 0 auto;
+
                 h4 {
                   font-size: 18px;
                   margin: 22px 0px 14px 0px;
@@ -862,43 +1048,38 @@ li {
         margin: 0 auto;
         margin-top: 32px;
         margin-bottom: 8px;
+
         .teacherTit {
           width: 92%;
           margin: 0 auto;
+
           img {
             width: 100%;
           }
         }
         .teacherList {
-          // width: 100%;
-          // margin: 0 auto;
-          // margin-top: 50px;
-          // display: grid;
           grid-template-columns: repeat(1, 1fr);
           grid-gap: 0rem;
+
           .teacherli {
             width: 94%;
             margin: 0 auto;
             margin-bottom: 16px;
-            // border: 2px solid #20b09f;
-            //  box-sizing: border-box;
             border-radius: 8px;
             box-shadow: none;
+
             .title {
-              // background: #20b09f;
-              // text-align: center;
-              // color: #fff;
               height: 41px;
               line-height: 41px;
               border-radius: 6px;
               font-size: 16px;
+
               img {
                 width: 16px;
                 height: 18px;
-                // vertical-align: middle;
-                // margin-right: 2%;
               }
             }
+
             p {
               padding: 3%;
               font-size: 13px;
@@ -917,139 +1098,82 @@ li {
           }
         }
       }
+
       .foster {
         width: 100%;
         background: #f6f6f6;
         padding-top: 49px;
         padding-bottom: 18px;
         margin-bottom: 10px;
+
         .width {
           width: 94%;
           margin: 0 auto;
+
           .bo {
+
             .title {
               font-size: 20px;
-              // background: #20b09f;
-              // border:1px solid #000;
               padding: 10px;
               margin-top: 0px;
 
-              p {
-                font-size: 16px;
-                margin-top: 5px;
-              }
             }
-            // background: #20b09f;
           }
 
           .list {
-            // padding-bottom: 30px;
-            // display: flex;
-            // justify-self: unset;
-            // justify-content: space-around;
+
             dl {
               width: 48%;
-              //  background: #fff;
-              //  padding: 0;
               padding: 18px 6px 8px 6px;
-              box-sizing: border-box;
+
               dt {
                 width: 99%;
-                // background: #000;
-                // border: 1px solid #000;
                 text-align: center;
+
                 img {
                   max-width: 87px;
                   max-height: 77px;
-                  // margin: 0 auto;
-                  // border: 1px solid #000;
                 }
-                // img:nth-child(2) {
-                //   display: none;
-                // }
               }
 
               .tit {
                 font-size: 18px;
-                // font-weight: bold;
-                // text-align: center;
-                // margin: 10px 0;
               }
+
               .con {
                 font-size: 8px;
-                // width: 100%;
-                // background: #f00;
-                // text-indent: 1em;
-                // display: none;
-                // visibility: hidden;
               }
             }
 
-            dl:hover {
-              // position: absolute;
-              background: #fff;
-              box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
-              border-radius: 8px;
-
-              // transform:scale(1.2);
-              dt:hover {
-                text-align: center;
-                img:nth-child(1) {
-                  display: none;
-                  // border: 1px solid #000;
-                }
-                img:nth-child(2) {
-                  display: block;
-                  // border: 1px solid #000;
-                  margin: 0 auto;
-                }
-              }
-              .con {
-                visibility: visible;
-              }
-            }
           }
         }
       }
-      .bbg {
-        // width: 100%;
-        // background: url("../../assets/indexBg2.png");
-        background-size: 100% 100%;
-        // background-attachment: fixed;
 
-        // max-height: 300px;
-        // padding-top: 49px;
+      .bbg {
+        background-size: 100% 100%;
         padding: 0;
+
         .width {
-          // display: flex;
-          // justify-content: space-around;
-          // flex-wrap: wrap;
           padding: 0;
-          // padding: 45px 0px 84px 0px;
+
           ul {
             width: 50%;
-            // text-align: center;
-            // color: #fff;
             font-size: 24px;
             padding: 20px 0px 15px 0px;
-            // box-sizing: border-box;
-            // // border: 1px solid #fff;
+
             li {
-              // vertical-align: top;
+
               span {
                 font-size: 14px;
-                // vertical-align: top;
               }
 
               .big {
                 font-size: 30px;
-                // margin-right: 10px;
               }
             }
 
             li:last-child {
               font-size: 14px;
-              // padding: 0;
               padding-top: 5px;
             }
           }
@@ -1059,30 +1183,23 @@ li {
         width: 94%;
         margin: 0 auto;
         padding-top: 49px;
+
         .bo {
-          // text-align: center;
+          margin-bottom: 20px;
+
           .title {
-            // display: inline-block;
-            // text-align: center;
             font-size: 20px;
-            // padding: 0px;
             margin-top: 0px;
-            // background: url(../../assets/indexBg1.png) left top no-repeat,
-            // url(../../assets/indexBg12.png) right bottom no-repeat;
             padding: 10px;
-            // background-size: 6% 14%;
-            p {
-              color: #666666;
-              font-size: 16px;
-              margin-top: 5px;
-            }
+
           }
+
           .more {
             text-align: right;
             font-size: 10px;
-            margin-top: 3px;
-            // margin: 0;
+            margin-top: 10px;
             margin-bottom: 15px;
+
             span {
               color: #20b09f;
             }
@@ -1090,55 +1207,66 @@ li {
         }
 
         .list {
-          display: flex;
-          justify-content: space-between;
+
           dl {
-            width: 30%;
-            background: #ffffff;
-            box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.51);
-            border-radius: 0px 0px 8px 8px;
-            dt {
-              width: 100%;
-              img {
-                width: 100%;
-              }
-            }
+            width: 94%;
+            // margin: 0 auto;
+            margin-bottom: 20px;
+
             div {
-              box-sizing: border-box;
-              padding: 23px;
+              padding: 10px;
+
               .tit {
-                font-weight: bold;
-                text-align: center;
-                font-size: 18px;
-                line-height: 40px;
-                color: #333333;
+                font-size: 14px;
               }
 
               .content {
-                text-indent: 1em;
-                width: 100%;
-                color: #666666;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
+                font-size: 10px;
               }
 
               .last {
-                font-size: 16px;
+                font-size: 13px;
                 color: #666666;
-                //  border: 1px solid #000;
                 overflow: hidden;
                 line-height: 40px;
+
                 .more {
-                  //  border: 1px solid #000;
                   float: right;
+
                   a {
                     color: #333333;
                   }
                 }
               }
             }
+          }
+          
+        }
+      }
+
+      .pera {
+        padding-top: 49px;
+        padding-bottom: 59px;
+        
+        .bo {
+
+          .title {
+            width: 70%;
+            font-size: 20px;
+            margin-top: 0px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            padding: 10px;
+
+          }
+        }
+
+        dl {
+          width: 94%;
+          margin: 0 auto;
+          dt {
+            width: 30%;
+            margin-bottom: 15px;
           }
         }
       }
