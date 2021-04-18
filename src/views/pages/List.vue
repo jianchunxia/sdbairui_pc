@@ -57,48 +57,48 @@ export default {
       all: 6, //总页数
       cur: 1, //当前页码
       totalPage: 0, //当前条数
-      list: [
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-      ],
+      // list: [
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      // ],
     };
   },
   created(){

@@ -1,8 +1,8 @@
 <template>
   <div class="ui">
-    <div class="banner">
-      <img :src="ban" />
-      <p>{{title}}</p>
+    <div class="banner" v-for="(item, index) in banner" :key="index">
+      <img :src="item.image" />
+      <p>{{item.title}}</p>
     </div>
     <div class="con">
       <div class="first">
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+import { getMajorbanner} from "../../api/http.js";
 export default {
   name: "Ui",
   components: {},
   data() {
     return {
+      banner:[],
       ban: require("../../assets/UI.jpg"),
       title:'UI设计是指对软件的人机交互、操作逻辑、界面美观的整体设计。',
       kecheng: "课程介绍",
@@ -39,6 +41,20 @@ export default {
         "UI即用户界面设计行业刚刚在全球软件业兴起，属于高薪技术设计产业，与国外在同步发展水平。其次国内外众多大型IT企业(例如:百度、腾讯、Yahoo、中国移动、Nokia、联想、网易、微软、盛大、淘宝等众多企业)均已成立专业的UI设计部门，但专业人才稀缺，人才资源争夺激烈。就业市场供不应求。如今，国内的UI设计日益发展，有了专门的职业分工也开始出现一些较高水准的一线设计师与UI设计交流组织。但总的来说，在这一领域，我们与西方发达国家间的差距仍是显而易见的。软件领域不像物质产品那样，存在工艺、材料上的限制，其核心问题恰在于人。因此，提高软件UI设计师的个人能力，真正提升软件产品的人性化程度，已成为中国UI发展的重中之重。",
     };
   },
+
+  created(){
+    this.setui();
+  },
+
+  methods:{
+    setui(){
+      var that = this;
+      getMajorbanner().then((res) => {
+        that.banner = res.data.data.data;
+        console.log(that.banner);
+      });
+    }
+  }
 };
 </script>
 

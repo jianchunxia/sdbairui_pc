@@ -80,3 +80,10 @@ export function getindexnewsXq() {
 		method: 'GET',
 	})
 }
+
+export function getMajorbanner() {
+	return request({
+		url: '/api/Major/banner',
+		method: 'GET',
+	})
+}
