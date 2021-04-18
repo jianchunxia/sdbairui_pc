@@ -78,7 +78,7 @@
 
 <script>
 import { Swiper, SwiperSlide} from "vue-awesome-swiper";
-import {getDa,getindupei,getinduhuan,getindushen} from '../../api/http.js'
+import {getDa,getindupei,getinduhuan,getindushen,getindugs} from '../../api/http.js'
 // import 'swiper/scrollbar.scss';
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
@@ -138,6 +138,10 @@ export default {
       .then(reb=>{
          console.log(reb.data.data.image)
          that.src2=reb.data.data.image
+      })
+        getindugs()
+      .then(rec=>{
+         console.log(rec)
       })
     }
   }

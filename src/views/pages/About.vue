@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import {getabschool} from '../../api/http.js'
+import {getabschool,getabjian,getabban} from '../../api/http.js'
 export default {
   name: "Home",
   components: {
@@ -85,6 +85,14 @@ export default {
       .then((res) => {
         console.log(res)
         that.hesrc=res.data.data.list[0]
+      });
+      getabjian()
+      .then((rea) => {
+        console.log(rea)
+      });
+       getabban()
+      .then((reb) => {
+        console.log(reb)
       });
     },
   }
