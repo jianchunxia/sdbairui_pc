@@ -8,9 +8,9 @@ export function getData() {
 }
 
 
-export function getList() {
-    return request({
-        url:"",
-        method:"GET"
-    })
-}
+// export function getList() {
+//     return request({
+//         url:"",
+//         method:"GET"
+//     })
+// }
