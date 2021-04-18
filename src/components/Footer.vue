@@ -72,9 +72,9 @@
       }
       .address {
         display: flex;
-        div:nth-child(2n-1) {
-          width: 100px;
-        }
+        // div:nth-child(2n-1) {
+        //   width: 100px;
+        // }
       }
       .nav {
         margin-left: 40px;
@@ -270,10 +270,9 @@ export default {
           title: "后台管理",
         },
       ],
-      address:
-        "济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座",
+      address: "济南创新谷2号楼孵化器五楼(长清区海棠路与芙蓉路交叉路口东南)",
       copyright:
-        "123123asfasfasf啊发顺丰阿斯弗啊按时发我发顺丰阿萨阿斯弗阿斯弗阿斯弗阿斯弗阿三安抚阿斯弗阿斯弗阿三",
+        "Shandong Bairui Software Technology Co., Ltd. 山东柏瑞软件科技有限公司版权所有 鲁ICP备17006298号-1",
     };
   },
   methods: {

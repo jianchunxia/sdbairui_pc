@@ -2,6 +2,7 @@
   <div id="nav">
     <div class="logo">
       <img src="../assets/logo.png" />
+      <span>山东柏瑞软件科技有限公司</span>
     </div>
     <div class="nav_item" :style="nav_show ? '' : 'display:block'">
       <div
@@ -26,10 +27,17 @@
     display: flex;
     justify-content: space-around;
     .logo {
-      width: 200px;
+      // width: 200px;
       height: 80px;
+      line-height: 80px;
       img {
-        height: 80px;
+        height: 60px;
+        vertical-align: middle;
+      }
+      span {
+        font-size: 24px;
+
+        line-height: 80px;
       }
     }
     .but {
@@ -84,10 +92,15 @@
       top: 60px;
     }
     .logo {
-      width: 200px;
+      // width: 200px;
       height: 60px;
       img {
+        vertical-align: middle;
         height: 100%;
+      }
+      span {
+        // display: none;
+        font-size: 20px;
       }
     }
   }

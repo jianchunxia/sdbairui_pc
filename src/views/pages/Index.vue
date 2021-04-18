@@ -33,24 +33,20 @@
             </li>
           </ul>
           <div class="xia">
-            <div
-              class="cards"
-              v-for="(item, index) in cards"
-              :key="index"
-              v-show="index == currenta"
-            >
-              <div class="image">
-                <img :src="item.image" alt="" />
-              </div>
-              <div class="content">
-                <h4>{{ item.title }}</h4>
-                <p>{{ item.content }}</p>
-                <div class="tiao">
-                  <!-- {{ item.url }} -->
-                  <!-- <router-link :to="item.url">查看更多>></router-link> -->
+            <block v-for="(item, index) in cards" :key="index">
+              <div class="cards" v-if="index == currenta">
+                <div class="image">
+                  <img :src="item.image" alt="" />
+                </div>
+                <div class="content">
+                  <h4>{{ item.title }}</h4>
+                  <p>{{ item.content }}</p>
+                  <div class="tiao">
+                    <router-link :to="loc[index]">查看更多>></router-link>
+                  </div>
                 </div>
               </div>
-            </div>
+            </block>
           </div>
         </div>
       </div>
@@ -61,10 +57,10 @@
         <div class="teacherList">
           <div class="teacherli" v-for="(item, index) in teali" :key="index">
             <div class="title">
-              <img :src="item.src" alt="" />
+              <img :src="item.image" alt="" />
               {{ item.title }}
             </div>
-            <p>{{ item.p }}</p>
+            <p>{{ item.content }}</p>
           </div>
         </div>
       </div>
@@ -179,7 +175,9 @@
               <dd class="last">
                 <span>{{ item.create_time }}</span>
                 <span class="more">
-                  <!-- <router-link :to="item.url">查看更多</router-link> -->
+                  <router-link @click.native="open(item.url)" to=""
+                    >查看更多</router-link
+                  >
                 </span>
               </dd>
             </div>
@@ -250,7 +248,6 @@ export default {
           title: "校区事业部",
           content:
             "  校区事业部主要负责学生后期的职业技能培养。下设四个校区，分别是济南创新谷软件工厂、山东交通职业学院泰山校区、山东省城市服务技师学院和淄博市技师学院。泰安、烟台和淄博三个校区主要负责学生基本技能的学习和培养。济南创新谷软件工厂主要负责学生后期专业技能的提升和后期的真实项目实训，实现与招聘单位的无缝对接，确保高薪对口就业。",
-          url: "/School",
           more: "查看更多>>",
         },
         {
@@ -258,7 +255,6 @@ export default {
           title: "产业事业部",
           content:
             " 产业事业部负责学生工学交替、实训实习，下设软件工厂。软件工厂是山东柏瑞为践行 “深度产教融合”而打造的产业基地，同时以“校中厂”的形式进行组织工学交替，学生在实际工作中打磨技术能力，在为项目交付的努力中体会用户体验。经过一年左右的项目研发，积累实际工作经验，把毕业后找工作变为向更高平台的“跳槽”。",
-          url: "Industry",
           more: "查看更多>>",
         },
         {
@@ -266,10 +262,10 @@ export default {
           title: "柏瑞设计",
           content:
             "最有价值的培养模式，最符合企业需求的课程体系，最科学的授课方式，最完善的就业保障体系，最具有口碑竞争力的教育机构。",
-          url: "Design",
           more: "查看更多>>",
         },
       ],
+      loc: ["school", "industry", "design"],
       teacherImg: require("../../assets/index_teacher.png"),
       teacher: [
         {
@@ -406,6 +402,10 @@ export default {
     };
   },
   methods: {
+    open(url) {
+      window.open(url);
+    },
+
     onhover(index) {
       this.currenta = index;
     },
@@ -421,13 +421,14 @@ export default {
         // console.log(that.cards)
       });
       getIndexBM().then((res) => {
-        that.teali = res.data.data;
+        console.log(res);
+        that.teali = res.data.data.data;
         // console.log(that.teali)
       });
-      getIndexPY().then((res) => {
-        that.training = res.data.data.data;
-        // console.log(that.training)
-      });
+      // getIndexPY().then((res) => {
+      //   that.training = res.data.data.data;
+      //   // console.log(that.training)
+      // });
       getIndexCJ().then((res) => {
         that.bbg = res.data.data.data;
         // console.log(that.bbg)
@@ -435,13 +436,15 @@ export default {
       getIndexNew().then((res) => {
         that.news = res.data.data.data;
       });
-      getIndexHz().then((res) => {
-        that.dt = res.data.data.data;
-      });
     },
   },
   created() {
     this.index();
+    getIndexHz();
+    getIndexHz().then((res) => {
+      console.log(res);
+      this.dt = res.data.data.data;
+    });
   },
 };
 </script>
@@ -708,6 +711,8 @@ li {
         justify-content: space-between;
         flex-wrap: wrap;
         dl {
+          position: relative;
+
           background: #ffffff;
           box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.51);
           // border-radius: 0px 0px 8px 8px;
@@ -722,13 +727,14 @@ li {
             box-sizing: border-box;
             .tit {
               font-weight: bold;
-              text-align: center;
+              // text-align: left;
               line-height: 40px;
               color: #333333;
             }
 
             .content {
               text-indent: 1em;
+              font-size: 14px;
               width: 100%;
               color: #666666;
               display: -webkit-box;
@@ -742,8 +748,12 @@ li {
               overflow: hidden;
               line-height: 40px;
               margin-top: 10px;
+              position: absolute;
+              bottom: 10px;
+              z-index: 10;
               .more {
                 float: right;
+                margin-right: 40px;
                 a {
                   color: #333333;
                 }
@@ -850,7 +860,7 @@ li {
                 }
 
                 p {
-                  font-size: 18px;
+                  // font-size: 16px;
                   line-height: 40px;
                 }
 
@@ -989,14 +999,16 @@ li {
             width: 30%;
 
             div {
-              padding: 23px;
+              // padding: 23px;
+              padding: 20px 20px 50px;
 
               .tit {
-                font-size: 18px;
+                // font-size: 18px;
               }
 
               .last {
                 font-size: 16px;
+                width: 100%;
               }
             }
           }
@@ -1270,11 +1282,12 @@ li {
         .list {
           dl {
             width: 94%;
-            // margin: 0 auto;
+            margin: 0 auto;
             margin-bottom: 20px;
 
             div {
-              padding: 10px;
+              // padding: 10px;
+              padding: 20px 20px 50px;
 
               .tit {
                 font-size: 14px;
@@ -1289,9 +1302,11 @@ li {
                 color: #666666;
                 overflow: hidden;
                 line-height: 40px;
+                width: 100%;
 
                 .more {
                   float: right;
+                  margin-right: 40px;
 
                   a {
                     color: #333333;

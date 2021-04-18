@@ -22,13 +22,13 @@
         <div class="zhize">
           <dl v-for="(item, index) in zzfw" :key="index">
             <dt><img :src="item.image" /></dt>
-            <dd>{{ item.title}}</dd>
+            <dd>{{ item.title }}</dd>
           </dl>
         </div>
       </div>
       <!-- 山东交通职业学院泰山校区 -->
       <div class="second">
-        <p class="title">{{xiao1}}</p>
+        <p class="title">{{ xiao1 }}</p>
         <p class="bg"></p>
         <div class="tuw">
           <dl v-for="(item, index) in xiao" :key="index">
@@ -40,7 +40,7 @@
       </div>
       <!-- 山东交通职业学院泰山校区 -->
       <div class="second">
-        <p class="title">{{xiao2}}</p>
+        <p class="title">{{ xiao2 }}</p>
         <p class="bg"></p>
         <div class="tuw">
           <dl v-for="(item, index) in fu" :key="index">
@@ -52,7 +52,7 @@
       </div>
       <!-- 山东交通职业学院泰山校区 -->
       <div class="second">
-        <p class="title">{{xiao3}}</p>
+        <p class="title">{{ xiao3 }}</p>
         <p class="bg"></p>
         <div class="tuw">
           <dl v-for="(item, index) in zi" :key="index">
@@ -74,7 +74,7 @@
         <div class="tuw">
           <dl v-for="(item, index) in tese" :key="index">
             <dt><img :src="item.image" /></dt>
-            <dd>{{ item.text }}</dd>
+            <dd>{{ item.title }}</dd>
           </dl>
         </div>
       </div>
@@ -100,7 +100,15 @@
 </template>
 
 <script>
-import { getSchoolban,getSchoolduty,getSchoolSchooles,getSchoolSchooltwo,getSchoolSchoolthree,getSchooldutytwo,getSchoolSchools} from "../../api/http.js";
+import {
+  getSchoolban,
+  getSchoolduty,
+  getSchoolSchooles,
+  getSchoolSchooltwo,
+  getSchoolSchoolthree,
+  getSchooldutytwo,
+  getSchoolSchools,
+} from "../../api/http.js";
 
 export default {
   name: "School",
@@ -110,7 +118,7 @@ export default {
   },
   data() {
     return {
-      banner:[],
+      banner: [],
       numindex: null,
       zhize: "我们的职责范围",
       xiao1: "山东交通职业学院泰山校区",
@@ -122,14 +130,14 @@ export default {
       //   { src: require("../../assets/schban.png") },
       //   { src: require("../../assets/schban.png") },
       // ],
-      zzfw:[],
+      zzfw: [],
       // zzfw: [
       //   { img: require("../../assets/zhaos.png"), text: "独立招生" },
       //   { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
       //   { img: require("../../assets/shix.png"), text: "实训实习" },
       //   { img: require("../../assets/jiuye.png"), text: "就业安置" },
       // ],
-      xiao:[],
+      xiao: [],
       // xiao: [
       //   {
       //     nei: [
@@ -237,7 +245,7 @@ export default {
       // ],
       hezuo: "合作院校",
       yuanx1: "我们一直与众多院校建立友好的合作关系",
-      yuanx:[],
+      yuanx: [],
       // yuanxi: [
       //   {
       //     img: require("../../assets/30.png"),
@@ -295,12 +303,12 @@ export default {
         that.zzfw = res.data.data.list;
         console.log(that.zzfw);
       });
-      
+
       getSchoolSchooles().then((res) => {
         that.xiao = res.data.data.list;
         console.log(that.xiao);
       });
-      
+
       getSchoolSchooltwo().then((res) => {
         that.fu = res.data.data.list;
         console.log(that.fu);
@@ -310,20 +318,18 @@ export default {
         that.zi = res.data.data.list;
         console.log(that.zi);
       });
-      
+
       var that = this;
       getSchooldutytwo().then((res) => {
         that.tese = res.data.data.list;
         console.log(that.tese);
       });
-      
+
       var that = this;
       getSchoolSchools().then((res) => {
         that.yuanxi = res.data.data.list;
         console.log(that.yuanxi);
       });
-
-      
     },
 
     // setduty() {
@@ -446,6 +452,8 @@ export default {
 
           img {
             width: 100%;
+            height: 210px;
+            display: inline-block;
           }
 
           dd {
@@ -816,7 +824,7 @@ export default {
           margin-top: 4rem;
 
           img {
-            width: 10%;
+            // width: 10%;
             margin-left: 40%;
             height: 2rem;
           }
@@ -846,7 +854,7 @@ export default {
 
         dl {
           width: 100%;
-          
+
           .name {
             font-size: 15px;
           }
