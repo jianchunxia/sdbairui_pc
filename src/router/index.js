@@ -42,9 +42,9 @@ const routes = [{
         import ( /* webpackChunkName: "about" */ '../views/pages/Design.vue')
     },
     {
-      path: 'index',
+      path: 'list',
       component: () =>
-        import ( /* webpackChunkName: "about" */ '../views/pages/Index.vue')
+        import ( /* webpackChunkName: "about" */ '../views/pages/List.vue')
     },
   ]
 }]
@@ -56,3 +56,4 @@ const router = new VueRouter({
 })
 
 export default router
+

@@ -8,12 +8,7 @@
           <img :src="item.ban" />
         </el-carousel-item>
       </el-carousel>
-      <van-swipe
-        class="my-swipe"
-        :autoplay="3000"
-        indicator-color="white"
-        id="phone"
-      >
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" id="phone">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
         <van-swipe-item>3</van-swipe-item>
