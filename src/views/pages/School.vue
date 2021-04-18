@@ -4,12 +4,12 @@
     <div class="banner">
       <el-carousel height="580px" id="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <img :src="item.ban" />
+          <img :src="item.image" />
         </el-carousel-item>
       </el-carousel>
       <el-carousel height="260px" id="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <img :src="item.ban" />
+          <img :src="item.image" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -81,7 +81,7 @@
       <!-- 合作院校 -->
       <div class="fourth">
         <p class="title">{{ hezuo }}</p>
-        <p class="grey">{{ yuanx }}</p>
+        <p class="grey">{{ yuanx1 }}</p>
         <div class="xue">
           <dl
             v-for="(item, index) in yuanxi"
@@ -110,6 +110,7 @@ export default {
   },
   data() {
     return {
+      banner:[],
       numindex: null,
       zhize: "我们的职责范围",
       xiao1: "山东交通职业学院泰山校区",
@@ -121,12 +122,14 @@ export default {
       //   { src: require("../../assets/schban.png") },
       //   { src: require("../../assets/schban.png") },
       // ],
+      zzfw:[],
       // zzfw: [
       //   { img: require("../../assets/zhaos.png"), text: "独立招生" },
       //   { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
       //   { img: require("../../assets/shix.png"), text: "实训实习" },
       //   { img: require("../../assets/jiuye.png"), text: "就业安置" },
       // ],
+      xiao:[],
       // xiao: [
       //   {
       //     nei: [
@@ -233,7 +236,8 @@ export default {
       //   },
       // ],
       hezuo: "合作院校",
-      yuanx: "我们一直与众多院校建立友好的合作关系",
+      yuanx1: "我们一直与众多院校建立友好的合作关系",
+      yuanx:[],
       // yuanxi: [
       //   {
       //     img: require("../../assets/30.png"),
@@ -283,8 +287,8 @@ export default {
       var that = this;
 
       getSchoolban().then((res) => {
-        console.log(res);
         that.banner = res.data.data;
+        console.log(that.banner);
       });
 
       getSchoolduty().then((res) => {
