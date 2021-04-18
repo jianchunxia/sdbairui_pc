@@ -4,22 +4,23 @@
     <div class="banner">
       <el-carousel height="580px" id="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <!-- <h3 class="small">{{ item }}</h3> -->
           <img :src="item.ban" />
         </el-carousel-item>
       </el-carousel>
-      <van-swipe
-        class="my-swipe"
-        :autoplay="3000"
-        indicator-color="white"
-        id="phone"
-      >
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <el-carousel height="320px" id="phone">
+        <el-carousel-item v-for="(item, index) in banner" :key="index">
+          <img :src="item.ban" />
+        </el-carousel-item>
+      </el-carousel>
     </div>
+    <!-- <swiper :space-between="50" class="swiper" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+      <swiper-slide v-for="(item, index) in banner" :key="index">
+        <img :src="item.src" alt="" id="banner" />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+    </swiper> -->
     <!-- 中间盒子 -->
     <div class="con">
       <!-- 我们的职责范围 -->
@@ -83,14 +84,45 @@
 </template>
 
 <script>
-// import { getData,getList } from '@/api/http'
+// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+// import "swiper/swiper-bundle.css";
+import { getData} from '../../api/http.js'
+
 export default {
   name: "School",
-  components: {},
+  components: {
+    // Swiper,
+    // SwiperSlide,
+    },
   data() {
     return {
+      swiperOption:{
+        loop:true,
+        pagination:{
+          el:"swiper-pagination",
+          // type:'bullets',
+          // clickble:true,
+          // dynamicBullets:false
+        },
+        // speed:1000,
+        // autoplay:{
+        //   delay:3000,
+        //   disableOnInteraction:false
+        // },
+        // effect:'slide',
+        navigation:{
+          nextEl:'swiper-button-prev',
+          prevEl:'swiper-button-next',
+        },
+      },
       numindex: null,
       zhize: "我们的职责范围",
+      // banner: [
+      //   { src: require("../../assets/schban.png") },
+      //   { src: require("../../assets/schban.png") },
+      //   { src: require("../../assets/schban.png") },
+      //   { src: require("../../assets/schban.png") },
+      // ],
       zzfw: [
         { img: require("../../assets/zhaos.png"), text: "独立招生" },
         { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
@@ -245,13 +277,21 @@ export default {
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
       ],
-      banner: [
-        { ban: require("../../assets/schban.png") },
-        { ban: require("../../assets/schban.png") },
-        { ban: require("../../assets/schban.png") },
-      ],
+      // banner: [
+      //   { ban: require("../../assets/schban.png") },
+      //   { ban: require("../../assets/schban.png") },
+      //   { ban: require("../../assets/schban.png") },
+      //],
     };
   },
+  // computed:{
+  //   Swiper(){
+  //     return this.$refs.mySwiper.swiper
+  //   }
+  // },
+  // mounted(){
+  //     this.swiper.slideTo(3, 1000, false)
+  // },
   methods: {
     aaa(index) {
       console.log(index);
@@ -259,10 +299,22 @@ export default {
       // getData();
       // getData()
     },
+    // tonext(){
+    //   var swiper =  this.$refs.mySwiper;
+    //   swiper.slidePrev();
+    // }
   },
   created() {
     // getData()
+    this.setindex();
   },
+  setindex(){
+    var that =this;
+    getData().then((res)=>{
+      console.log(res)
+      that .banner=res.data.data.img
+    })
+  }
 };
 </script>
 
@@ -272,6 +324,24 @@ export default {
   padding: 0;
 }
 
+.swiper-pagination {
+  border: 1px solid #000;
+  z-index: 99;
+}
+
+.swiper {
+    height: 580px;
+    width: 100%;
+    swiper-slide {
+      width: 100%;
+      height: 580px;
+    }
+  }
+  #banner {
+    height: 580px;
+    width: 100% !important;
+  }
+
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
@@ -280,28 +350,12 @@ export default {
   background-color: #39a9ed;
 }
 
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-
 .banner {
   width: 100%;
 
   img {
     width: 100%;
-    height: 580px;
+    height: 100%;
   }
 }
 
@@ -333,7 +387,6 @@ export default {
         display: flex;
 
         dl {
-          width: 25%;
           margin: 3rem 0;
 
           img {
@@ -354,6 +407,7 @@ export default {
 
       .title {
         text-align: center;
+        margin-top: 3rem;
       }
 
       .bg {
@@ -433,6 +487,7 @@ export default {
 
     .fourth {
       margin: 0 auto;
+      margin-bottom: 2rem;
 
       .title {
         text-align: center;
@@ -496,11 +551,11 @@ export default {
   @media screen and (min-width: 1085px) {
     .banner {
       #pc {
-        display: none;
+        display: block;
       }
 
       #phone {
-        display: block;
+        display: none;
       }
     }
 
@@ -522,6 +577,7 @@ export default {
         display: flex;
 
         dl {
+          width: 25%;
           dd {
             font-size: 20px;
           }
@@ -627,6 +683,18 @@ export default {
       #phone {
         display: block;
       }
+    }
+    .swiper {
+      height: 250px;
+      width: 100%;
+      swiper-slide {
+        width: 100%;
+        height: 250px;
+      }
+    }
+    #banner {
+      height: 250px;
+      width: 100% !important;
     }
 
     .first {
