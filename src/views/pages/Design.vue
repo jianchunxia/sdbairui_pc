@@ -341,7 +341,7 @@ li {
 
       .name {
         width: 96px;
-        font-size: 48px;
+        font-size: 36px;
       }
 
       .shao {

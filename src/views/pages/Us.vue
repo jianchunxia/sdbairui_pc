@@ -8,31 +8,25 @@
     <div class="con">
       <div class="top">
         <div class="left">
+          <p><img src="../../assets/lianxi.png" /><span>联系我们</span></p>
           <p>
-            <img src="../../assets/lianxi.png" /><span>联系我们</span>
+            <img src="../../assets/qiye.png" /><span>{{ title.name }}</span>
           </p>
           <p>
-            <img src="../../assets/qiye.png" /><span>{{title.name}}</span>
+            <img src="../../assets/tel.png" /><span>{{ title.phone }}</span>
           </p>
           <p>
-            <img src="../../assets/tel.png" /><span>{{title.phone}}</span>
+            <img src="../../assets/email.png" /><span>{{ title.email }}</span>
           </p>
           <p>
-            <img src="../../assets/email.png" /><span>{{title.email}}</span>
-          </p>
-          <p>
-            <img src="../../assets/dizhi.png" /><span>{{title.address}}</span>
+            <img src="../../assets/dizhi.png" /><span>{{ title.address }}</span>
           </p>
         </div>
         <div class="right">
           <p class="liuy"><img :src="liuyan" />{{ liuy }}</p>
           <form>
             <input type="text" placeholder="姓名:" />
-            <input
-              class="email"
-              type="email"
-              placeholder="邮箱:"
-            />
+            <input class="email" type="email" placeholder="邮箱:" />
             <input class="tel" type="tel" placeholder="电话:" />
             <textarea rows="10" placeholder="请输入留言..."></textarea>
             <input class="sub" type="submit" />
@@ -66,7 +60,7 @@
 // import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 // import BmView from "vue-baidu-map/components/map/MapView.vue";
 // import BmLocalSearch from "vue-baidu-map/components/search/LocalSearch.vue";
-import {getUS,getUSbanner} from '../../api/http.js'
+import { getUS, getUSbanner } from "../../api/http.js";
 export default {
   name: "Contact",
   components: {},
@@ -77,11 +71,11 @@ export default {
       ban: require("../../assets/conban.png"),
       liuyan: require("../../assets/liuy.png"),
       liuy: "填写留言",
-      title:{
-        name:"",
-        phone:"",
-        email:"",
-        address:""
+      title: {
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
       },
     };
   },
@@ -109,12 +103,12 @@ export default {
       var that = this;
       getUS().then((res) => {
         // console.log(res.data.data[0].name);
-        that.title=res.data.data[0]
+        that.title = res.data.data[0];
       });
-      getUSbanner().then((re)=>{
-         console.log(re);
-         that.ban=re.data.data.image
-      })
+      getUSbanner().then((re) => {
+        console.log(re);
+        that.ban = re.data.data.image;
+      });
     },
   },
 };
@@ -127,7 +121,7 @@ export default {
   }
 
   .con {
-    height: 1027px;
+    // height: 1027px;
     margin-top: 1rem;
     font-size: 17px;
     color: #333333;
@@ -157,7 +151,7 @@ export default {
         .liuy {
           img {
             vertical-align: middle;
-            width: 4%;
+            width: 20px;
             margin-right: 1%;
           }
         }
@@ -281,11 +275,14 @@ export default {
 
           p {
             img {
-              width: 5%;
+              width: 20px;
+              vertical-align: middle;
             }
 
             span {
+              line-height: 35px;
               width: 92%;
+              margin-top: 4px;
             }
           }
         }

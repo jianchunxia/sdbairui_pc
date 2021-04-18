@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import {getabschool,getabjian,getabban} from '../../api/http.js'
+import { getabschool, getabjian, getabban } from "../../api/http.js";
 export default {
   name: "Home",
   components: {
@@ -70,32 +70,29 @@ export default {
         { src: require("../../assets/c.png") },
         { src: require("../../assets/c.png") },
       ],
-      hesrc:{
-        image:""
-      }
+      hesrc: {
+        image: "",
+      },
     };
   },
-   created() {
+  created() {
     this.setabout();
   },
-  methods:{
-     setabout() {
+  methods: {
+    setabout() {
       var that = this;
-      getabschool()
-      .then((res) => {
-        console.log(res)
-        that.hesrc=res.data.data.list[0]
+      getabschool().then((res) => {
+        console.log(res);
+        that.hesrc = res.data.data.list[0];
       });
-      getabjian()
-      .then((rea) => {
-        console.log(rea)
+      getabjian().then((rea) => {
+        console.log(rea);
       });
-       getabban()
-      .then((reb) => {
-        console.log(reb)
+      getabban().then((reb) => {
+        console.log(reb);
       });
     },
-  }
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -108,6 +105,7 @@ export default {
       text-indent: 20px;
     }
     .brief {
+      // border: 1px solid red;
       margin-top: 90px;
       margin: 0;
       padding: 0;
@@ -124,7 +122,9 @@ export default {
         display: flex;
         justify-content: space-between;
         padding: 20px;
+        padding-bottom: 30px;
         dt {
+          margin-top: 16px;
           width: 460px;
           height: 340px;
           img {
@@ -199,7 +199,7 @@ export default {
         font-size: 24px;
         font-family: Microsoft YaHei;
         font-weight: 400;
-        
+
         color: #333333;
         text-align: center;
       }
@@ -217,13 +217,13 @@ export default {
         p {
           width: 390px;
           margin: 5px 0;
-          transition: 1s ease;
+          transition: 0.3s ease;
           img {
             width: 100%;
           }
         }
         p:hover {
-          transform: scale(1.1);
+          transform: scale(1.02);
         }
       }
     }
@@ -231,10 +231,10 @@ export default {
   //  手机端
   @media only screen and (max-width: 1080px) {
     .brief {
-         .kong {
-      text-indent: 20px;
-    }
-      margin-top: 90px;
+      .kong {
+        text-indent: 20px;
+      }
+      // margin-top: 90px;
       p {
         font-size: 24px;
         color: #333333;
@@ -249,7 +249,7 @@ export default {
         flex-wrap: wrap;
         dt {
           width: 90%;
-          height: 230px;
+          // height: 230px;
           text-align: center;
           margin: 0 auto;
           img {
@@ -267,11 +267,10 @@ export default {
           font-weight: 400;
           color: #666666;
           line-height: 30px;
-          
         }
       }
     }
-      .cooperation {
+    .cooperation {
       margin-top: 90px;
       p {
         font-size: 24px;

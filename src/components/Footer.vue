@@ -21,7 +21,8 @@
           </div>
         </div> -->
         <div class="address">
-          <div style="margin-right: 20px; font-weight: 600">地址:</div>
+          <!-- <div style="margin-right: 20px; font-weight: 600">地址:</div> -->
+          <div style="font-weight: 600">地址:</div>
           <div>{{ address }}</div>
         </div>
       </div>
@@ -30,6 +31,7 @@
           <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信公众号</div>
         </div>
+        <div class="woc" style="width: 80px"></div>
         <div class="wx_item">
           <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信小程序</div>
@@ -43,6 +45,9 @@
 </template>
 <style scoped lang="scss">
 @media screen and (min-width: 1080px) {
+  .woc {
+    display: none;
+  }
   #footer {
     width: 100%;
     height: 120px;
@@ -132,14 +137,15 @@
 
     .bot_nav {
       margin: auto;
-      width: 730px;
+      // width: 730px;
+      width: 100%;
       height: 200px;
       // background: #f0f0f0;
       display: flex;
       justify-content: space-between;
       font-size: 14px;
       div {
-        height: 30px;
+        // height: 30px;
       }
 
       .nav {
@@ -171,7 +177,7 @@
         .wx_item {
           width: 120px;
           height: 120px;
-          margin: 20px 40px;
+          // margin: 20px 40px;
           img {
             width: 100%;
             height: 100%;
@@ -186,14 +192,28 @@
         }
       }
     }
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 500px) {
+      // .bot_nav
       .bot_nav {
         width: 100%;
+        height: auto;
+        flex-direction: column-reverse;
         .nav {
-          width: 100%;
+          // width: 100%;
         }
         .wx {
-          display: none;
+          margin: auto;
+          // display: none;
+          justify-content: space-around;
+          .wx_item {
+            height: auto;
+            img {
+              height: auto;
+            }
+            div {
+              margin: 0;
+            }
+          }
         }
       }
     }

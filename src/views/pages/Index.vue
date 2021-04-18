@@ -46,7 +46,8 @@
                 <h4>{{ item.title }}</h4>
                 <p>{{ item.content }}</p>
                 <div class="tiao">
-                  <router-link :to="item.url">查看更多>></router-link>
+                  <!-- {{ item.url }} -->
+                  <!-- <router-link :to="item.url">查看更多>></router-link> -->
                 </div>
               </div>
             </div>
@@ -78,7 +79,7 @@
 
           <div class="list">
             <dl v-for="(item, index) in training" :key="index">
-              <router-link :url="item.url">
+              <router-link :to="item.url">
                 <dt>
                   <img :src="item.image" alt="" />
                   <img :src="item.src2" alt="" />
@@ -90,7 +91,6 @@
                   {{ item.title }}
                 </dd>
               </router-link>
-              
             </dl>
           </div>
         </div>
@@ -114,7 +114,7 @@
           </div>
           <div class="more">
             <router-link :to="newMore"
-              >更多<span>></span></router-link
+              >更多<span class="right-jt">></span></router-link
             >
           </div>
         </div>
@@ -127,9 +127,9 @@
               <dd class="content">{{ item.content }}</dd>
               <dd class="last">
                 <span>{{ item.create_time }}</span>
-                <span class="more"
-                  ><router-link :to="item.url">查看更多</router-link></span
-                >
+                <span class="more">
+                  <!-- <router-link :to="item.url">查看更多</router-link> -->
+                </span>
               </dd>
             </div>
           </dl>
@@ -157,7 +157,14 @@
 
 // Import Swiper styles
 // import "swiper/swiper-bundle.css";
-import {getIndexBan,getIndexYwu,getIndexBM,getIndexCJ,getIndexNew,getIndexHz} from "../../api/http.js"
+import {
+  getIndexBan,
+  getIndexYwu,
+  getIndexBM,
+  getIndexCJ,
+  getIndexNew,
+  getIndexHz,
+} from "../../api/http.js";
 export default {
   name: "Index",
   components: {
@@ -187,7 +194,7 @@ export default {
           title: "校区事业部",
           content:
             "  校区事业部主要负责学生后期的职业技能培养。下设四个校区，分别是济南创新谷软件工厂、山东交通职业学院泰山校区、山东省城市服务技师学院和淄博市技师学院。泰安、烟台和淄博三个校区主要负责学生基本技能的学习和培养。济南创新谷软件工厂主要负责学生后期专业技能的提升和后期的真实项目实训，实现与招聘单位的无缝对接，确保高薪对口就业。",
-            url:'/School',
+          url: "/School",
           more: "查看更多>>",
         },
         {
@@ -195,7 +202,7 @@ export default {
           title: "产业事业部",
           content:
             " 产业事业部负责学生工学交替、实训实习，下设软件工厂。软件工厂是山东柏瑞为践行 “深度产教融合”而打造的产业基地，同时以“校中厂”的形式进行组织工学交替，学生在实际工作中打磨技术能力，在为项目交付的努力中体会用户体验。经过一年左右的项目研发，积累实际工作经验，把毕业后找工作变为向更高平台的“跳槽”。",
-            url:'Industry',
+          url: "Industry",
           more: "查看更多>>",
         },
         {
@@ -203,7 +210,7 @@ export default {
           title: "柏瑞设计",
           content:
             "最有价值的培养模式，最符合企业需求的课程体系，最科学的授课方式，最完善的就业保障体系，最具有口碑竞争力的教育机构。",
-            url:'Design',
+          url: "Design",
           more: "查看更多>>",
         },
       ],
@@ -250,28 +257,28 @@ export default {
           src2: require("../../assets/index_tran44.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url:'Ui'
+          url: "Ui",
         },
         {
           src1: require("../../assets/index_tran1.png"),
           src2: require("../../assets/index_tran11.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url:'Php'
+          url: "Php",
         },
         {
           src1: require("../../assets/index_tran1.png"),
           src2: require("../../assets/index_tran11.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url:'Javadel'
+          url: "Javadel",
         },
         {
           src1: require("../../assets/index_tran1.png"),
           src2: require("../../assets/index_tran11.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url:'Webdel'
+          url: "Webdel",
         },
       ],
       bbg: [
@@ -307,7 +314,6 @@ export default {
             "有目标就有方向和动力，行动要以目标为先要想实现目标就要制定切实可行的计划，制定",
           time: "2021-03-25",
           url: "#",
-          
         },
         {
           src: require("../../assets/index_news.png"),
@@ -316,7 +322,6 @@ export default {
             "有目标就有方向和动力，行动要以目标为先要想实现目标就要制定切实可行的计划，制定",
           time: "2021-03-25",
           url: "#",
-          
         },
         {
           src: require("../../assets/index_news.png"),
@@ -325,7 +330,6 @@ export default {
             "有目标就有方向和动力，行动要以目标为先要想实现目标就要制定切实可行的计划，制定",
           time: "2021-03-25",
           url: "#",
-          
         },
       ],
       title4: "合作伙伴 · Coopera",
@@ -350,40 +354,39 @@ export default {
       this.currenta = index;
     },
     index() {
-      var that = this
-      getIndexBan().then(res =>{
-        that.banner = res.data.data.data
+      var that = this;
+      getIndexBan().then((res) => {
+        that.banner = res.data.data.data;
         // console.log(that.banner)
-      })
-      getIndexYwu().then (res=>{
-        that.cards = res.data.data.data
-        that.list = res.data.data.data
+      });
+      getIndexYwu().then((res) => {
+        that.cards = res.data.data.data;
+        that.list = res.data.data.data;
         // console.log(that.cards)
-      })
-      getIndexBM().then (res=> {
-        that.teali = res.data.data
+      });
+      getIndexBM().then((res) => {
+        that.teali = res.data.data;
         // console.log(that.teali)
-      })
-      getIndexPY().then (res=> {
-        that.training = res.data.data.data
+      });
+      getIndexPY().then((res) => {
+        that.training = res.data.data.data;
         // console.log(that.training)
-      })
-      getIndexCJ().then (res=>{
-        that.bbg = res.data.data.data
+      });
+      getIndexCJ().then((res) => {
+        that.bbg = res.data.data.data;
         // console.log(that.bbg)
-      })
-      getIndexNew().then (res=> {
-        that.news = res.data.data.data
-      })
-      getIndexHz().then (res=> {
-        that.dt = res.data.data.data
-      })
+      });
+      getIndexNew().then((res) => {
+        that.news = res.data.data.data;
+      });
+      getIndexHz().then((res) => {
+        that.dt = res.data.data.data;
+      });
     },
   },
   created() {
-    this.index()
+    this.index();
   },
-  
 };
 </script>
 <style lang="scss" scoped>
@@ -392,6 +395,9 @@ export default {
   padding: 0;
 }
 
+.right-jt {
+  margin-left: 5px;
+}
 a {
   text-decoration: none;
   color: #000;
@@ -466,7 +472,6 @@ li {
               overflow: hidden;
               position: relative;
               height: 100%;
-              
 
               p {
                 text-indent: 2em;
@@ -490,7 +495,6 @@ li {
                   bottom: 0;
                   right: 0;
                 }
-                
               }
             }
           }
@@ -688,7 +692,8 @@ li {
         dl {
           background: #ffffff;
           box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.51);
-          border-radius: 0px 0px 8px 8px;
+          // border-radius: 0px 0px 8px 8px;
+          border-radius: 8px;
           dt {
             width: 100%;
             img {
@@ -718,6 +723,7 @@ li {
               color: #666666;
               overflow: hidden;
               line-height: 40px;
+              margin-top: 10px;
               .more {
                 float: right;
                 a {
@@ -786,7 +792,6 @@ li {
     }
 
     .center {
-
       .core {
         .bo {
           .title {
@@ -813,7 +818,7 @@ li {
               width: 100%;
 
               .image {
-              max-width: 292px;
+                max-width: 292px;
               }
 
               .content {
@@ -853,8 +858,8 @@ li {
           }
         }
         .teacherList {
-           grid-template-columns: repeat(3, 1fr);
-           grid-gap: 4rem;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 4rem;
 
           .teacherli {
             width: 100%;
@@ -895,9 +900,7 @@ li {
         margin-bottom: 30px;
 
         .width {
-
           .bo {
-
             .title {
               font-size: 24px;
               padding: 30px;
@@ -906,13 +909,11 @@ li {
           }
 
           .list {
-
             dl {
               width: 23%;
               padding: 20px 15px 14px 13px;
 
               dt {
-
                 img {
                   max-width: 117px;
                   max-height: 107px;
@@ -923,7 +924,6 @@ li {
                 font-size: 20px;
               }
             }
-
           }
         }
       }
@@ -939,7 +939,6 @@ li {
             width: 25%;
 
             li {
-
               .big {
                 font-size: 60px;
               }
@@ -952,14 +951,11 @@ li {
         }
       }
       .news {
-
         .bo {
-
           .title {
             font-size: 24px;
             margin-top: 59px;
             padding: 30px;
-
           }
 
           .more {
@@ -969,7 +965,6 @@ li {
         }
 
         .list {
-
           dl {
             width: 30%;
 
@@ -982,7 +977,6 @@ li {
 
               .last {
                 font-size: 16px;
-                
               }
             }
           }
@@ -990,9 +984,7 @@ li {
       }
 
       .pera {
-
         .bo {
-
           .title {
             font-size: 24px;
             margin-top: 59px;
@@ -1027,11 +1019,9 @@ li {
     }
 
     .center {
-
       .core {
         margin-top: 50px;
         .bo {
-          
           .title {
             font-size: 20px;
             padding: 10px;
@@ -1155,17 +1145,14 @@ li {
           margin: 0 auto;
 
           .bo {
-
             .title {
               font-size: 20px;
               padding: 10px;
               margin-top: 0px;
-
             }
           }
 
           .list {
-
             dl {
               width: 48%;
               padding: 18px 6px 8px 6px;
@@ -1188,7 +1175,6 @@ li {
                 font-size: 8px;
               }
             }
-
           }
         }
       }
@@ -1206,7 +1192,6 @@ li {
             padding: 20px 0px 15px 0px;
 
             li {
-
               span {
                 font-size: 14px;
               }
@@ -1235,7 +1220,6 @@ li {
             font-size: 20px;
             margin-top: 0px;
             padding: 10px;
-
           }
 
           .more {
@@ -1251,7 +1235,6 @@ li {
         }
 
         .list {
-
           dl {
             width: 94%;
             // margin: 0 auto;
@@ -1284,16 +1267,14 @@ li {
               }
             }
           }
-          
         }
       }
 
       .pera {
         padding-top: 49px;
         padding-bottom: 59px;
-        
-        .bo {
 
+        .bo {
           .title {
             width: 70%;
             font-size: 20px;
@@ -1301,7 +1282,6 @@ li {
             margin: 0 auto;
             margin-bottom: 30px;
             padding: 10px;
-
           }
         }
 
