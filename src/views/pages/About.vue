@@ -88,11 +88,11 @@ export default {
       });
       getabjian()
       .then((rea) => {
-        console.log(rea)
+        console.log(rea.data.data)
       });
        getabban()
       .then((reb) => {
-        console.log(reb)
+        console.log(reb.data.data)
       });
     },
   }

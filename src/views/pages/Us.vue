@@ -2,7 +2,7 @@
   <div class="contact">
     <!-- banner -->
     <div class="banner">
-      <img :src="ban" alt="" />
+      <img :src="image" alt="" />
     </div>
     <!-- 内容 -->
     <div class="con">
@@ -74,7 +74,7 @@ export default {
     return {
       location: { lng: 116.8087874398422, lat: 36.5170277099317 },
       zoom: 16,
-      ban: require("../../assets/conban.png"),
+      image: "",
       liuyan: require("../../assets/liuy.png"),
       liuy: "填写留言",
       title:{
@@ -112,8 +112,8 @@ export default {
         that.title=res.data.data[0]
       });
       getUSbanner().then((re)=>{
-         console.log(re);
-         that.ban=re.data.data.image
+         console.log(re.data.data.image);
+         that.image=re.data.data.image
       })
     },
   },

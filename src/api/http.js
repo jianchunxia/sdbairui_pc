@@ -77,6 +77,13 @@ export function getindushen() {
 		method: 'GET',
 	})
 }
+// 产业事业部课程体系
+export function getinduke() {
+	return request({
+		url: '/api/industry/course',
+		method: 'GET',
+	})
+}
 
 //首页核心业务
 export function getIndexYwu() {

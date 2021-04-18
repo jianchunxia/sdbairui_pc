@@ -2,7 +2,7 @@
   <div id="industry">
     <swiper :slides-per-view="3" :space-between="50" class="swiper">
       <swiper-slide v-for="(item, index) in banner" :key="index">
-        <img :src="item.src" alt="" id="banner" />
+        <img :src="item.image" alt="" id="banner" />
       </swiper-slide>
     </swiper>
 
@@ -20,10 +20,9 @@
     <div class="main1">
       <dl v-for="(item, index) in list" :key="index">
         <dt>
-          <img :src="item.src1" alt="" />
-          <img src="../../assets/10.png" alt="" />
+          <img :src="item.image" alt="" />
         </dt>
-        <dd>{{ item.title2 }}</dd>
+        <dd>{{ item.title }}</dd>
       </dl>
     </div>
     <!-- 培养模式 -->
@@ -45,32 +44,12 @@
       <p class="project">{{ title4 }}</p>
     </div>
     <div class="main6">
-      <div class="main6left">
-        <div class="main6head">
-          <p class="sw"></p>
-          <p class="sw1">深挖企业需求</p>
-        </div>
-        <div class="main6head1">
-          <p class="sw"></p>
-          <p class="sw1">精准课程体系</p>
+        <div class="main6img">
+          <img :src="src3.image" alt="" />
         </div>
         <div class="main6img">
-          <img src="../../assets/banner.png" alt="" />
+          <img :src="src4.image" alt="" />
         </div>
-      </div>
-      <div class="main6right">
-        <div class="main6head">
-          <p class="sw"></p>
-          <p class="sw1">深挖企业需求</p>
-        </div>
-        <div class="main6head1">
-          <p class="sw"></p>
-          <p class="sw1">精准课程体系</p>
-        </div>
-        <div class="main6img">
-          <img src="../../assets/banner.png" alt="" />
-        </div>
-      </div>
     </div>
 
   </div>
@@ -78,7 +57,7 @@
 
 <script>
 import { Swiper, SwiperSlide} from "vue-awesome-swiper";
-import {getDa,getindupei,getinduhuan,getindushen,getindugs} from '../../api/http.js'
+import {getDa,getindupei,getinduhuan,getindushen,getindugs,getinduke} from '../../api/http.js'
 // import 'swiper/scrollbar.scss';
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
@@ -97,10 +76,10 @@ export default {
         { src: require("../../assets/banner.png") },
       ],
       list: [
-        { src1: "../../assets/logo.png", title2: "办公楼" },
-        { src1: "../../assets/banner.png", title2: "操场" },
-        { src1: "../../assets/banner.png", title2: "宿舍楼" },
-        { src1: "../../assets/banner.png", title2: "餐厅" },
+        { image: "../../assets/logo.png", title: "办公楼" },
+       { image: "../../assets/logo.png", title: "办公楼" },
+        { image: "../../assets/logo.png", title: "办公楼" },
+        { image: "../../assets/logo.png", title: "办公楼" },
       ],
       title: "济南创新谷软件基地",
       title1: "公司环境",
@@ -110,6 +89,12 @@ export default {
       src:"",
       src1:"",
       src2:"",
+      src3:{
+        image:""
+      },
+      src4:{
+        image:""
+      },
     };
   },
   created(){
@@ -122,26 +107,34 @@ export default {
       .then(
         res=>{
           console.log(res)
+          that.banner=res.data.data
         }
       )
       getindupei()
       .then(re=>{
-        console.log(re.data.data.image)
+        // console.log(re.data.data.image)
         that.src=re.data.data.image
       })
       getinduhuan()
       .then(rea=>{
-         console.log(rea.data.data.image)
+        //  console.log(rea.data.data.image)
          that.src1=rea.data.data.image
       })
        getindushen()
       .then(reb=>{
-         console.log(reb.data.data.image)
+        //  console.log(reb.data.data.image)
          that.src2=reb.data.data.image
       })
         getindugs()
       .then(rec=>{
-         console.log(rec)
+        //  console.log(rec)
+         that.list=rec.data.data
+      })
+         getinduke()
+      .then(rec=>{
+        //  console.log(rec)
+         that.src3=rec.data.data[0]
+          that.src4=rec.data.data[1]
       })
     }
   }
@@ -206,18 +199,21 @@ export default {
     justify-content: space-between;
     dl {
       width: 24%;
+    
        background: #fff;
        box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.31);
        border-radius: 5px;
       dt {
         text-align: center;
         width: 100%;
+        height: 83%;
+        img{height: 100%;width: 100%;}
       }
       dd {
         width: 100%;
         text-align: center;
         margin: 0 auto;
-       padding: 10px 0;
+         padding: 10px 0;
       }
     }
   }
@@ -255,59 +251,14 @@ export default {
     margin: 5% auto;
     display: flex;
     justify-content: space-between;
-    .main6left {
-      width: 588px;
-      background: #ffffff;
-      box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
-      border-radius: 5px;
-    }
-    .main6right {
-      width: 588px;
-      background: #ffffff;
-      box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
-      border-radius: 5px;
-    }
-    .main6head {
-      display: flex;
-      margin-left: 40px;
-      padding-top: 30px;
-      position: relative;
-      .sw {
-        width: 10px;
-        height: 10px;
-        background: #20b09f;
-        transform: rotate(50deg);
-        position: absolute;
-        top: 43%;
-        left: -20px;
-      }
-    }
-    .main6head1 {
-      display: flex;
-      margin-left: 40px;
-
-      p {
-        margin-top: 0;
-      }
-      position: relative;
-      .sw {
-        width: 10px;
-        height: 10px;
-        background: #20b09f;
-        transform: rotate(50deg);
-        position: absolute;
-        top: 10%;
-        left: -20px;
-      }
-    }
     .main6img {
       width: 90%;
       margin: 5% auto;
       img {
         width: 100%;
-        height: 300px;
+        height: 500px;
       }
-      height: 300px;
+      height: 500px;
     }
   }
 }
@@ -421,66 +372,21 @@ export default {
       margin: 0 auto;
     }
     .main6 {
-      width: 95%;
+    width: 95%;
+    margin: 5% auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .main6img {
+      width: 90%;
       margin: 5% auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      .main6left {
+      img {
         width: 100%;
-        background: #ffffff;
-        box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
-        border-radius: 5px;
-      }
-      .main6right {
-        width: 100%;
-        background: #ffffff;
-        box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.19);
-        border-radius: 5px;
-      }
-      .main6head {
-        display: flex;
-        margin-left: 40px;
-        padding-top: 30px;
-        position: relative;
-        .sw {
-          width: 10px;
-          height: 10px;
-          background: #20b09f;
-          transform: rotate(50deg);
-          position: absolute;
-          top: 43%;
-          left: -20px;
-        }
-      }
-      .main6head1 {
-        display: flex;
-        margin-left: 40px;
-
-        p {
-          margin-top: 0;
-        }
-        position: relative;
-        .sw {
-          width: 10px;
-          height: 10px;
-          background: #20b09f;
-          transform: rotate(50deg);
-          position: absolute;
-          top: 10%;
-          left: -20px;
-        }
-      }
-      .main6img {
-        width: 90%;
-        margin: 5% auto;
-        img {
-          width: 100%;
-          height: 200px;
-        }
         height: 300px;
       }
+      height: 300px;
     }
+  }
     .foot {
       background: url(../../assets/foot.png) no-repeat;
       height: 120px;
