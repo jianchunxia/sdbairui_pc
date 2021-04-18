@@ -164,6 +164,13 @@ export function getBaiRuiYJ() {
 		method: "GET"
 	})
 }
+//柏瑞设计软件业务http://api.sdbairui.com/api/design/salarythree
+export function getBaiRuiSJ() {
+	return request({
+		url: "api/design/salarythree",
+		method: "GET"
+	})
+}
 export function getSchoolban() {
 	return request({
 		url: '/api/Pcschool/banner',

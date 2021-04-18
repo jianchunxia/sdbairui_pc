@@ -23,9 +23,10 @@
     >
       <el-carousel-item v-for="(item, index) in banners" :key="index">
         <h3 class="small">
-          <img :src="item.src1" alt="" />
-          <img :src="item.src1" alt="" />
-          <img :src="item.src1" alt="" />
+          <img :src="item.image" alt="" />
+          <img :src="item.image" alt="" />
+          <img :src="item.image" alt="" />
+          <img :src="item.image" alt="" />
         </h3>
       </el-carousel-item>
     </el-carousel>
@@ -35,11 +36,15 @@
       :autoplay="false"
       arrow="always"
     >
-      <el-carousel-item v-for="(item, index) in banners" :key="index">
+      <el-carousel-item v-for="(item, index) in banners" :key="index" direction="none">
         <h3 class="small">
-          <img :src="item.src1" alt="" />
-          <img :src="item.src2" alt="" />
-          <img :src="item.src3" alt="" />
+          <img :src="item.image" alt="" />
+          <img :src="item.image" alt="" />
+          <img :src="item.image" alt="" />
+          <img :src="item.image" alt="" />
+
+   
+
         </h3>
       </el-carousel-item>
     </el-carousel>
@@ -75,6 +80,7 @@ import {
   getBaiRuiLUn,
   getBaiRuiXM,
   getBaiRuiYJ,
+  getBaiRuiSJ,
   getDesignindex,
 } from "../../api/http.js";
 
@@ -83,24 +89,6 @@ export default {
     return {
       sign: [],
       banners: [
-        {
-          src1: require("../../assets/design3.jpeg"),
-          src2: require("../../assets/design3.jpeg"),
-          src3: require("../../assets/design3.jpeg"),
-          src4: require("../../assets/design3.jpeg"),
-        },
-        {
-          src1: require("../../assets/design3.jpeg"),
-          src2: require("../../assets/design3.jpeg"),
-          src3: require("../../assets/design3.jpeg"),
-          src4: require("../../assets/design3.jpeg"),
-        },
-        {
-          src1: require("../../assets/design3.jpeg"),
-          src2: require("../../assets/design3.jpeg"),
-          src3: require("../../assets/design3.jpeg"),
-          src4: require("../../assets/design3.jpeg"),
-        },
       ],
 
       dataList: [
@@ -185,14 +173,20 @@ export default {
         // console.log(that.sign)
       });
       getBaiRuiLUn().then((res) => {
-        that.banners = res.data.data;
-        // console.log(that.banners)
+        that.banner = res.data.data;
+        // console.log(that.banner)
       });
-      // getBaiRuiXM().then(res=>{
-      //   that.list = res.data.data
-      //   // console.log(that.list)
-      // })
+      getBaiRuiXM().then(res=>{
+        that.banners = res.data.data
+        console.log(that.banners,"11111111")
+      })
       getBaiRuiYJ().then((res) => {
+        console.log(res);
+        that.list = res.data.data;
+        // console.log(that.lists)
+      });
+      
+      getBaiRuiSJ().then((res) => {
         console.log(res);
         that.lists = res.data.data;
         // console.log(that.lists)
@@ -269,12 +263,12 @@ li {
     border-radius: 8px;
     
     h3 {
-      padding: 40px 0px;
+      padding: 68px 0px;
       display: flex;
       justify-content: center;
       transform: all 1.5s;
       img {
-        width: 24%;
+        width: 21%;
         // height: 120px;
         margin: 0 10px;
         
@@ -288,6 +282,7 @@ li {
     .ban >>> .el-carousel__button {
       background: #ff4545;
     }
+
   }
   .two {
     display: none;
@@ -436,7 +431,14 @@ li {
         font-size: 16px;
       }
     }
-
+    .ban{
+      h3{
+        padding: 30px 0px;
+        img {
+          width: 19%;
+        }
+      }
+    }
     .soft {
       width: 94%;
       margin: 0px auto;
