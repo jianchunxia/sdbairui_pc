@@ -3,7 +3,7 @@
     <div class="logo">
       <img src="../assets/logo.png" />
     </div>
-    <div class="nav_item">
+    <div class="nav_item" :style="nav_show ? '' : 'display:block'">
       <div
         v-for="(item, index) in navList"
         :key="index"
@@ -14,46 +14,80 @@
         }}</router-link>
       </div>
     </div>
+    <img src="../assets/logo.png" class="but" @click="nav_show = !nav_show" />
   </div>
 </template>
 <style scoped lang="scss">
-#nav {
-  width: 100%;
-  min-width: 1080px;
-  height: 80px;
-  display: flex;
-  justify-content: space-around;
-  .logo {
-    width: 200px;
+@media screen and (min-width: 1080px) {
+  #nav {
+    width: 100%;
+    min-width: 1080px;
     height: 80px;
-    img {
-      width: 80px;
-      height: 80px;
-    }
-  }
-  .nav_item {
     display: flex;
-    div {
-      padding: 0 20px;
+    justify-content: space-around;
+    .logo {
+      width: 200px;
       height: 80px;
-      line-height: 80px;
-      min-width: 60px;
-      text-align: center;
-      a {
-        text-decoration: none;
-        color: #333333;
+      img {
+        height: 80px;
       }
     }
-    div:hover {
-      background: #20b09f;
+    .but {
+      display: none;
     }
-    div:hover a {
-      color: #ffffff;
-    }
-    .back {
-      background: #20b09f;
-      a {
+    .nav_item {
+      display: flex;
+      div {
+        padding: 0 20px;
+        height: 80px;
+        line-height: 80px;
+        min-width: 60px;
+        text-align: center;
+        a {
+          text-decoration: none;
+          color: #333333;
+        }
+      }
+      div:hover {
+        background: #20b09f;
+      }
+      div:hover a {
         color: #ffffff;
+      }
+      .back {
+        background: #20b09f;
+        a {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  #nav {
+    width: 100%;
+    max-width: 1080px;
+    height: 60px;
+    position: fixed;
+    .but {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+    .nav_item {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 60px;
+    }
+    .logo {
+      width: 200px;
+      height: 60px;
+      img {
+        height: 100%;
       }
     }
   }
@@ -79,6 +113,10 @@ export default {
           title: "产业事业部",
         },
         {
+          url: "/design",
+          title: "柏瑞设计",
+        },
+        {
           url: "/about",
           title: "关于我们",
         },
@@ -88,6 +126,7 @@ export default {
         },
       ],
       routes: [],
+      nav_show: true,
     };
   },
   watch: {

@@ -8,23 +8,36 @@
     <div class="con">
       <div class="top">
         <div class="left">
-          <p v-for="(item, index) in lianxi" :key="index">
-            <img :src="item.img" /><span>{{ item.text }}</span>
+          <p>
+            <img src="../../assets/lianxi.png" /><span>联系我们</span>
+          </p>
+          <p>
+            <img src="../../assets/qiye.png" /><span>{{title.name}}</span>
+          </p>
+          <p>
+            <img src="../../assets/tel.png" /><span>{{title.phone}}</span>
+          </p>
+          <p>
+            <img src="../../assets/email.png" /><span>{{title.email}}</span>
+          </p>
+          <p>
+            <img src="../../assets/dizhi.png" /><span>{{title.address}}</span>
           </p>
         </div>
         <div class="right">
           <p class="liuy"><img :src="liuyan" />{{ liuy }}</p>
           <form>
-            <input type="text" v-model="name" placeholder="姓名:" />
+            <input type="text" placeholder="姓名:" v-model="name"/>
             <input
               class="email"
               type="email"
-              v-model="email"
               placeholder="邮箱:"
+              v-model="email"
+              @blur="blur"
             />
-            <input class="tel" type="tel" v-model="tel" placeholder="电话:" />
-            <textarea rows="10" placeholder="请输入留言..."></textarea>
-            <input class="sub" type="submit" />
+            <input class="tel" type="tel" placeholder="电话:" v-model="tel" @blur="blur2"/>
+            <textarea rows="10" placeholder="请输入留言..." v-model="place"></textarea>
+            <button class="sub" type="button" @click="sub()"> 提交</button>
           </form>
         </div>
       </div>
@@ -41,7 +54,6 @@
           >
             <bm-view style="width: 100%; height: 500px; flex: 1"></bm-view>
             <bm-local-search
-              :keyword="addressKeyword"
               :auto-viewport="true"
               style="display: none"
             ></bm-local-search>
@@ -56,35 +68,79 @@
 // import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 // import BmView from "vue-baidu-map/components/map/MapView.vue";
 // import BmLocalSearch from "vue-baidu-map/components/search/LocalSearch.vue";
+import {getUS,getUSbanner} from '../../api/http.js'
 export default {
   name: "Contact",
   components: {},
   data() {
     return {
+      name:'',
+      tel:"",
+      email:'',
+      place:'',
       location: { lng: 116.8087874398422, lat: 36.5170277099317 },
       zoom: 16,
       ban: require("../../assets/conban.png"),
-      lianxi: [
-        { img: require("../../assets/lianxi.png"), text: "联系我们" },
-        {
-          img: require("../../assets/qiye.png"),
-          text: "山东柏瑞软件科技有限公司",
-        },
-        { img: require("../../assets/tel.png"), text: "0538-2110108" },
-        {
-          img: require("../../assets/email.png"),
-          text: "wf18661349342@163.com",
-        },
-        {
-          img: require("../../assets/dizhi.png"),
-          text: "济南市长清区崮云湖街道芙蓉路中国创新谷西城软件园A3楼503室",
-        },
-      ],
       liuyan: require("../../assets/liuy.png"),
       liuy: "填写留言",
+      title:{
+        name:"",
+        phone:"",
+        email:"",
+        address:""
+      },
     };
   },
+  created() {
+    this.setindex();
+  },
+
   methods: {
+    blur(){
+         var email = this.email;
+          var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+          if(reg.test(email)){
+            
+          }else{
+            this.$message({
+          showClose: true,
+          message: '邮箱格式不正确',
+          type: 'error'
+          })
+          }
+        },
+        blur2(){
+            var tel = this.tel;
+                  var phone = /^((0\d{2,3}-?\d{7,8})|(1[3-9]\d{9}))$/
+                  if(phone.test(tel)){
+                   
+                  }else{
+                    this.$message({
+          showClose: true,
+          message: '手机格式不正确',
+          type: 'error'
+          })
+          }
+        },
+        
+
+    //提交
+      sub(){
+      
+        if(this.name == '' || this.email == '' || this.tel == '' || this.place == '' ){
+          this.$message({
+          showClose: true,
+          message: '请完善信息',
+          type: 'error'
+        });
+        }else{
+          this.$message({
+          showClose: true,
+          message: '提交成功',
+          type: 'success'
+        });
+        }
+      },
     getLocationPoint(e) {
       this.lng = e.point.lng;
       this.lat = e.point.lat;
@@ -99,6 +155,17 @@ export default {
       //  geocoder.getLocation(e.point, res=>{
       //      console.log(res);
       //     })
+    },
+    setindex() {
+      var that = this;
+      getUS().then((res) => {
+        // console.log(res.data.data[0].name);
+        that.title=res.data.data[0]
+      });
+      getUSbanner().then((re)=>{
+         console.log(re);
+         that.ban=re.data.data.image
+      })
     },
   },
 };
@@ -125,21 +192,18 @@ export default {
           width: 100%;
           line-height: 2rem;
           overflow: hidden;
-
           img {
             vertical-align: middle;
             margin-right: 2%;
             float: left;
             margin-top: 0.5rem;
           }
-
           span {
             display: block;
             float: left;
           }
         }
       }
-
       .right {
         .liuy {
           img {

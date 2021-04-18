@@ -11,7 +11,8 @@
     <!-- 课程内容 -->
     <div class="content">
       <p>{{title3}}</p>
-       <img src="../../assets/java.jpg" alt="">
+       <img src="../../assets/java.jpg" alt="" class="java2">
+       <img src="../../assets/java1.jpg" alt="" class="java1">
     </div>
     <!-- 就业方向 -->
     <div class="work">
@@ -52,10 +53,11 @@ export default {
 </script>
 <style scoped lang="scss">
    #java{
+     @media only screen and (min-width: 1085px) {
      .bg{
-       background: url("../../assets/banner.png") no-repeat ;height: 360px;background-size: 100% 100%;
+       background: url("../../assets/45.jpg") no-repeat ;height: 360px;background-size: 100% 100%;
        font-size: 30px;font-weight: bold;color: #fff;line-height: 360px;text-align: center;
-       p{width: 100%;height: 360px;}
+       p{width: 100%;height: 360px;margin:0;}
      }
      .curriculum{
        .curr{
@@ -73,6 +75,7 @@ export default {
      }
         .content{
        p{ font-size: 24px;text-align: center;font-weight: bold;margin-bottom: 60px;}
+       .java1{display: none;}
        background: #F4F4F4;
        margin-top: 50px;
        width: 100%;
@@ -85,5 +88,43 @@ export default {
        .twe{width: 50%;margin: 10px auto;text-indent: 32px;font-size: 16px;line-height: 30px;}
        .three{width: 50%;margin: 10px auto;text-indent: 32px;font-size: 16px;line-height: 30px;}
      }
+     }
+    //  手机端
+    @media only screen and (max-width: 1080px) {
+        .bg{
+       background: url("../../assets/45.jpg") no-repeat ;height: 260px;background-size: 100% 100%;
+       font-size: 20px;font-weight: bold;color: #fff;line-height: 260px;text-align: center;
+       p{width: 100%;height: 360px;margin:0;}
+     }
+     .curriculum{
+       .curr{
+         font-size: 32px;
+         text-align: center;
+         font-weight: bold;
+       }
+     .curri{
+       width: 95%;
+       margin: 0 auto;
+       font-size: 16px;
+       line-height: 30px;
+       text-indent: 32px;
+     }
+     }
+        .content{
+       p{ font-size: 24px;text-align: center;font-weight: bold;margin-bottom: 60px;}
+       background: #F4F4F4;
+       margin-top: 50px;
+       width: 100%;
+      text-align: center;
+      padding: 40px 0;
+      .java2{display: none;}
+     }
+     .work{
+       .jiu{font-size: 30px;text-align: center;}
+       .one{width: 90%;margin: 10px auto;text-indent: 32px;font-size: 16px;line-height: 30px;}
+       .twe{width: 90%;margin: 10px auto;text-indent: 32px;font-size: 16px;line-height: 30px;}
+       .three{width: 90%;margin: 10px auto;text-indent: 32px;font-size: 16px;line-height: 30px;}
+     }
+    }
    }
 </style>

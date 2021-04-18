@@ -4,21 +4,14 @@
     <div class="banner">
       <el-carousel height="580px" id="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <!-- <h3 class="small">{{ item }}</h3> -->
           <img :src="item.ban" />
         </el-carousel-item>
       </el-carousel>
-      <van-swipe
-        class="my-swipe"
-        :autoplay="3000"
-        indicator-color="white"
-        id="phone"
-      >
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      <el-carousel height="260px" id="phone">
+        <el-carousel-item v-for="(item, index) in banner" :key="index">
+          <img :src="item.ban" />
+        </el-carousel-item>
+      </el-carousel>
     </div>
     <!-- 中间盒子 -->
     <div class="con">
@@ -28,20 +21,44 @@
         <p class="bg"></p>
         <div class="zhize">
           <dl v-for="(item, index) in zzfw" :key="index">
-            <dt><img :src="item.img" /></dt>
-            <dd>{{ item.text }}</dd>
+            <dt><img :src="item.image" /></dt>
+            <dd>{{ item.title}}</dd>
           </dl>
         </div>
       </div>
       <!-- 山东交通职业学院泰山校区 -->
-      <div class="second" v-for="(item, index) in xiao" :key="index">
-        <p class="title">{{ item.xiao }}</p>
+      <div class="second">
+        <p class="title">{{xiao1}}</p>
         <p class="bg"></p>
         <div class="tuw">
-          <dl v-for="(items, index) in item.nei" :key="index">
-            <dt><img :src="items.img" alt="" /></dt>
-            <dd class="name">{{ items.name }}</dd>
-            <dd>{{ items.text }}</dd>
+          <dl v-for="(item, index) in xiao" :key="index">
+            <dt><img :src="item.image" alt="" /></dt>
+            <dd class="name">{{ item.name }}</dd>
+            <dd>{{ item.title }}</dd>
+          </dl>
+        </div>
+      </div>
+      <!-- 山东交通职业学院泰山校区 -->
+      <div class="second">
+        <p class="title">{{xiao2}}</p>
+        <p class="bg"></p>
+        <div class="tuw">
+          <dl v-for="(item, index) in fu" :key="index">
+            <dt><img :src="item.image" alt="" /></dt>
+            <dd class="name">{{ item.name }}</dd>
+            <dd>{{ item.title }}</dd>
+          </dl>
+        </div>
+      </div>
+      <!-- 山东交通职业学院泰山校区 -->
+      <div class="second">
+        <p class="title">{{xiao3}}</p>
+        <p class="bg"></p>
+        <div class="tuw">
+          <dl v-for="(item, index) in zi" :key="index">
+            <dt><img :src="item.image" alt="" /></dt>
+            <dd class="name">{{ item.name }}</dd>
+            <dd>{{ item.title }}</dd>
           </dl>
         </div>
       </div>
@@ -56,7 +73,7 @@
         </div>
         <div class="tuw">
           <dl v-for="(item, index) in tese" :key="index">
-            <dt><img :src="item.img" /></dt>
+            <dt><img :src="item.image" /></dt>
             <dd>{{ item.text }}</dd>
           </dl>
         </div>
@@ -72,9 +89,9 @@
             @mouseover="aaa(index)"
             :class="index == numindex ? 'addClass' : ''"
           >
-            <dt><img :src="item.img" /></dt>
+            <dt><img :src="item.image" /></dt>
             <dd class="name">{{ item.name }}</dd>
-            <dd class="text">{{ item.text }}</dd>
+            <dd class="text">{{ item.desc }}</dd>
           </dl>
         </div>
       </div>
@@ -83,185 +100,234 @@
 </template>
 
 <script>
-// import { getData,getList } from '@/api/http'
+import { getSchoolban,getSchoolduty,getSchoolSchooles,getSchoolSchooltwo,getSchoolSchoolthree,getSchooldutytwo,getSchoolSchools} from "../../api/http.js";
+
 export default {
   name: "School",
-  components: {},
+  components: {
+    // Swiper,
+    // SwiperSlide,
+  },
   data() {
     return {
       numindex: null,
       zhize: "我们的职责范围",
-      zzfw: [
-        { img: require("../../assets/zhaos.png"), text: "独立招生" },
-        { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
-        { img: require("../../assets/shix.png"), text: "实训实习" },
-        { img: require("../../assets/jiuye.png"), text: "就业安置" },
-      ],
-      xiao: [
-        {
-          xiao: "山东交通职业学院泰山校区",
-          nei: [
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-          ],
-        },
-        {
-          xiao: "山东省城市服务技师学院",
-          nei: [
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-          ],
-        },
-        {
-          xiao: "淄博市技师学院",
-          nei: [
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-            {
-              img: require("../../assets/10.png"),
-              name: "办公楼",
-              text:
-                " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-            },
-          ],
-        },
-      ],
+      xiao1: "山东交通职业学院泰山校区",
+      xiao2: "山东省城市服务技师学院",
+      xiao3: "淄博市技师学院",
+      // banner: [
+      //   { src: require("../../assets/schban.png") },
+      //   { src: require("../../assets/schban.png") },
+      //   { src: require("../../assets/schban.png") },
+      //   { src: require("../../assets/schban.png") },
+      // ],
+      // zzfw: [
+      //   { img: require("../../assets/zhaos.png"), text: "独立招生" },
+      //   { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
+      //   { img: require("../../assets/shix.png"), text: "实训实习" },
+      //   { img: require("../../assets/jiuye.png"), text: "就业安置" },
+      // ],
+      // xiao: [
+      //   {
+      //     nei: [
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     nei: [
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     nei: [
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //       {
+      //         img: require("../../assets/10.png"),
+      //         name: "办公楼",
+      //         text:
+      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
+      //       },
+      //     ],
+      //   },
+      // ],
       liang: "特色亮点",
-      tese: [
-        {
-          img: require("../../assets/shuju.png"),
-          text: "因材施教，分层培养。",
-        },
-        {
-          img: require("../../assets/shuju.png"),
-          text: "24小时陪伴，保姆式管理。",
-        },
-        {
-          img: require("../../assets/hezuo.png"),
-          text: "时时教育，机会教育。",
-        },
-        {
-          img: require("../../assets/shouc.png"),
-          text: "技能+综合素养，双线培养。",
-        },
-      ],
+      // tese: [
+      //   {
+      //     img: require("../../assets/shuju.png"),
+      //     text: "因材施教，分层培养。",
+      //   },
+      //   {
+      //     img: require("../../assets/shuju.png"),
+      //     text: "24小时陪伴，保姆式管理。",
+      //   },
+      //   {
+      //     img: require("../../assets/hezuo.png"),
+      //     text: "时时教育，机会教育。",
+      //   },
+      //   {
+      //     img: require("../../assets/shouc.png"),
+      //     text: "技能+综合素养，双线培养。",
+      //   },
+      // ],
       hezuo: "合作院校",
       yuanx: "我们一直与众多院校建立友好的合作关系",
-      yuanxi: [
-        {
-          img: require("../../assets/30.png"),
-          name: "山东交通职业学院",
-          text:
-            "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-        },
-        {
-          img: require("../../assets/30.png"),
-          name: "山东交通职业学院",
-          text:
-            "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-        },
-        {
-          img: require("../../assets/30.png"),
-          name: "山东交通职业学院",
-          text:
-            "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-        },
-        {
-          img: require("../../assets/30.png"),
-          name: "山东交通职业学院",
-          text:
-            "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-        },
-        {
-          img: require("../../assets/30.png"),
-          name: "山东交通职业学院",
-          text:
-            "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-        },
-        {
-          img: require("../../assets/30.png"),
-          name: "山东交通职业学院",
-          text:
-            "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-        },
-      ],
-      banner: [
-        { ban: require("../../assets/schban.png") },
-        { ban: require("../../assets/schban.png") },
-        { ban: require("../../assets/schban.png") },
-      ],
+      // yuanxi: [
+      //   {
+      //     img: require("../../assets/30.png"),
+      //     name: "山东交通职业学院",
+      //     text:
+      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
+      //   },
+      //   {
+      //     img: require("../../assets/30.png"),
+      //     name: "山东交通职业学院",
+      //     text:
+      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
+      //   },
+      //   {
+      //     img: require("../../assets/30.png"),
+      //     name: "山东交通职业学院",
+      //     text:
+      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
+      //   },
+      //   {
+      //     img: require("../../assets/30.png"),
+      //     name: "山东交通职业学院",
+      //     text:
+      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
+      //   },
+      //   {
+      //     img: require("../../assets/30.png"),
+      //     name: "山东交通职业学院",
+      //     text:
+      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
+      //   },
+      //   {
+      //     img: require("../../assets/30.png"),
+      //     name: "山东交通职业学院",
+      //     text:
+      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
+      //   },
+      // ],
     };
   },
   methods: {
     aaa(index) {
       console.log(index);
       this.numindex = index;
-      // getData();
-      // getData()
     },
+    setschool() {
+      var that = this;
+
+      getSchoolban().then((res) => {
+        console.log(res);
+        that.banner = res.data.data;
+      });
+
+      getSchoolduty().then((res) => {
+        that.zzfw = res.data.data.list;
+        console.log(that.zzfw);
+      });
+      
+      getSchoolSchooles().then((res) => {
+        that.xiao = res.data.data.list;
+        console.log(that.xiao);
+      });
+      
+      getSchoolSchooltwo().then((res) => {
+        that.fu = res.data.data.list;
+        console.log(that.fu);
+      });
+
+      getSchoolSchoolthree().then((res) => {
+        that.zi = res.data.data.list;
+        console.log(that.zi);
+      });
+      
+      var that = this;
+      getSchooldutytwo().then((res) => {
+        that.tese = res.data.data.list;
+        console.log(that.tese);
+      });
+      
+      var that = this;
+      getSchoolSchools().then((res) => {
+        that.yuanxi = res.data.data.list;
+        console.log(that.yuanxi);
+      });
+
+      
+    },
+
+    // setduty() {
+    // },
   },
   created() {
-    // getData()
+    this.setschool();
+    // this.setduty();
   },
 };
 </script>
@@ -272,6 +338,24 @@ export default {
   padding: 0;
 }
 
+.swiper-pagination {
+  border: 1px solid #000;
+  z-index: 99;
+}
+
+.swiper {
+  height: 580px;
+  width: 100%;
+  swiper-slide {
+    width: 100%;
+    height: 580px;
+  }
+}
+#banner {
+  height: 580px;
+  width: 100% !important;
+}
+
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
@@ -280,28 +364,12 @@ export default {
   background-color: #39a9ed;
 }
 
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-
 .banner {
   width: 100%;
 
   img {
     width: 100%;
-    height: 580px;
+    height: 100%;
   }
 }
 
@@ -333,7 +401,6 @@ export default {
         display: flex;
 
         dl {
-          width: 25%;
           margin: 3rem 0;
 
           img {
@@ -354,6 +421,7 @@ export default {
 
       .title {
         text-align: center;
+        margin-top: 3rem;
       }
 
       .bg {
@@ -433,6 +501,7 @@ export default {
 
     .fourth {
       margin: 0 auto;
+      margin-bottom: 2rem;
 
       .title {
         text-align: center;
@@ -462,7 +531,7 @@ export default {
             float: left;
 
             img {
-              width: 92%;
+              width: 100%;
               margin-top: 1.4rem;
             }
           }
@@ -474,13 +543,12 @@ export default {
             margin-left: 4%;
           }
 
-          .name {
-            font-size: 18px;
-          }
+          // .name {
+          //   font-size: 18px;
+          // }
 
           .text {
             color: #666666;
-            font-size: 15px;
           }
         }
         .addClass {
@@ -496,11 +564,11 @@ export default {
   @media screen and (min-width: 1085px) {
     .banner {
       #pc {
-        display: none;
+        display: block;
       }
 
       #phone {
-        display: block;
+        display: none;
       }
     }
 
@@ -522,6 +590,7 @@ export default {
         display: flex;
 
         dl {
+          width: 25%;
           dd {
             font-size: 20px;
           }
@@ -613,6 +682,17 @@ export default {
 
         dl {
           width: 40%;
+          .name {
+            font-size: 18px;
+          }
+
+          .text {
+            font-size: 15px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+          }
         }
       }
     }
@@ -628,6 +708,18 @@ export default {
         display: block;
       }
     }
+    .swiper {
+      height: 250px;
+      width: 100%;
+      swiper-slide {
+        width: 100%;
+        height: 250px;
+      }
+    }
+    #banner {
+      height: 250px;
+      width: 100% !important;
+    }
 
     .first {
       width: 88%;
@@ -635,7 +727,7 @@ export default {
       box-shadow: none;
 
       .title {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .bg {
@@ -652,7 +744,7 @@ export default {
           margin: 1rem 0;
 
           dd {
-            font-size: 16px;
+            font-size: 13px;
           }
         }
       }
@@ -663,7 +755,7 @@ export default {
       margin-top: 3rem;
 
       .title {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .bg {
@@ -681,7 +773,11 @@ export default {
 
           dd {
             line-height: 1.6rem;
-            font-size: 14px;
+            font-size: 13px;
+          }
+
+          .name {
+            font-size: 14px !important;
           }
         }
       }
@@ -695,12 +791,13 @@ export default {
           }
 
           .ri {
-            margin-left: 20%;
+            margin-left: 24%;
           }
         }
 
         .text {
-          left: 45%;
+          left: 41%;
+          font-size: 18px !important;
           // text-align: center;
         }
       }
@@ -721,7 +818,7 @@ export default {
           }
 
           dd {
-            font-size: 16px;
+            font-size: 14px !important;
           }
         }
       }
@@ -732,11 +829,11 @@ export default {
 
       .title {
         margin-top: 2rem;
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .grey {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .xue {
@@ -745,6 +842,18 @@ export default {
 
         dl {
           width: 100%;
+          
+          .name {
+            font-size: 15px;
+          }
+
+          .text {
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+          }
         }
       }
     }

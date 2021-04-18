@@ -76,6 +76,8 @@ export default {
   #about{
     margin: 0 ;
     padding: 0;
+    // pc端
+     @media only screen and (min-width: 1085px) {
     .kong{text-indent: 20px;}
     .brief{
        margin-top: 90px;
@@ -149,10 +151,42 @@ export default {
         p:hover{transform: scale(1.1)}
       }
     }
-     .foot{
-   background: url(../../assets/foot.png) no-repeat 100%;height: 139px;
-   
-   font-size: 30px;font-family: Microsoft YaHei;font-weight: 400;color: #FFFFFF;line-height: 139px;text-align: center;
- }
+     }
+    //  手机端
+     @media only screen and (max-width: 1080px) {
+       body{background: red;}
+       .brief{
+       margin-top: 90px;
+       p{
+       font-size: 24px;
+       color: #333333;
+       font-weight: 400;
+       text-align: center;
+     }
+     dl{
+       width: 90%;margin: 0 auto;
+       box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
+       display: flex;
+       justify-content: space-between;
+       flex-wrap: wrap;
+       padding: 20px;
+       dt{
+         width: 90%;
+         height: 340px;
+         img{width: 100%;}
+       }
+       dd{
+         span{display: block;}
+         width: 90%;
+         height: 338px;
+         font-size: 18px;
+         font-family: Microsoft YaHei;
+         font-weight: 400;
+         color: #666666;
+         line-height: 40px;
+       }
+       }
+    }
+     }
   }
 </style>
