@@ -4,13 +4,13 @@
       <div class="con" v-for="(item, index) in list" :key="index">
         <div class="left">
           <div class="time">
-            {{ item.time }}
+            {{ item.create_time }}
             <img src="../../assets/list1.png" alt="" class="pos" />
           </div>
         </div>
         <div class="right">
           <dl>
-            <dt><img :src="item.src" alt="" /></dt>
+            <dt><img :src="item.image" alt="" /></dt>
             <div>
               <dd class="title">
                 {{ item.title }}
@@ -29,9 +29,9 @@
         <div class="page-bar">
           <ul>
             <li v-if="cur > 1">
-              <a v-on:click="cur--, pageClick()">< </a>
+              <a v-on:click="cur--, pageClick()"></a>
             </li>
-            <li v-if="cur == 1"><a class="banclick">< </a></li>
+            <li v-if="cur == 1"><a class="banclick"></a></li>
             <li
               v-for="index in indexs"
               v-bind:class="{ active: cur == index }"
@@ -50,58 +50,69 @@
   </div>
 </template>
 <script>
+import { getindexnewsXq } from "../../api/http.js";
 export default {
   data() {
     return {
       all: 6, //总页数
       cur: 1, //当前页码
       totalPage: 0, //当前条数
-      list: [
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-        {
-          time: "2021-03-25",
-          src: require("../../assets/List2.png"),
-          title: "山东柏瑞 | 淄博校区学习经验分享（一）",
-          content:
-            " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
-          url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
-        },
-      ],
+      // list: [
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      //   {
+      //     time: "2021-03-25",
+      //     src: require("../../assets/List2.png"),
+      //     title: "山东柏瑞 | 淄博校区学习经验分享（一）",
+      //     content:
+      //       " 为了更好地教育学生、服务学生、影响学生，提高教师师资水平及综合素养迫在眉睫且任重道远。为此，特制定全员学习、整体提升计划。",
+      //     url: "https://mp.weixin.qq.com/s/P2v5bv4Vl0wsEuAK-1JLtg",
+      //   },
+      // ],
     };
   },
+  created() {
+    this.setlist();
+  },
   methods: {
-     go(index) {
+    setlist() {
+      var that = this;
+      getindexnewsXq().then((res) => {
+        that.list = res.data.data.data;
+        console.log(that.list);
+      });
+    },
+    go(index) {
       window.open(this.list[index].url);
     },
     //请求数据
@@ -133,7 +144,7 @@ export default {
         this.cur = data;
       }
       //根据点击页数请求数据
-    //   this.dataListFn(this.cur.toString());
+      //   this.dataListFn(this.cur.toString());
     },
     pageClick: function () {
       //根据点击页数请求数据
@@ -277,15 +288,15 @@ li {
               font-size: 20px;
               line-height: 40px;
               font-weight: 700;
-              margin: 0 ;
+              margin: 0;
             }
             .text {
               font-size: 16px;
               line-height: 26px;
-              margin: 0 ;
+              margin: 0;
             }
             .cha {
-              margin: 0 ;
+              margin: 0;
               width: 115px;
               background: #dadada;
               font-size: 16px;
@@ -308,7 +319,7 @@ li {
     // padding: 30px 0px;
     padding-bottom: 30px;
   }
-  @media screen and (max-width:1080px) {
+  @media screen and (max-width: 1080px) {
     .center {
       background: #fff;
       padding: 20px 0px 50px 0px;
