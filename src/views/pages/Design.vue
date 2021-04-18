@@ -44,6 +44,8 @@
   </div>
 </template>
 <script>
+import { getDesignindex } from "../../api/http.js";
+
 export default {
   data() {
     return {
@@ -149,6 +151,14 @@ export default {
     gotoPage(index) {
       this.currentIndex = index;
     },
+
+    setdesign(){
+      
+    }
+  },
+
+  created(){
+    this.setdesign()
   },
   computed: {
     //上一张

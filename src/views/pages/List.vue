@@ -4,13 +4,13 @@
       <div class="con" v-for="(item, index) in list" :key="index">
         <div class="left">
           <div class="time">
-            {{ item.time }}
+            {{ item.create_time }}
             <img src="../../assets/list1.png" alt="" class="pos" />
           </div>
         </div>
         <div class="right">
           <dl>
-            <dt><img :src="item.src" alt="" /></dt>
+            <dt><img :src="item.image" alt="" /></dt>
             <div>
               <dd class="title">
                 {{ item.title }}
@@ -29,9 +29,9 @@
         <div class="page-bar">
           <ul>
             <li v-if="cur > 1">
-              <a v-on:click="cur--, pageClick()">< </a>
+              <a v-on:click="cur--, pageClick()"></a>
             </li>
-            <li v-if="cur == 1"><a class="banclick">< </a></li>
+            <li v-if="cur == 1"><a class="banclick"></a></li>
             <li
               v-for="index in indexs"
               v-bind:class="{ active: cur == index }"
@@ -50,6 +50,7 @@
   </div>
 </template>
 <script>
+import { getindexnewsXq} from "../../api/http.js";
 export default {
   data() {
     return {
@@ -100,7 +101,17 @@ export default {
       ],
     };
   },
+  created(){
+    this.setlist();
+  },
   methods: {
+    setlist(){
+      var that = this;
+      getindexnewsXq().then((res) => {
+        that.list = res.data.data.data;
+        console.log(that.list);
+      });
+    },
      go(index) {
       window.open(this.list[index].url);
     },
@@ -265,12 +276,13 @@ li {
           justify-content: space-between;
           flex-wrap: wrap;
           dt {
-            width: 49%;
+            width: 39%;
             img {
               width: 100%;
             }
           }
           div {
+            width: 50%;
             .title {
               font-size: 20px;
               line-height: 40px;

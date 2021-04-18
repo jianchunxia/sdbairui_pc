@@ -2,6 +2,7 @@
   <div class="ui">
     <div class="banner">
       <img :src="ban" />
+      <p>{{title}}</p>
     </div>
     <div class="con">
       <div class="first">
@@ -26,7 +27,8 @@ export default {
   components: {},
   data() {
     return {
-      ban: require("../../assets/uiban.png"),
+      ban: require("../../assets/UI.jpg"),
+      title:'UI设计是指对软件的人机交互、操作逻辑、界面美观的整体设计。',
       kecheng: "课程介绍",
       text:
         "用户界面(User Interface)是指对软件的人机交互、操作逻辑、界面美观的整体设计。好的UI设计不仅是让软件变得有个性有品味，还要让软件的操作变得舒适、简单、自由、充分体现软件的定位和特点。国内目前大部分UI工作者都是从事这个行业。也有人称之为美工，但实际上不是单纯意义上的美术工人，而是软件产品的产品外形设计师。随着“UI”热的到来，近几年国内很多从事手机，软件，网站，增值服务等企业和公司都设立了这个部门。还有很多专门从事U设计的公司也应运而生。软件UI设计师的待遇和地位也逐渐上升。",
@@ -42,9 +44,25 @@ export default {
 
 <style lang="scss" scoped>
 .ui {
-  .banner img {
-    width: 100%;
-  }
+  .banner {
+    position: relative;
+    height: 500px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      width: 66%;
+      margin: 0 auto;
+      text-align: center;
+      position: absolute;
+      left:0;top: 48%;
+      font-size: 26px;
+      color: #fff;
+      margin-left: 12%;
+    }
+  } 
 
   .con {
     width: 100%;
@@ -113,9 +131,24 @@ export default {
   }
 
   @media screen and (max-width: 1080px) {
-    .banner img {
-      height: 14rem;
+    .banner {
+    position: relative;
+    height: 220px;
+    img {
+      width: 100%;
+      height: 100%;
     }
+
+    p {
+      width: 90%;
+      text-align: center;
+      position: absolute;
+      left:0;top: 46%;
+      font-size: 22px;
+      color: #fff;
+      margin-left: 5%;
+    }
+  }
 
     .con {
       font-size: 14px;

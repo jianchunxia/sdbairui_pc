@@ -25,10 +25,58 @@ export function getUSbanner() {
 	})
 }
 
+export function getSchoolban() {
+	return request({
+		url: '/api/Pcschool/banner',
+		method: 'GET',
+	})
+}
 
-// export function getList() {
-//     return request({
-//         url:"",
-//         method:"GET"
-//     })
-// }
+export function getSchoolduty() {
+	return request({
+		url: '/api/Pcschool/duty',
+		method: 'GET',
+	})
+}
+
+export function getSchoolSchooles() {
+	return request({
+		url: '/api/Pcschool/Schooles',
+		method: 'GET',
+	})
+}
+
+export function getSchoolSchooltwo() {
+	return request({
+		url: '/api/Pcschool/Schooltwo',
+		method: 'GET',
+	})
+}
+
+export function getSchoolSchoolthree() {
+	return request({
+		url: '/api/Pcschool/Schoolthree',
+		method: 'GET',
+	})
+}
+
+export function getSchooldutytwo() {
+	return request({
+		url: '/api/Pcschool/dutytwo',
+		method: 'GET',
+	})
+}
+
+export function getSchoolSchools() {
+	return request({
+		url: '/api/Pcschool/Schools',
+		method: 'GET',
+	})
+}
+
+export function getindexnewsXq() {
+	return request({
+		url: '/api/index/newsXq',
+		method: 'GET',
+	})
+}

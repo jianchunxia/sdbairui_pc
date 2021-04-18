@@ -7,20 +7,12 @@
           <img :src="item.ban" />
         </el-carousel-item>
       </el-carousel>
-      <el-carousel height="320px" id="phone">
+      <el-carousel height="260px" id="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <img :src="item.ban" />
         </el-carousel-item>
       </el-carousel>
     </div>
-    <!-- <swiper :space-between="50" class="swiper" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
-      <swiper-slide v-for="(item, index) in banner" :key="index">
-        <img :src="item.src" alt="" id="banner" />
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
-    </swiper> -->
     <!-- 中间盒子 -->
     <div class="con">
       <!-- 我们的职责范围 -->
@@ -29,20 +21,44 @@
         <p class="bg"></p>
         <div class="zhize">
           <dl v-for="(item, index) in zzfw" :key="index">
-            <dt><img :src="item.img" /></dt>
-            <dd>{{ item.text }}</dd>
+            <dt><img :src="item.image" /></dt>
+            <dd>{{ item.title}}</dd>
           </dl>
         </div>
       </div>
       <!-- 山东交通职业学院泰山校区 -->
-      <div class="second" v-for="(item, index) in xiao" :key="index">
-        <p class="title">{{ item.xiao }}</p>
+      <div class="second">
+        <p class="title">{{xiao1}}</p>
         <p class="bg"></p>
         <div class="tuw">
-          <dl v-for="(items, index) in item.nei" :key="index">
-            <dt><img :src="items.img" alt="" /></dt>
-            <dd class="name">{{ items.name }}</dd>
-            <dd>{{ items.text }}</dd>
+          <dl v-for="(item, index) in xiao" :key="index">
+            <dt><img :src="item.image" alt="" /></dt>
+            <dd class="name">{{ item.name }}</dd>
+            <dd>{{ item.title }}</dd>
+          </dl>
+        </div>
+      </div>
+      <!-- 山东交通职业学院泰山校区 -->
+      <div class="second">
+        <p class="title">{{xiao2}}</p>
+        <p class="bg"></p>
+        <div class="tuw">
+          <dl v-for="(item, index) in fu" :key="index">
+            <dt><img :src="item.image" alt="" /></dt>
+            <dd class="name">{{ item.name }}</dd>
+            <dd>{{ item.title }}</dd>
+          </dl>
+        </div>
+      </div>
+      <!-- 山东交通职业学院泰山校区 -->
+      <div class="second">
+        <p class="title">{{xiao3}}</p>
+        <p class="bg"></p>
+        <div class="tuw">
+          <dl v-for="(item, index) in zi" :key="index">
+            <dt><img :src="item.image" alt="" /></dt>
+            <dd class="name">{{ item.name }}</dd>
+            <dd>{{ item.title }}</dd>
           </dl>
         </div>
       </div>
@@ -57,7 +73,7 @@
         </div>
         <div class="tuw">
           <dl v-for="(item, index) in tese" :key="index">
-            <dt><img :src="item.img" /></dt>
+            <dt><img :src="item.image" /></dt>
             <dd>{{ item.text }}</dd>
           </dl>
         </div>
@@ -73,9 +89,9 @@
             @mouseover="aaa(index)"
             :class="index == numindex ? 'addClass' : ''"
           >
-            <dt><img :src="item.img" /></dt>
+            <dt><img :src="item.image" /></dt>
             <dd class="name">{{ item.name }}</dd>
-            <dd class="text">{{ item.text }}</dd>
+            <dd class="text">{{ item.desc }}</dd>
           </dl>
         </div>
       </div>
@@ -84,9 +100,7 @@
 </template>
 
 <script>
-// import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-// import "swiper/swiper-bundle.css";
-import { getData } from "../../api/http.js";
+import { getSchoolban,getSchoolduty,getSchoolSchooles,getSchoolSchooltwo,getSchoolSchoolthree,getSchooldutytwo,getSchoolSchools} from "../../api/http.js";
 
 export default {
   name: "School",
@@ -96,27 +110,11 @@ export default {
   },
   data() {
     return {
-      swiperOption: {
-        loop: true,
-        pagination: {
-          el: "swiper-pagination",
-          // type:'bullets',
-          // clickble:true,
-          // dynamicBullets:false
-        },
-        // speed:1000,
-        // autoplay:{
-        //   delay:3000,
-        //   disableOnInteraction:false
-        // },
-        // effect:'slide',
-        navigation: {
-          nextEl: "swiper-button-prev",
-          prevEl: "swiper-button-next",
-        },
-      },
       numindex: null,
       zhize: "我们的职责范围",
+      xiao1: "山东交通职业学院泰山校区",
+      xiao2: "山东省城市服务技师学院",
+      xiao3: "淄博市技师学院",
       // banner: [
       //   { src: require("../../assets/schban.png") },
       //   { src: require("../../assets/schban.png") },
@@ -131,7 +129,6 @@ export default {
       ],
       xiao: [
         {
-          xiao: "山东交通职业学院泰山校区",
           nei: [
             {
               img: require("../../assets/10.png"),
@@ -160,7 +157,6 @@ export default {
           ],
         },
         {
-          xiao: "山东省城市服务技师学院",
           nei: [
             {
               img: require("../../assets/10.png"),
@@ -189,7 +185,6 @@ export default {
           ],
         },
         {
-          xiao: "淄博市技师学院",
           nei: [
             {
               img: require("../../assets/10.png"),
@@ -277,43 +272,62 @@ export default {
             "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
         },
       ],
-      // banner: [
-      //   { ban: require("../../assets/schban.png") },
-      //   { ban: require("../../assets/schban.png") },
-      //   { ban: require("../../assets/schban.png") },
-      //],
     };
   },
-  // computed:{
-  //   Swiper(){
-  //     return this.$refs.mySwiper.swiper
-  //   }
-  // },
-  // mounted(){
-  //     this.swiper.slideTo(3, 1000, false)
-  // },
   methods: {
     aaa(index) {
       console.log(index);
       this.numindex = index;
-      // getData();
-      // getData()
     },
-    // tonext(){
-    //   var swiper =  this.$refs.mySwiper;
-    //   swiper.slidePrev();
-    // }
+    setschool() {
+      var that = this;
+
+      getSchoolban().then((res) => {
+        console.log(res);
+        that.banner = res.data.data;
+      });
+
+      getSchoolduty().then((res) => {
+        that.zzfw = res.data.data.list;
+        console.log(that.zzfw);
+      });
+      
+      getSchoolSchooles().then((res) => {
+        that.xiao = res.data.data.list;
+        console.log(that.xiao);
+      });
+      
+      getSchoolSchooltwo().then((res) => {
+        that.fu = res.data.data.list;
+        console.log(that.fu);
+      });
+
+      getSchoolSchoolthree().then((res) => {
+        that.zi = res.data.data.list;
+        console.log(that.zi);
+      });
+      
+      var that = this;
+      getSchooldutytwo().then((res) => {
+        that.tese = res.data.data.list;
+        console.log(that.tese);
+      });
+      
+      var that = this;
+      getSchoolSchools().then((res) => {
+        that.yuanxi = res.data.data.list;
+        console.log(that.yuanxi);
+      });
+
+      
+    },
+
+    // setduty() {
+    // },
   },
   created() {
-    // getData()
-    this.setindex();
-  },
-  setindex() {
-    var that = this;
-    getData().then((res) => {
-      console.log(res);
-      that.banner = res.data.data.img;
-    });
+    this.setschool();
+    // this.setduty();
   },
 };
 </script>
@@ -517,7 +531,7 @@ export default {
             float: left;
 
             img {
-              width: 92%;
+              width: 100%;
               margin-top: 1.4rem;
             }
           }
@@ -529,13 +543,12 @@ export default {
             margin-left: 4%;
           }
 
-          .name {
-            font-size: 18px;
-          }
+          // .name {
+          //   font-size: 18px;
+          // }
 
           .text {
             color: #666666;
-            font-size: 15px;
           }
         }
         .addClass {
@@ -669,6 +682,17 @@ export default {
 
         dl {
           width: 40%;
+          .name {
+            font-size: 18px;
+          }
+
+          .text {
+            font-size: 15px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+          }
         }
       }
     }
@@ -703,7 +727,7 @@ export default {
       box-shadow: none;
 
       .title {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .bg {
@@ -720,7 +744,7 @@ export default {
           margin: 1rem 0;
 
           dd {
-            font-size: 16px;
+            font-size: 13px;
           }
         }
       }
@@ -731,7 +755,7 @@ export default {
       margin-top: 3rem;
 
       .title {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .bg {
@@ -749,7 +773,11 @@ export default {
 
           dd {
             line-height: 1.6rem;
-            font-size: 14px;
+            font-size: 13px;
+          }
+
+          .name {
+            font-size: 14px !important;
           }
         }
       }
@@ -763,12 +791,13 @@ export default {
           }
 
           .ri {
-            margin-left: 20%;
+            margin-left: 24%;
           }
         }
 
         .text {
-          left: 45%;
+          left: 41%;
+          font-size: 18px !important;
           // text-align: center;
         }
       }
@@ -789,7 +818,7 @@ export default {
           }
 
           dd {
-            font-size: 16px;
+            font-size: 14px !important;
           }
         }
       }
@@ -800,11 +829,11 @@ export default {
 
       .title {
         margin-top: 2rem;
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .grey {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .xue {
@@ -813,6 +842,18 @@ export default {
 
         dl {
           width: 100%;
+          
+          .name {
+            font-size: 15px;
+          }
+
+          .text {
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+          }
         }
       }
     }

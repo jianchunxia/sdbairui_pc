@@ -2,6 +2,7 @@
   <div class="php">
     <div class="banner">
       <img :src="ban" />
+      <p>{{title}}</p>
     </div>
     <div class="con">
       <div class="first">
@@ -32,7 +33,8 @@ export default {
   components: {},
   data() {
     return {
-      ban: require("../../assets/phpban.png"),
+      title:'利于学习，使用广泛，主要适用于Web开发领域的服务端脚本语言。',
+      ban: require("../../assets/PHP.jpg"),
       kecheng: "课程介绍",
       text:
         "PHP即“超文本预处理器”，是一种通用开源脚本语言。PHP是在服务器端执行的脚本语言，与C语言类似，是常用的网站编程语言。PHP独特的语法混合了C、Java、Perl以及 PHP自创的语法。利于学习，使用广泛，主要适用于Web开发领域。PHP作为服务器端的脚本语言，其跨平台性以及丰富的函数库成为网站开发的主流语言，而作为网站必不可少的数据库，轻量、开源、性能优良、简单易用的MySQL得到各个中小型企业的青睐。所以，PHP访问数据库技术就成为网站开发的一项基本且重要的工作。今天，网络技术正以突飞猛进的速度发展，而企业也要与时俱进，只有高度重视并充分利用网络技术，才能在实际运行过程中，让网络成为企业发展的助力。PHP语言作为网站开发的通用语言，简单易行，可移植性好，应用空间广泛，逐渐受到网站开发人员的欢迎。因此，在行业网站建设过程中，具有良好的应用前景。",
@@ -68,9 +70,25 @@ export default {
 
 <style lang="scss" scoped>
 .php {
-  .banner img {
-    width: 100%;
-  }
+  .banner {
+    position: relative;
+    height: 500px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      width: 66%;
+      margin: 0 auto;
+      text-align: center;
+      position: absolute;
+      left:0;top: 48%;
+      font-size: 26px;
+      color: #fff;
+      margin-left: 12%;
+    }
+  } 
 
   .con {
     width: 100%;
@@ -183,9 +201,24 @@ export default {
   }
 
   @media screen and (max-width: 1080px) {
-    .banner img {
-      height: 14rem;
+    .banner {
+    position: relative;
+    height: 220px;
+    img {
+      width: 100%;
+      height: 100%;
     }
+
+    p {
+      width: 90%;
+      text-align: center;
+      position: absolute;
+      left:0;top: 46%;
+      font-size: 22px;
+      color: #fff;
+      margin-left: 5%;
+    }
+  }
     .con {
       font-size: 14px;
 
