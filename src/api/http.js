@@ -171,21 +171,21 @@ export function getSchoolduty() {
 
 export function getSchoolSchooles() {
 	return request({
-		url: '/api/Pcschool/Schooles',
+		url: '/api/Pcschool/Schooles?school_id=12',
 		method: 'GET',
 	})
 }
 
 export function getSchoolSchooltwo() {
 	return request({
-		url: '/api/Pcschool/Schooltwo',
+		url: '/api/Pcschool/Schooltwo?school_id=13',
 		method: 'GET',
 	})
 }
 
 export function getSchoolSchoolthree() {
 	return request({
-		url: '/api/Pcschool/Schoolthree',
+		url: '/api/Pcschool/Schoolthree?school_id=14',
 		method: 'GET',
 	})
 }
