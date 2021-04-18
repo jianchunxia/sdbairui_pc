@@ -21,25 +21,25 @@
       <dl v-for="(item, index) in list" :key="index">
         <dt>
           <img :src="item.src1" alt="" />
-          <img src="../../assets/logo.png" alt="" />
+          <img src="../../assets/10.png" alt="" />
         </dt>
         <dd>{{ item.title2 }}</dd>
       </dl>
     </div>
     <!-- 培养模式 -->
     <div class="main2">
-      <img src="../../assets/ss.png" alt="" />
+      <img :src="src" alt="" />
     </div>
     <!-- 真实产业环境 -->
     <div class="main2">
-      <img src="../../assets/gw.png" alt="" />
+      <img :src="src1" alt="" />
     </div>
     <!-- 构建产业生态圈 -->
     <div class="main3">
       <p class="project">{{ title3 }}</p>
     </div>
     <div class="main4">
-      <img src="../../assets/si.png" alt="" />
+      <img :src="src2" alt="" />
     </div>
     <div class="main5">
       <p class="project">{{ title4 }}</p>
@@ -77,9 +77,9 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-import {getDa} from '../../api/http.js'
-
+import { Swiper, SwiperSlide} from "vue-awesome-swiper";
+import {getDa,getindupei,getinduhuan,getindushen,getindugs} from '../../api/http.js'
+// import 'swiper/scrollbar.scss';
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
 export default {
@@ -107,6 +107,9 @@ export default {
       title3: "构建产业生态圈",
       title4: "汇集融合，创新赋能 不忘初心，牢记使命，柏瑞教育践行产教融合",
       title5: "践行产教深度融合  助推校企紧密合作",
+      src:"",
+      src1:"",
+      src2:"",
     };
   },
   created(){
@@ -114,12 +117,32 @@ export default {
   },
   methods:{
     setbanner(){
+      var that=this
       getDa()
       .then(
         res=>{
           console.log(res)
         }
       )
+      getindupei()
+      .then(re=>{
+        console.log(re.data.data.image)
+        that.src=re.data.data.image
+      })
+      getinduhuan()
+      .then(rea=>{
+         console.log(rea.data.data.image)
+         that.src1=rea.data.data.image
+      })
+       getindushen()
+      .then(reb=>{
+         console.log(reb.data.data.image)
+         that.src2=reb.data.data.image
+      })
+        getindugs()
+      .then(rec=>{
+         console.log(rec)
+      })
     }
   }
 };
@@ -183,15 +206,18 @@ export default {
     justify-content: space-between;
     dl {
       width: 24%;
+       background: #fff;
+       box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.31);
+       border-radius: 5px;
       dt {
         text-align: center;
         width: 100%;
-        border: 1px solid red;
       }
       dd {
         width: 100%;
         text-align: center;
         margin: 0 auto;
+       padding: 10px 0;
       }
     }
   }
@@ -344,12 +370,13 @@ export default {
       justify-content: space-between;
       flex-wrap: wrap;
       dl {
-        width: 45%;
-        border: 1px solid black;
+        width: 48%;
+        background: #fff;
+       box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.31);
+       border-radius: 5px;
         dt {
           text-align: center;
           width: 100%;
-          border: 1px solid red;
           img {
             width: 100%;
           }
@@ -358,6 +385,7 @@ export default {
           width: 100%;
           text-align: center;
           margin: 0 auto;
+          padding: 5px 0;
         }
       }
     }
@@ -448,7 +476,7 @@ export default {
         margin: 5% auto;
         img {
           width: 100%;
-          height: 300px;
+          height: 200px;
         }
         height: 300px;
       }

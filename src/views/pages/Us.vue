@@ -141,21 +141,18 @@ export default {
           width: 100%;
           line-height: 2rem;
           overflow: hidden;
-
           img {
             vertical-align: middle;
             margin-right: 2%;
             float: left;
             margin-top: 0.5rem;
           }
-
           span {
             display: block;
             float: left;
           }
         }
       }
-
       .right {
         .liuy {
           img {

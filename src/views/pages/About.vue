@@ -16,7 +16,7 @@
     <div class="cooperation">
       <p>{{ title4 }}</p>
       <div class="hezuo">
-        <p><img src="../../assets/hezuo1.png" alt="" /></p>
+        <p><img :src="hesrc.image" alt="" /></p>
         <p><img src="../../assets/hezuo2.png" alt="" /></p>
       </div>
     </div>
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import {getabschool,getabjian,getabban} from '../../api/http.js'
 export default {
   name: "Home",
   components: {
@@ -69,14 +70,38 @@ export default {
         { src: require("../../assets/c.png") },
         { src: require("../../assets/c.png") },
       ],
+      hesrc:{
+        image:""
+      }
     };
   },
+   created() {
+    this.setabout();
+  },
+  methods:{
+     setabout() {
+      var that = this;
+      getabschool()
+      .then((res) => {
+        console.log(res)
+        that.hesrc=res.data.data.list[0]
+      });
+      getabjian()
+      .then((rea) => {
+        console.log(rea)
+      });
+       getabban()
+      .then((reb) => {
+        console.log(reb)
+      });
+    },
+  }
 };
 </script>
 <style scoped lang="scss">
 #about {
-  margin: 0;
-  padding: 0;
+  // margin: 0;
+  // padding: 0;
   // pc端
   @media only screen and (min-width: 1085px) {
     .kong {
@@ -84,6 +109,8 @@ export default {
     }
     .brief {
       margin-top: 90px;
+      margin: 0;
+      padding: 0;
       p {
         font-size: 24px;
         color: #333333;
@@ -279,7 +306,7 @@ export default {
           height: 200px;
           img {
             width: 100%;
-            height: 100%;
+            height: 80%;
           }
         }
         dd {
