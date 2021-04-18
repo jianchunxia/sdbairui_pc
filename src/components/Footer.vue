@@ -11,14 +11,14 @@
           </div>
         </div>
 
-        <div class="foo_nav">
+        <!-- <div class="foo_nav">
           <div style="margin-right: 20px; font-weight: 600">了解详情</div>
           <div v-for="(item, index) in fooList" :key="index">
             <router-link to="" @click.native="toweb(item.url)">{{
               item.title
             }}</router-link>
           </div>
-        </div>
+        </div> -->
         <div class="address">
           <div style="margin-right: 20px; font-weight: 600">地址:</div>
           <div>{{ address }}</div>
@@ -26,11 +26,11 @@
       </div>
       <div class="wx">
         <div class="wx_item">
-          <img src="../assets/logo.png" alt="" />
+          <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信公众号</div>
         </div>
         <div class="wx_item">
-          <img src="../assets/logo.png" alt="" />
+          <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信小程序</div>
         </div>
       </div>

@@ -29,7 +29,6 @@
       width: 200px;
       height: 80px;
       img {
-        width: 80px;
         height: 80px;
       }
     }
@@ -88,9 +87,7 @@
       width: 200px;
       height: 60px;
       img {
-        width: 100%;
         height: 100%;
-        margin-top: 5px;
       }
     }
   }
