@@ -1,14 +1,14 @@
 <template>
-  <div class="index">
+  <div id="index">
     <div class="banner">
       <el-carousel height="580px" class="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <h3 class="small"><img :src="item.src" alt="" /></h3>
+          <h3 class="small"><img :src="item.image" alt="" /></h3>
         </el-carousel-item>
       </el-carousel>
-      <el-carousel height="320px" class="phone">
+      <el-carousel height="260px" class="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <h3 class="small"><img :src="item.src" alt="" /></h3>
+          <h3 class="small"><img :src="item.image" alt="" /></h3>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -29,7 +29,7 @@
               :class="{ current: currenta == index }"
               @mousemove="onhover(index)"
             >
-              {{ item.name }}
+              {{ item.title }}
             </li>
           </ul>
           <div class="xia">
@@ -40,13 +40,13 @@
               v-show="index == currenta"
             >
               <div class="image">
-                <img :src="item.src1" alt="" />
+                <img :src="item.image" alt="" />
               </div>
               <div class="content">
                 <h4>{{ item.title }}</h4>
                 <p>{{ item.content }}</p>
                 <div class="tiao">
-                  <router-link :to="item.url">{{ item.more }}</router-link>
+                  <router-link :to="item.url">查看更多>></router-link>
                 </div>
               </div>
             </div>
@@ -78,16 +78,19 @@
 
           <div class="list">
             <dl v-for="(item, index) in training" :key="index">
-              <dt>
-                <img :src="item.src1" alt="" />
-                <img :src="item.src2" alt="" />
-              </dt>
-              <dd class="tit">
-                {{ item.title }}
-              </dd>
-              <dd class="con">
-                {{ item.content }}
-              </dd>
+              <router-link :url="item.url">
+                <dt>
+                  <img :src="item.image" alt="" />
+                  <img :src="item.src2" alt="" />
+                </dt>
+                <dd class="tit">
+                  {{ item.name }}
+                </dd>
+                <dd class="con">
+                  {{ item.title }}
+                </dd>
+              </router-link>
+              
             </dl>
           </div>
         </div>
@@ -96,10 +99,10 @@
         <div class="width">
           <ul v-for="(item, index) in bbg" :key="index">
             <li class="first">
-              <span class="big">{{ item.year }}</span
-              ><span>{{ item.name }}</span>
+              <span class="big">{{ item.number }}</span
+              ><span>{{ item.key }}</span>
             </li>
-            <li>{{ item.tit }}</li>
+            <li>{{ item.title }}</li>
           </ul>
         </div>
       </div>
@@ -111,23 +114,21 @@
           </div>
           <div class="more">
             <router-link :to="newMore"
-              >{{ more }}<span>{{ jiantou }}</span></router-link
+              >更多<span>></span></router-link
             >
           </div>
         </div>
 
         <div class="list">
           <dl v-for="(item, index) in news" :key="index">
-            <dt><img :src="item.src" alt="" /></dt>
+            <dt><img :src="item.image" alt="" /></dt>
             <div>
-              <dd class="tit">{{ item.tit }}</dd>
+              <dd class="tit">{{ item.title }}</dd>
               <dd class="content">{{ item.content }}</dd>
               <dd class="last">
-                <span>{{ item.time }}</span>
+                <span>{{ item.create_time }}</span>
                 <span class="more"
-                  ><router-link :to="item.url">{{
-                    item.more
-                  }}</router-link></span
+                  ><router-link :to="item.url">查看更多</router-link></span
                 >
               </dd>
             </div>
@@ -143,7 +144,7 @@
         </div>
         <dl>
           <dt v-for="(item, index) in dt" :key="index">
-            <img :src="item.dt" alt="" />
+            <img :src="item.image" alt="" />
           </dt>
         </dl>
       </div>
@@ -156,7 +157,7 @@
 
 // Import Swiper styles
 // import "swiper/swiper-bundle.css";
-// import {getIndexBan} from "../../api/http.js"
+import {getIndexBan,getIndexYwu,getIndexBM,getIndexCJ,getIndexNew,getIndexHz} from "../../api/http.js"
 export default {
   name: "Index",
   components: {
@@ -249,24 +250,28 @@ export default {
           src2: require("../../assets/index_tran44.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+          url:'Ui'
         },
         {
           src1: require("../../assets/index_tran1.png"),
           src2: require("../../assets/index_tran11.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+          url:'Php'
         },
         {
           src1: require("../../assets/index_tran1.png"),
           src2: require("../../assets/index_tran11.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+          url:'Javadel'
         },
         {
           src1: require("../../assets/index_tran1.png"),
           src2: require("../../assets/index_tran11.png"),
           title: "UI设计",
           content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+          url:'Webdel'
         },
       ],
       bbg: [
@@ -293,9 +298,7 @@ export default {
       ],
       title3: "最新动态 · News",
       newp: "纷至沓来，了解公司实时动态",
-      newMore: "#",
-      more: "查看更多",
-      jiantou: ">>",
+      newMore: "list",
       news: [
         {
           src: require("../../assets/index_news.png"),
@@ -304,7 +307,7 @@ export default {
             "有目标就有方向和动力，行动要以目标为先要想实现目标就要制定切实可行的计划，制定",
           time: "2021-03-25",
           url: "#",
-          more: "查看全文>>",
+          
         },
         {
           src: require("../../assets/index_news.png"),
@@ -313,7 +316,7 @@ export default {
             "有目标就有方向和动力，行动要以目标为先要想实现目标就要制定切实可行的计划，制定",
           time: "2021-03-25",
           url: "#",
-          more: "查看全文>>",
+          
         },
         {
           src: require("../../assets/index_news.png"),
@@ -322,7 +325,7 @@ export default {
             "有目标就有方向和动力，行动要以目标为先要想实现目标就要制定切实可行的计划，制定",
           time: "2021-03-25",
           url: "#",
-          more: "查看全文>>",
+          
         },
       ],
       title4: "合作伙伴 · Coopera",
@@ -346,17 +349,41 @@ export default {
     onhover(index) {
       this.currenta = index;
     },
+    index() {
+      var that = this
+      getIndexBan().then(res =>{
+        that.banner = res.data.data.data
+        // console.log(that.banner)
+      })
+      getIndexYwu().then (res=>{
+        that.cards = res.data.data.data
+        that.list = res.data.data.data
+        // console.log(that.cards)
+      })
+      getIndexBM().then (res=> {
+        that.teali = res.data.data
+        // console.log(that.teali)
+      })
+      getIndexPY().then (res=> {
+        that.training = res.data.data.data
+        // console.log(that.training)
+      })
+      getIndexCJ().then (res=>{
+        that.bbg = res.data.data.data
+        // console.log(that.bbg)
+      })
+      getIndexNew().then (res=> {
+        that.news = res.data.data.data
+      })
+      getIndexHz().then (res=> {
+        that.dt = res.data.data.data
+      })
+    },
   },
-  // created() {
-  //   this.indexBan()
-  // },
-  // indexBan() {
-  //   var that = this
-  //   getIndexBan().then(res =>{
-  //     console.log(res)
-  //     that.banner = res.data.data
-  //   })
-  // }
+  created() {
+    this.index()
+  },
+  
 };
 </script>
 <style lang="scss" scoped>
@@ -382,14 +409,13 @@ li {
 .current {
   color: #20b09f;
 }
-
-.index {
+#index {
   background: #fff;
-  
+  padding-top: 0;
   .center {
     .core {
       width: 100%;
-      margin-top: 71px;
+      // margin-top: 71px;
       .bo {
         text-align: center;
         .title {
@@ -453,15 +479,16 @@ li {
               .tiao {
                 a {
                   display: block;
-                text-align: center;
-                background: #20b09f;
-                color: #fff;
-                margin-top: 11px;
-                border-radius: 10px;
-                margin-bottom: 23px;
-                position: absolute;
-                bottom: 0;
-                right: 0;
+                  text-align: center;
+                  background: #20b09f;
+                  color: #fff;
+                  margin-top: 11px;
+                  padding: 0px 12px;
+                  border-radius: 10px;
+                  margin-bottom: 23px;
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
                 }
                 
               }
@@ -549,6 +576,7 @@ li {
             .con {
               width: 100%;
               text-indent: 1em;
+              text-align: center;
               visibility: hidden;
             }
           }
@@ -558,6 +586,24 @@ li {
             box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
             border-radius: 8px;
             dt:hover {
+              text-align: center;
+              img:nth-child(1) {
+                display: none;
+              }
+              img:nth-child(2) {
+                display: block;
+                margin: 0 auto;
+              }
+            }
+            .con {
+              visibility: visible;
+            }
+          }
+          dl:first-child {
+            background: #fff;
+            box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
+            border-radius: 8px;
+            dt {
               text-align: center;
               img:nth-child(1) {
                 display: none;
@@ -742,9 +788,7 @@ li {
     .center {
 
       .core {
-
         .bo {
-          
           .title {
             font-size: 24px;
             padding: 30px;
@@ -985,7 +1029,7 @@ li {
     .center {
 
       .core {
-
+        margin-top: 50px;
         .bo {
           
           .title {
