@@ -6,6 +6,24 @@ export function getData() {
 		method: 'GET',
 	})
 }
+export function getDa() {
+	return request({
+		url: '/api/industry/banner',
+		method: 'GET',
+	})
+}
+export function getUS() {
+	return request({
+		url: '/api/contact/index',
+		method: 'GET',
+	})
+}
+export function getUSbanner() {
+	return request({
+		url: '/api/contact/banner',
+		method: 'GET',
+	})
+}
 
 
 // export function getList() {
