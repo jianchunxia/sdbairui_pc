@@ -115,6 +115,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .contact {
   .banner img {
     width: 100%;

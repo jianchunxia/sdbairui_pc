@@ -33,8 +33,8 @@
         <div class="tuw">
           <dl v-for="(item, index) in xiao" :key="index">
             <dt><img :src="item.image" alt="" /></dt>
-            <dd class="name">{{ item.name }}</dd>
-            <dd>{{ item.title }}</dd>
+            <dd class="name">{{ item.title }}</dd>
+            <dd>{{ item.desc }}</dd>
           </dl>
         </div>
       </div>
@@ -45,8 +45,8 @@
         <div class="tuw">
           <dl v-for="(item, index) in fu" :key="index">
             <dt><img :src="item.image" alt="" /></dt>
-            <dd class="name">{{ item.name }}</dd>
-            <dd>{{ item.title }}</dd>
+            <dd class="name">{{ item.title }}</dd>
+            <dd>{{ item.desc }}</dd>
           </dl>
         </div>
       </div>
@@ -57,8 +57,8 @@
         <div class="tuw">
           <dl v-for="(item, index) in zi" :key="index">
             <dt><img :src="item.image" alt="" /></dt>
-            <dd class="name">{{ item.name }}</dd>
-            <dd>{{ item.title }}</dd>
+            <dd class="name">{{ item.title }}</dd>
+            <dd>{{ item.desc }}</dd>
           </dl>
         </div>
       </div>
@@ -74,7 +74,7 @@
         <div class="tuw">
           <dl v-for="(item, index) in tese" :key="index">
             <dt><img :src="item.image" /></dt>
-            <dd>{{ item.text }}</dd>
+            <dd>{{ item.title }}</dd>
           </dl>
         </div>
       </div>
@@ -116,171 +116,19 @@ export default {
       xiao1: "山东交通职业学院泰山校区",
       xiao2: "山东省城市服务技师学院",
       xiao3: "淄博市技师学院",
-      // banner: [
-      //   { src: require("../../assets/schban.png") },
-      //   { src: require("../../assets/schban.png") },
-      //   { src: require("../../assets/schban.png") },
-      //   { src: require("../../assets/schban.png") },
-      // ],
+      zi:[],
       zzfw:[],
-      // zzfw: [
-      //   { img: require("../../assets/zhaos.png"), text: "独立招生" },
-      //   { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
-      //   { img: require("../../assets/shix.png"), text: "实训实习" },
-      //   { img: require("../../assets/jiuye.png"), text: "就业安置" },
-      // ],
       xiao:[],
-      // xiao: [
-      //   {
-      //     nei: [
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     nei: [
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     nei: [
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //     ],
-      //   },
-      // ],
       liang: "特色亮点",
-      // tese: [
-      //   {
-      //     img: require("../../assets/shuju.png"),
-      //     text: "因材施教，分层培养。",
-      //   },
-      //   {
-      //     img: require("../../assets/shuju.png"),
-      //     text: "24小时陪伴，保姆式管理。",
-      //   },
-      //   {
-      //     img: require("../../assets/hezuo.png"),
-      //     text: "时时教育，机会教育。",
-      //   },
-      //   {
-      //     img: require("../../assets/shouc.png"),
-      //     text: "技能+综合素养，双线培养。",
-      //   },
-      // ],
       hezuo: "合作院校",
       yuanx1: "我们一直与众多院校建立友好的合作关系",
-      yuanx:[],
-      // yuanxi: [
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      // ],
+      yuanxi:[],
+      tese:[],
+      fu:[],
     };
   },
   methods: {
     aaa(index) {
-      console.log(index);
       this.numindex = index;
     },
     setschool() {
@@ -288,39 +136,32 @@ export default {
 
       getSchoolban().then((res) => {
         that.banner = res.data.data;
-        console.log(that.banner);
       });
 
       getSchoolduty().then((res) => {
         that.zzfw = res.data.data.list;
-        console.log(that.zzfw);
       });
       
       getSchoolSchooles().then((res) => {
         that.xiao = res.data.data.list;
-        console.log(that.xiao);
       });
       
       getSchoolSchooltwo().then((res) => {
         that.fu = res.data.data.list;
-        console.log(that.fu);
       });
 
       getSchoolSchoolthree().then((res) => {
         that.zi = res.data.data.list;
-        console.log(that.zi);
       });
       
       var that = this;
       getSchooldutytwo().then((res) => {
         that.tese = res.data.data.list;
-        console.log(that.tese);
       });
       
       var that = this;
       getSchoolSchools().then((res) => {
         that.yuanxi = res.data.data.list;
-        console.log(that.yuanxi);
       });
 
       
@@ -623,7 +464,7 @@ export default {
           margin-top: 3rem;
 
           dd {
-            line-height: 2.4rem;
+            line-height: 2rem;
             font-size: 15px;
           }
         }

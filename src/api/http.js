@@ -217,3 +217,10 @@ export function getMajorbanner() {
 		method: 'GET',
 	})
 }
+
+export function getPcschooladv() {
+	return request({
+		url: '/api/index/advertis',
+		method: 'GET',
+	})
+}

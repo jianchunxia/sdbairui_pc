@@ -2,7 +2,7 @@
   <div id="footer">
     <div class="banner">
       <!-- <img src="../assets/guang.png" alt="" /> -->
-      <img src="guang" alt="" />
+      <img :src="image" alt="" />
     </div>
     <div class="bot_nav">
       <div class="nav">
@@ -144,9 +144,6 @@
       display: flex;
       justify-content: space-between;
       font-size: 14px;
-      div {
-        // height: 30px;
-      }
 
       .nav {
         margin-left: 40px;
@@ -198,9 +195,6 @@
         width: 100%;
         height: auto;
         flex-direction: column-reverse;
-        .nav {
-          // width: 100%;
-        }
         .wx {
           margin: auto;
           // display: none;
@@ -224,12 +218,13 @@
 }
 </style>
 <script>
-// import {getIndexGG} from '../api/http.js'
+import {getPcschooladv} from '../api/http.js'
 export default {
   name: "Footer",
   data() {
     return {
       back: 0,
+        image:'',
       navList: [
         {
           url: "/index",
@@ -280,14 +275,15 @@ export default {
     toweb(url) {
       window.open(url, "_parent");
     },
-    // guang() {
-    //   getIndexGG().then(res=>{
-    //     this.guang = res.data.data
-    //   })
-    // }
+    setadv() {
+      getPcschooladv().then(res=>{
+        this.image = res.data.data
+        console.log(this.image)
+      })
+    }
   },
-  // created() {
-  //   this.guang()
-  // },
+  created() {
+    this.setadv()
+  },
 };
 </script>
