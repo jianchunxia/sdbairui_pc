@@ -761,35 +761,39 @@ export default {
         }
       }
     }
+    .con {
+      .second {
+        width: 96%;
+        margin-top: 3rem;
 
-    .second {
-      width: 96%;
-      margin-top: 3rem;
+        .title {
+          font-size: 18px;
+        }
 
-      .title {
-        font-size: 18px;
-      }
+        .bg {
+          width: 50%;
+          height: 8px;
+        }
 
-      .bg {
-        width: 50%;
-        height: 8px;
-      }
+        .tuw {
+          width: 100%;
+          flex-wrap: wrap;
 
-      .tuw {
-        width: 100%;
-        flex-wrap: wrap;
+          dl {
+            width: 47%;
+            margin-top: 1rem;
 
-        dl {
-          width: 47%;
-          margin-top: 1rem;
+            dd {
+              line-height: 1.6rem;
+              font-size: 13px;
+            }
 
-          dd {
-            line-height: 1.6rem;
-            font-size: 13px;
-          }
-
-          .name {
-            font-size: 14px !important;
+            .name {
+              font-size: 14px !important;
+            }
+            img {
+              height: 140px;
+            }
           }
         }
       }

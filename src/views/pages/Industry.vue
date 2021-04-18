@@ -170,6 +170,7 @@ export default {
     }
     #banner {
       height: 580px;
+      object-fit: cover;
       width: 100% !important;
     }
     .main {
@@ -222,6 +223,11 @@ export default {
         dt {
           text-align: center;
           width: 100%;
+          img {
+            width: 100%;
+            height: 210px;
+            display: block;
+          }
         }
         dd {
           width: 100%;
@@ -391,6 +397,7 @@ export default {
           width: 100%;
           img {
             width: 100%;
+            height: 210px;
           }
         }
         dd {

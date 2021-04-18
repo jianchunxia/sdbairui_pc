@@ -31,7 +31,7 @@
           <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信公众号</div>
         </div>
-        <div class="woc" style="width: 80px"></div>
+        <div class="woc" style="width: 30px"></div>
         <div class="wx_item">
           <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信小程序</div>
@@ -198,8 +198,15 @@
         width: 100%;
         height: auto;
         flex-direction: column-reverse;
+        margin-top: 20px;
+        padding-bottom: 20px;
         .nav {
           // width: 100%;
+          .address {
+            div:nth-child(2n) {
+              width: 90%;
+            }
+          }
         }
         .wx {
           margin: auto;
@@ -243,10 +250,10 @@ export default {
           url: "/industry",
           title: "产业事业部",
         },
-        {
-          url: "/design",
-          title: "柏瑞设计",
-        },
+        // {
+        //   url: "/design",
+        //   title: "柏瑞设计",
+        // },
         {
           url: "/about",
           title: "关于我们",

@@ -1088,7 +1088,7 @@ li {
             .cards {
               width: 98%;
               margin: 0 auto;
-
+              padding: 0 0 20px;
               .image {
                 max-width: 24%;
               }
@@ -1112,6 +1112,11 @@ li {
                   width: 86px;
                   height: 28px;
                   line-height: 28px;
+                  a {
+                    position: absolute;
+                    bottom: -24px;
+                    right: 0;
+                  }
                 }
               }
             }
@@ -1339,6 +1344,9 @@ li {
           dt {
             width: 30%;
             margin-bottom: 15px;
+          }
+          dt:nth-child(10n) {
+            display: none;
           }
         }
       }
