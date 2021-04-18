@@ -1,8 +1,8 @@
 <template>
   <div id="footer">
     <div class="banner">
-      <!-- <img src="../assets/guang.png" alt="" /> -->
-      <img src="guang" alt="" />
+      <img src="../assets/guang.png" alt="" />
+      <!-- <img src="guang" alt="" /> -->
     </div>
     <div class="bot_nav">
       <div class="nav">

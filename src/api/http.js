@@ -217,3 +217,13 @@ export function getMajorbanner() {
 		method: 'GET',
 	})
 }
+
+
+
+
+export function getIndexBanner() {
+	return request({
+		url: "/api/index/index",
+		method: 'GET'
+	})
+}

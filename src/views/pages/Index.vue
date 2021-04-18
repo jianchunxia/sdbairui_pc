@@ -77,8 +77,8 @@
             </div>
           </div>
 
-          <div class="list">
-            <dl v-for="(item, index) in training" :key="index">
+          <div class="list fourClass">
+            <!-- <dl v-for="(item, index) in training" :key="index">
               <router-link :to="item.url">
                 <dt>
                   <img :src="item.image" alt="" />
@@ -91,7 +91,58 @@
                   {{ item.title }}
                 </dd>
               </router-link>
-            </dl>
+            </dl> -->
+
+            <div
+              @mouseover="changeOne = require('../../assets/ui-in.png')"
+              @mouseleave="changeOne = require('../../assets/ui-out.png')"
+            >
+              <div class="img">
+                <img :src="changeOne" alt="" />
+                <h4>UI设计</h4>
+                <p>
+                  UI设计是指对软件的人机交互、操作逻辑、界面美观的整体设计。
+                </p>
+              </div>
+            </div>
+            <div
+              @mouseover="changeTwo = require('../../assets/php-in.png')"
+              @mouseleave="changeTwo = require('../../assets/php-out.png')"
+            >
+              <div class="img">
+                <img :src="changeTwo" alt="" />
+
+                <h4>PHP开发</h4>
+                <p>
+                  利于学习，使用广泛，主要适用于Web开发领域的服务端脚本语言。
+                </p>
+              </div>
+            </div>
+            <div
+              @mouseover="changeThree = require('../../assets/java-in.png')"
+              @mouseleave="changeThree = require('../../assets/java-out.png')"
+            >
+              <div class="img">
+                <img :src="changeThree" alt="" />
+                <h4>JAVA开发</h4>
+                <p>
+                  Java语言作为静态面向对象编程语言的代表，允许程序员以优雅的思维方式进行复杂的编程
+                  。
+                </p>
+              </div>
+            </div>
+            <div
+              @mouseover="changeFour = require('../../assets/web-in.png')"
+              @mouseleave="changeFour = require('../../assets/web-out.png')"
+            >
+              <div class="img">
+                <img :src="changeFour" alt="" />
+                <h4>前端开发</h4>
+                <p>
+                  前端开发是用户端效果的代码实现，包括JavaScript、HTML5、CSS3，以及微信小程序等。
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -158,7 +209,7 @@
 // Import Swiper styles
 // import "swiper/swiper-bundle.css";
 import {
-  getIndexBan,
+  getIndexBanner,
   getIndexYwu,
   getIndexBM,
   getIndexCJ,
@@ -174,6 +225,11 @@ export default {
   },
   data() {
     return {
+      changeOne: require("../../assets/ui-out.png"),
+      changeTwo: require("../../assets/php-out.png"),
+      changeThree: require("../../assets/java-out.png"),
+      changeFour: require("../../assets/web-out.png"),
+
       currenta: 0,
       banner: [
         { src: require("../../assets/index_banner.png") },
@@ -251,36 +307,36 @@ export default {
       ],
       title2: "培养方向· Training Direction",
       foster: "打造企业需求的高技能人才",
-      training: [
-        {
-          src1: require("../../assets/index_tran4.png"),
-          src2: require("../../assets/index_tran44.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Ui",
-        },
-        {
-          src1: require("../../assets/index_tran1.png"),
-          src2: require("../../assets/index_tran11.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Php",
-        },
-        {
-          src1: require("../../assets/index_tran1.png"),
-          src2: require("../../assets/index_tran11.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Javadel",
-        },
-        {
-          src1: require("../../assets/index_tran1.png"),
-          src2: require("../../assets/index_tran11.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Webdel",
-        },
-      ],
+      // training: [
+      //   {
+      //     src1: require("../../assets/index_tran4.png"),
+      //     src2: require("../../assets/index_tran44.png"),
+      //     title: "UI设计",
+      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+      //     url: "Ui",
+      //   },
+      //   {
+      //     src1: require("../../assets/index_tran1.png"),
+      //     src2: require("../../assets/index_tran11.png"),
+      //     title: "UI设计",
+      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+      //     url: "Php",
+      //   },
+      //   {
+      //     src1: require("../../assets/index_tran1.png"),
+      //     src2: require("../../assets/index_tran11.png"),
+      //     title: "UI设计",
+      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+      //     url: "Javadel",
+      //   },
+      //   {
+      //     src1: require("../../assets/index_tran1.png"),
+      //     src2: require("../../assets/index_tran11.png"),
+      //     title: "UI设计",
+      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
+      //     url: "Webdel",
+      //   },
+      // ],
       bbg: [
         {
           year: "16",
@@ -355,7 +411,7 @@ export default {
     },
     index() {
       var that = this;
-      getIndexBan().then((res) => {
+      getIndexBanner().then((res) => {
         that.banner = res.data.data.data;
         // console.log(that.banner)
       });
@@ -562,64 +618,26 @@ li {
           display: flex;
           justify-self: unset;
           justify-content: space-around;
-          flex-wrap: wrap;
-          dl {
-            box-sizing: border-box;
-            dt {
-              text-align: center;
-              img:nth-child(2) {
-                display: none;
-              }
+          // flex-wrap: wrap;
+          text-align: center;
+          > div {
+            padding: 20px;
+            width: 20%;
+            h4 {
+              margin: 10px auto;
+              font-size: 20px;
             }
-
-            .tit {
-              font-weight: bold;
-              text-align: center;
-              margin: 10px 0;
+            p {
+              text-align: left;
+              font-size: 14px;
             }
-            .con {
-              width: 100%;
-              text-indent: 1em;
-              text-align: center;
-              visibility: hidden;
+            img {
+              width: 60%;
             }
           }
-
-          dl:hover {
+          > div:hover {
             background: #fff;
-            box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
-            border-radius: 8px;
-            dt:hover {
-              text-align: center;
-              img:nth-child(1) {
-                display: none;
-              }
-              img:nth-child(2) {
-                display: block;
-                margin: 0 auto;
-              }
-            }
-            .con {
-              visibility: visible;
-            }
-          }
-          dl:first-child {
-            background: #fff;
-            box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
-            border-radius: 8px;
-            dt {
-              text-align: center;
-              img:nth-child(1) {
-                display: none;
-              }
-              img:nth-child(2) {
-                display: block;
-                margin: 0 auto;
-              }
-            }
-            .con {
-              visibility: visible;
-            }
+            box-shadow: 0 0 10px gainsboro;
           }
         }
       }
@@ -778,9 +796,11 @@ li {
 
   @media screen and (min-width: 1085px) {
     .banner {
+      padding-top: 80px;
       img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
       .phone {
         display: none;
@@ -1006,15 +1026,24 @@ li {
 
   @media screen and (max-width: 1080px) {
     .banner {
+      padding-top: 60px;
+
       .pc {
         display: none;
       }
       .phone {
         display: block;
         img {
+          object-fit: cover;
           width: 100%;
           height: 100%;
         }
+      }
+    }
+    .fourClass {
+      flex-wrap: wrap;
+      > div {
+        width: 35% !important;
       }
     }
 
@@ -1041,7 +1070,7 @@ li {
           .xia {
             width: 94%;
             margin: 0 auto;
-            height: 239px;
+            // height: 239px;
             margin-top: 26px;
 
             .cards {
@@ -1151,7 +1180,11 @@ li {
               margin-top: 0px;
             }
           }
-
+          // .foster {
+          //   .list {
+          //     flex-wrap: wrap !important;
+          //   }
+          // }
           .list {
             dl {
               width: 48%;
