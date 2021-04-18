@@ -3,7 +3,7 @@ import axios from 'axios'
 // const token ='你自己的token'
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://api.sdbairui.com/',
+  baseURL: 'https://api.sdbairui.com/',
   timeout: 5000 // request timeout
 })
 service.interceptors.request.use(

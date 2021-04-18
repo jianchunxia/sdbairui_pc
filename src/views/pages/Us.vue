@@ -8,21 +8,32 @@
     <div class="con">
       <div class="top">
         <div class="left">
-          <p v-for="(item, index) in lianxi" :key="index">
-            <img :src="item.img" /><span>{{ item.text }}</span>
+          <p>
+            <img src="../../assets/lianxi.png" /><span>联系我们</span>
+          </p>
+          <p>
+            <img src="../../assets/qiye.png" /><span>{{title.name}}</span>
+          </p>
+          <p>
+            <img src="../../assets/tel.png" /><span>{{title.phone}}</span>
+          </p>
+          <p>
+            <img src="../../assets/email.png" /><span>{{title.email}}</span>
+          </p>
+          <p>
+            <img src="../../assets/dizhi.png" /><span>{{title.address}}</span>
           </p>
         </div>
         <div class="right">
           <p class="liuy"><img :src="liuyan" />{{ liuy }}</p>
           <form>
-            <input type="text" v-model="name" placeholder="姓名:" />
+            <input type="text" placeholder="姓名:" />
             <input
               class="email"
               type="email"
-              v-model="email"
               placeholder="邮箱:"
             />
-            <input class="tel" type="tel" v-model="tel" placeholder="电话:" />
+            <input class="tel" type="tel" placeholder="电话:" />
             <textarea rows="10" placeholder="请输入留言..."></textarea>
             <input class="sub" type="submit" />
           </form>
@@ -41,7 +52,6 @@
           >
             <bm-view style="width: 100%; height: 500px; flex: 1"></bm-view>
             <bm-local-search
-              :keyword="addressKeyword"
               :auto-viewport="true"
               style="display: none"
             ></bm-local-search>
@@ -56,6 +66,7 @@
 // import BaiduMap from "vue-baidu-map/components/map/Map.vue";
 // import BmView from "vue-baidu-map/components/map/MapView.vue";
 // import BmLocalSearch from "vue-baidu-map/components/search/LocalSearch.vue";
+import {getUS,getUSbanner} from '../../api/http.js'
 export default {
   name: "Contact",
   components: {},
@@ -64,26 +75,20 @@ export default {
       location: { lng: 116.8087874398422, lat: 36.5170277099317 },
       zoom: 16,
       ban: require("../../assets/conban.png"),
-      lianxi: [
-        { img: require("../../assets/lianxi.png"), text: "联系我们" },
-        {
-          img: require("../../assets/qiye.png"),
-          text: "山东柏瑞软件科技有限公司",
-        },
-        { img: require("../../assets/tel.png"), text: "0538-2110108" },
-        {
-          img: require("../../assets/email.png"),
-          text: "wf18661349342@163.com",
-        },
-        {
-          img: require("../../assets/dizhi.png"),
-          text: "济南市长清区崮云湖街道芙蓉路中国创新谷西城软件园A3楼503室",
-        },
-      ],
       liuyan: require("../../assets/liuy.png"),
       liuy: "填写留言",
+      title:{
+        name:"",
+        phone:"",
+        email:"",
+        address:""
+      },
     };
   },
+  created() {
+    this.setindex();
+  },
+
   methods: {
     getLocationPoint(e) {
       this.lng = e.point.lng;
@@ -99,6 +104,17 @@ export default {
       //  geocoder.getLocation(e.point, res=>{
       //      console.log(res);
       //     })
+    },
+    setindex() {
+      var that = this;
+      getUS().then((res) => {
+        // console.log(res.data.data[0].name);
+        that.title=res.data.data[0]
+      });
+      getUSbanner().then((re)=>{
+         console.log(re);
+         that.ban=re.data.data.image
+      })
     },
   },
 };

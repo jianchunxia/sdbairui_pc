@@ -73,12 +73,12 @@
       </div>
     </div>
 
-    <div class="foot">{{ title5 }}}</div>
   </div>
 </template>
 
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import {getDa} from '../../api/http.js'
 
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
@@ -109,10 +109,24 @@ export default {
       title5: "践行产教深度融合  助推校企紧密合作",
     };
   },
+  created(){
+    this.setbanner()
+  },
+  methods:{
+    setbanner(){
+      getDa()
+      .then(
+        res=>{
+          console.log(res)
+        }
+      )
+    }
+  }
 };
 </script>
 <style scoped lang="scss">
 #industry {
+    @media only screen and (min-width: 1085px) {
   .swiper {
     height: 580px;
     width: 100%;
@@ -270,16 +284,7 @@ export default {
       height: 300px;
     }
   }
-  .foot {
-    background: url(../../assets/foot.png) no-repeat;
-    height: 120px;
-    font-size: 30px;
-    font-family: Microsoft YaHei;
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 120px;
-    text-align: center;
-  }
+}
 
   // 媒体查询
   @media only screen and (max-width: 1080px) {
@@ -295,6 +300,43 @@ export default {
       height: 250px;
       width: 100% !important;
     }
+     .main {
+    .title {
+      font-size: 24px;
+      text-align: center;
+    }
+    .title1 {
+      font-size: 22px;
+      text-align: center;
+      color: #666666;
+      margin: 0;
+    }
+    .xian {
+      display: flex;
+      width: 400px;
+      justify-content: space-around;
+      margin: 0 auto;
+      position: relative;
+    }
+    .xian p:first-child {
+      width: 173px;
+      height: 1px;
+      background: #20b09f;
+    }
+    .xian p:nth-child(2) {
+      width: 13px;
+      height: 13px;
+      background: #20b09f;
+      transform: rotate(50deg);
+      position: absolute;
+      top: -20%;
+    }
+    .xian p:nth-child(3) {
+      width: 173px;
+      height: 1px;
+      background: #20b09f;
+    }
+  }
     .main1 {
       width: 90%;
       margin: 0 auto;
