@@ -222,6 +222,7 @@ li {
 #list {
   background: #f5f5f5;
   padding: 27px 0px;
+  padding-top: 100px;
   .center {
     background: #fff;
     padding: 20px 0px 50px 0px;
@@ -265,12 +266,13 @@ li {
           justify-content: space-between;
           flex-wrap: wrap;
           dt {
-            width: 49%;
+            width: 39%;
             img {
               width: 100%;
             }
           }
           div {
+            width: 56%;
             .title {
               font-size: 20px;
               line-height: 40px;

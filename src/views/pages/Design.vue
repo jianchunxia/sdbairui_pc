@@ -3,12 +3,12 @@
     <div class="banner">
       <img :src="banner" alt="" />
     </div>
-    <div class="jie width">
+    <div class="jie width" v-for="(item,index) in sign" :key="index">
       <div class="name">
-        {{ design }}
+        {{ item.title }}
       </div>
       <div class="shao">
-        {{ jie }}
+        {{ item.content }}
       </div>
     </div>
     <el-carousel height="180px" class=" width ban one" :autoplay="false"  arrow="always">
@@ -29,24 +29,38 @@
           </h3>
         </el-carousel-item>
       </el-carousel>
-    <div class="soft width" v-for="(item, index) in soft" :key="index">
+    <div class="soft width">
       <div class="title">
-        <p class="t1">{{ item.title2 }}</p>
-        <p class="p1">{{ item.p1 }}</p>
+        <p class="t1">{{ title2 }}</p>
+        <p class="p1">{{ p1 }}</p>
       </div>
       <div class="list">
-        <dl v-for="(items, index) in item.list" :key="index">
-          <dt><img :src="items.src" alt="" /></dt>
-          <dd>{{ items.dd }}</dd>
+        <dl v-for="(items, index) in list" :key="index">
+          <dt><img :src="items.image" alt="" /></dt>
+          <dd>{{ items.title }}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="soft width">
+      <div class="title">
+        <p class="t1">{{title3 }}</p>
+        <p class="p1">{{p2 }}</p>
+      </div>
+      <div class="list">
+        <dl v-for="(items, index) in lists" :key="index">
+          <dt><img :src="items.image" alt="" /></dt>
+          <dd>{{ items.title }}</dd>
         </dl>
       </div>
     </div>
   </div>
 </template>
 <script>
+import {getIndexBR,getBaiRuiLUn,getBaiRuiXM,getBaiRuiYJ} from '../../api/http.js'
 export default {
   data() {
     return {
+      sign:[],
       banners:[
         {
           src1:require('../../assets/design3.jpeg'),
@@ -73,16 +87,13 @@ export default {
         "https://i1.mifile.cn/a4/xmad_15532384207972_iJXSx.jpg",
         "https://i1.mifile.cn/a4/xmad_15517939170939_oiXCK.jpg",
       ],
-      currentIndex: 0, //默认显示图片
-      timer: null, //定时器
-
+      // currentIndex: 0, //默认显示图片
+      // timer: null, //定时器
       banner: require("../../assets/designBanner.png"),
       design: "柏瑞设计",
       jie:
         "山东柏瑞设计有限公司是山东柏瑞软件科技有限公司全资子公司。柏瑞设计公司主营软件和设计方向开发。在柏瑞设计，只有简洁的提案、精要优化的服务流程，为客户提供最佳的选择。不忘初心，方得始终，柏瑞设计，值得您的信赖。",
 
-      soft: [
-        {
           title2: "软件业务",
           p1: "承接各类软件开发",
           list: [
@@ -111,11 +122,10 @@ export default {
               dd: "后台管理开发",
             },
           ],
-        },
-        {
-          title2: "设计业务",
-          p1: "涵盖平面、电商等各个领域",
-          list: [
+        
+          title3: "设计业务",
+          p2: "涵盖平面、电商等各个领域",
+          lists: [
             {
               src: require("../../assets/design8.png"),
               dd: "标志设计",
@@ -140,38 +150,37 @@ export default {
               src: require("../../assets/design13.png"),
               dd: "电商设计",
             },
-          ],
-        },
-      ],
+          ],      
     };
   },
   methods: {
     gotoPage(index) {
       this.currentIndex = index;
     },
+    Design(){
+      var that = this
+      getIndexBR().then(res=>{
+        that.sign = res.data.data
+        // console.log(that.sign)
+      })
+      getBaiRuiLUn().then(res=>{
+        that.banners = res.data.data
+        // console.log(that.banners)
+
+      })
+      // getBaiRuiXM().then(res=>{
+      //   that.list = res.data.data
+      //   // console.log(that.list)
+      // })
+      getBaiRuiYJ().then(res=>{
+        console.log(res)
+        that.lists = res.data.data
+        // console.log(that.lists)
+      })
+    }
   },
-  computed: {
-    //上一张
-    // prevIndex() {
-    //   if(this.currentIndex == 0) {
-    //     return this.dataList.length - 1;
-    //   }else{
-    //     return this.currentIndex - 1;
-    //   }
-    // },
-    //下一张
-    // nextIndex() {
-    //   if(this.currentIndex == this.dataList.length - 1) {
-    //     return 0;
-    //   }else {
-    //     return this.currentIndex + 1;
-    //   }
-    // },
-    // runInv() {
-    // this.timer = setInterval(() => {
-    //   this.gotoPage(this.nextIndex)
-    // }, 1000)
-    // }
+  created() {
+    this.Design()
   },
 };
 </script>

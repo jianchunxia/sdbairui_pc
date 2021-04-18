@@ -1,7 +1,8 @@
 <template>
   <div id="footer">
     <div class="banner">
-      <img src="../assets/guang.png" alt="" />
+      <!-- <img src="../assets/guang.png" alt="" /> -->
+      <img src="guang" alt="" />
     </div>
     <div class="bot_nav">
       <div class="nav">
@@ -203,6 +204,7 @@
 }
 </style>
 <script>
+// import {getIndexGG} from '../api/http.js'
 export default {
   name: "Footer",
   data() {
@@ -258,6 +260,14 @@ export default {
     toweb(url) {
       window.open(url, "_parent");
     },
+    // guang() {
+    //   getIndexGG().then(res=>{
+    //     this.guang = res.data.data
+    //   })
+    // }
   },
+  // created() {
+  //   this.guang()
+  // },
 };
 </script>
