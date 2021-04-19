@@ -5,7 +5,8 @@
     </div>
     <div class="jie width" v-for="(item, index) in sign" :key="index">
       <div class="name">
-        {{ item.title }}
+        <!-- {{ item.title }} -->
+        <img src="../../assets/brshej.png" alt="" />
       </div>
       <div class="shao">
         {{ item.content }}
@@ -22,9 +23,26 @@
       arrow="always"
     >
       <el-carousel-item v-for="(item, index) in banners" :key="index">
-        <h3 class="small">
-          <img v-for="(url, inx) in item" :key="inx" :src="url.image" alt="" />
-        </h3>
+        <!-- <h3 class="small"> -->
+        <div
+          style="
+            width: 80%;
+            margin: auto;
+            displa: flex;
+            justify-content: space-between;
+            text-align: center;
+            margin-top: 36px;
+          "
+        >
+          <img
+            v-for="(url, inx) in item"
+            :key="inx"
+            :src="url.image"
+            alt=""
+            style="width: 30%; margin: 0 1%"
+          />
+        </div>
+        <!-- </h3> -->
       </el-carousel-item>
     </el-carousel>
     <el-carousel
@@ -271,6 +289,9 @@ li {
       color: #20b09f;
       font-size: 48px;
       padding: 20px;
+      img {
+        width: 80px;
+      }
     }
   }
   .ban {
@@ -378,7 +399,7 @@ li {
       .shao {
         width: 75%;
         padding: 20px;
-        font-size: 20px;
+        font-size: 18px;
       }
     }
     .one {

@@ -2,16 +2,18 @@
   <div class="school">
     <!-- banner -->
     <div class="banner">
-      <el-carousel height="580px" id="pc">
+      <el-carousel :height="winwid + 'px'" class="pc">
+        <el-carousel-item v-for="(item, index) in banner" :key="index">
+          <h3 class="small">
+            <img :src="item.image" alt="山东柏瑞科技有限公司" />
+          </h3>
+        </el-carousel-item>
+      </el-carousel>
+      <!-- <el-carousel height="260px" id="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <img :src="item.image" />
         </el-carousel-item>
-      </el-carousel>
-      <el-carousel height="260px" id="phone">
-        <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <img :src="item.image" />
-        </el-carousel-item>
-      </el-carousel>
+      </el-carousel> -->
     </div>
     <!-- 中间盒子 -->
     <div class="con">
@@ -130,171 +132,23 @@ export default {
       xiao1: "山东交通职业学院泰山校区",
       xiao2: "山东省城市服务技师学院",
       xiao3: "淄博市技师学院",
-      // banner: [
-      //   { src: require("../../assets/schban.png") },
-      //   { src: require("../../assets/schban.png") },
-      //   { src: require("../../assets/schban.png") },
-      //   { src: require("../../assets/schban.png") },
-      // ],
       zzfw: [],
-      // zzfw: [
-      //   { img: require("../../assets/zhaos.png"), text: "独立招生" },
-      //   { img: require("../../assets/guanl.png"), text: "90%教学+学生管理" },
-      //   { img: require("../../assets/shix.png"), text: "实训实习" },
-      //   { img: require("../../assets/jiuye.png"), text: "就业安置" },
-      // ],
       xiao: [],
-      // xiao: [
-      //   {
-      //     nei: [
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     nei: [
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     nei: [
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //       {
-      //         img: require("../../assets/10.png"),
-      //         name: "办公楼",
-      //         text:
-      //           " 办公楼雅致低调，开展各类教学活动组织各项教学管理会议，为学生的健康成长保驾护航。",
-      //       },
-      //     ],
-      //   },
-      // ],
       liang: "特色亮点",
-      // tese: [
-      //   {
-      //     img: require("../../assets/shuju.png"),
-      //     text: "因材施教，分层培养。",
-      //   },
-      //   {
-      //     img: require("../../assets/shuju.png"),
-      //     text: "24小时陪伴，保姆式管理。",
-      //   },
-      //   {
-      //     img: require("../../assets/hezuo.png"),
-      //     text: "时时教育，机会教育。",
-      //   },
-      //   {
-      //     img: require("../../assets/shouc.png"),
-      //     text: "技能+综合素养，双线培养。",
-      //   },
-      // ],
       hezuo: "合作院校",
       yuanx1: "我们一直与众多院校建立友好的合作关系",
       yuanx: [],
-      // yuanxi: [
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      //   {
-      //     img: require("../../assets/30.png"),
-      //     name: "山东交通职业学院",
-      //     text:
-      //       "山东交通职业学院由一所山东省人民政府举办的全日制公办普通高等学校，2010年被中华人民共和国交通运输部确立为交通职业教育示范院校，并入选山东省示范性高等职业院校。",
-      //   },
-      // ],
+      fu: [],
+      zi: [],
+      tese: [],
+      yuanxi: [],
+      screenWidth: 1920,
+      winwid: 736,
     };
   },
   methods: {
     aaa(index) {
-      console.log(index);
+      // console.log(index);
       this.numindex = index;
     },
     setschool() {
@@ -302,39 +156,39 @@ export default {
 
       getSchoolban().then((res) => {
         that.banner = res.data.data;
-        console.log(that.banner);
+        // console.log(that.banner);
       });
 
       getSchoolduty().then((res) => {
         that.zzfw = res.data.data.list;
-        console.log(that.zzfw);
+        // console.log(that.zzfw);
       });
 
       getSchoolSchooles().then((res) => {
         that.xiao = res.data.data.list;
-        console.log(that.xiao);
+        // console.log(that.xiao);
       });
 
       getSchoolSchooltwo().then((res) => {
         that.fu = res.data.data.list;
-        console.log(that.fu);
+        // console.log(that.fu);
       });
 
       getSchoolSchoolthree().then((res) => {
         that.zi = res.data.data.list;
-        console.log(that.zi);
+        // console.log(that.zi);
       });
 
       var that = this;
       getSchooldutytwo().then((res) => {
         that.tese = res.data.data.list;
-        console.log(that.tese);
+        // console.log(that.tese);
       });
 
       var that = this;
       getSchoolSchools().then((res) => {
         that.yuanxi = res.data.data.list;
-        console.log(that.yuanxi);
+        // console.log(that.yuanxi);
       });
     },
 
@@ -344,6 +198,18 @@ export default {
   created() {
     this.setschool();
     // this.setduty();
+    this.winwid = parseInt(document.body.clientWidth / 2.6);
+  },
+  mounted() {
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth;
+        this.winwid = parseInt(this.screenWidth / 2.6);
+        // // console.log(this.winwid);
+        // // console.log(this.screenWidth);
+      })();
+    };
   },
 };
 </script>
@@ -451,6 +317,12 @@ export default {
         justify-content: space-around;
         display: flex;
 
+        .tuw_content {
+          .tuw_img {
+            text-align: center;
+          }
+        }
+
         dl {
           box-shadow: 2px 4px 20px 8px #e8e8e8;
           padding-bottom: 0.5rem;
@@ -507,7 +379,19 @@ export default {
       .tuw {
         justify-content: space-between;
         display: flex;
-
+        div {
+          margin-top: 20px;
+        }
+        .tuw_content {
+          margin-top: 20px;
+          .tuw_img {
+            text-align: center;
+            margin-bottom: 20px;
+            img {
+              width: 40px;
+            }
+          }
+        }
         dl {
           dd {
             text-align: center;
@@ -582,7 +466,7 @@ export default {
   @media screen and (min-width: 1085px) {
     .banner {
       #pc {
-        display: block;
+        // display: block;
       }
 
       #phone {
@@ -719,7 +603,11 @@ export default {
   @media screen and (max-width: 1080px) {
     .banner {
       #pc {
-        display: none;
+        // display: none;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       #phone {
@@ -782,8 +670,9 @@ export default {
         }
 
         .tuw {
-          width: 100%;
+          width: 96%;
           flex-wrap: wrap;
+          margin: auto;
           .tuw_content {
             width: 40%;
             text-align: center;

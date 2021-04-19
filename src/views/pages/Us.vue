@@ -277,9 +277,9 @@ export default {
   }
 
   @media screen and (min-width: 1085px) {
-    .banner img {
-      height: 558px;
-    }
+    // .banner img {
+    //   height: 558px;
+    // }
 
     .con {
       max-width: 1284px;
@@ -325,9 +325,9 @@ export default {
   }
 
   @media screen and (max-width: 1080px) {
-    .banner img {
-      height: 318px;
-    }
+    // .banner img {
+    //   height: 318px;
+    // }
 
     .con {
       width: 100%;

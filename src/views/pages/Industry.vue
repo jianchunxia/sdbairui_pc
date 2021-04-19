@@ -1,6 +1,10 @@
 <template>
   <div id="industry">
-    <swiper class="swiper" :options="swiperOption">
+    <swiper
+      class="swiper"
+      :options="swiperOption"
+      :style="'height:' + winwid + 'px'"
+    >
       <swiper-slide v-for="(item, index) in banner" :key="index">
         <img :src="item.image" alt="" id="banner" />
       </swiper-slide>
@@ -119,11 +123,25 @@ export default {
         },
         grabCursor: true,
       },
+      screenWidth: 1920,
+      winwid: 736,
     };
   },
   created() {
     this.setbanner();
     // this.$refs.swiper.$swiper.autoplay = true;
+    this.winwid = parseInt(document.body.clientWidth / 2.6);
+  },
+  mounted() {
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth;
+        this.winwid = parseInt(this.screenWidth / 2.6);
+        // console.log(this.winwid);
+        // console.log(this.screenWidth);
+      })();
+    };
   },
   methods: {
     setbanner() {
@@ -161,16 +179,17 @@ export default {
 #industry {
   @media only screen and (min-width: 1085px) {
     .swiper {
-      height: 580px;
+      // height: 580px;
       width: 100%;
       swiper-slide {
         width: 100%;
-        height: 580px;
+        // height: 100%;
+        // height: 580px;
       }
     }
     #banner {
-      height: 580px;
-      object-fit: cover;
+      // height: 580px;
+      // object-fit: cover;
       width: 100% !important;
     }
     .main {
@@ -332,17 +351,18 @@ export default {
   // 媒体查询
   @media only screen and (max-width: 1080px) {
     .swiper {
-      height: 250px;
+      // height: 250px;
       width: 100%;
       swiper-slide {
         width: 100%;
-        height: 250px;
+        // height: 100%;
+        // height: 250px;
       }
     }
     #banner {
-      height: 250px;
+      // height: 250px;
       width: 100% !important;
-      object-fit: cover;
+      // object-fit: cover;
     }
     .main {
       .title {

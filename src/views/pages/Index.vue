@@ -1,16 +1,20 @@
 <template>
   <div id="index">
     <div class="banner">
-      <el-carousel height="550px" class="pc">
+      <el-carousel :height="winwid + 'px'" class="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <h3 class="small"><img :src="item.image" alt="" /></h3>
+          <h3 class="small">
+            <img :src="item.image" alt="山东柏瑞科技有限公司" />
+          </h3>
         </el-carousel-item>
       </el-carousel>
-      <el-carousel height="150px" class="phone">
+      <!-- <el-carousel :height="winwid + 'px'" class="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <h3 class="small"><img :src="item.image" alt="" /></h3>
+          <h3 class="small">
+            <img :src="item.image" alt="山东柏瑞科技有限公司" />
+          </h3>
         </el-carousel-item>
-      </el-carousel>
+      </el-carousel> -->
     </div>
     <div class="center">
       <div class="core width">
@@ -36,7 +40,7 @@
             <block v-for="(item, index) in cards" :key="index">
               <div class="cards" v-if="index == currenta">
                 <div class="image">
-                  <img :src="item.image" alt="" />
+                  <img :src="hx[index]" alt="" />
                 </div>
                 <div class="content">
                   <h4>{{ item.title }}</h4>
@@ -236,11 +240,16 @@ export default {
         { src: require("../../assets/index_banner.png") },
       ],
       title1: "核心业务 · Core Business​",
-      qing: "产教融合，服务大众",
+      qing: "产教融合，教育服务",
       list: [
         { name: "校区事业部" },
         { name: "产业事业部" },
         { name: "柏瑞设计" },
+      ],
+      hx: [
+        require("../../assets/index_core.png"),
+        require("../../assets/chany.png"),
+        require("../../assets/shej.png"),
       ],
       cards: [
         {
@@ -251,14 +260,14 @@ export default {
           more: "查看更多>>",
         },
         {
-          src1: require("../../assets/index_core.png"),
+          src1: require("../../assets/chany.png"),
           title: "产业事业部",
           content:
             " 产业事业部负责学生工学交替、实训实习，下设软件工厂。软件工厂是山东柏瑞为践行 “深度产教融合”而打造的产业基地，同时以“校中厂”的形式进行组织工学交替，学生在实际工作中打磨技术能力，在为项目交付的努力中体会用户体验。经过一年左右的项目研发，积累实际工作经验，把毕业后找工作变为向更高平台的“跳槽”。",
           more: "查看更多>>",
         },
         {
-          src1: require("../../assets/index_core.png"),
+          src1: require("../../assets/shej.png"),
           title: "柏瑞设计",
           content:
             "最有价值的培养模式，最符合企业需求的课程体系，最科学的授课方式，最完善的就业保障体系，最具有口碑竞争力的教育机构。",
@@ -303,36 +312,6 @@ export default {
       ],
       title2: "培养方向· Training Direction",
       foster: "打造企业需求的高技能人才",
-      // training: [
-      //   {
-      //     src1: require("../../assets/index_tran4.png"),
-      //     src2: require("../../assets/index_tran44.png"),
-      //     title: "UI设计",
-      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-      //     url: "Ui",
-      //   },
-      //   {
-      //     src1: require("../../assets/index_tran1.png"),
-      //     src2: require("../../assets/index_tran11.png"),
-      //     title: "UI设计",
-      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-      //     url: "Php",
-      //   },
-      //   {
-      //     src1: require("../../assets/index_tran1.png"),
-      //     src2: require("../../assets/index_tran11.png"),
-      //     title: "UI设计",
-      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-      //     url: "Javadel",
-      //   },
-      //   {
-      //     src1: require("../../assets/index_tran1.png"),
-      //     src2: require("../../assets/index_tran11.png"),
-      //     title: "UI设计",
-      //     content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-      //     url: "Webdel",
-      //   },
-      // ],
       bbg: [
         {
           year: "16",
@@ -399,6 +378,8 @@ export default {
         { dt: require("../../assets/index_coo10.png") },
       ],
       guang: "践行产教深度融合  助推校企紧密合作",
+      screenWidth: 1920,
+      winwid: 736,
     };
   },
   methods: {
@@ -421,7 +402,7 @@ export default {
         // console.log(that.cards)
       });
       getIndexBM().then((res) => {
-        console.log(res);
+        // console.log(res);
         that.teali = res.data.data.data;
         // console.log(that.teali)
       });
@@ -442,9 +423,22 @@ export default {
     this.index();
     getIndexHz();
     getIndexHz().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.dt = res.data.data.data;
     });
+    // console.log(document.body.clientWidth);
+    this.winwid = parseInt(document.body.clientWidth / 2.6);
+  },
+  mounted() {
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth;
+        this.winwid = parseInt(this.screenWidth / 2.6);
+        // console.log(this.winwid);
+        // console.log(this.screenWidth);
+      })();
+    };
   },
 };
 </script>
@@ -536,7 +530,7 @@ li {
                 text-indent: 2em;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
-                -webkit-line-clamp: 5;
+                // -webkit-line-clamp: 5;
                 overflow: hidden;
               }
 
@@ -750,7 +744,7 @@ li {
               margin-top: 10px;
               position: absolute;
               bottom: 10px;
-              z-index: 10;
+              z-index: 9;
               .more {
                 float: right;
                 margin-right: 40px;
@@ -816,7 +810,7 @@ li {
         // object-fit: c over;
       }
       .phone {
-        display: none;
+        // display: none;
         // img {
         //   width: 100%;
         //   height: 100%;
@@ -844,7 +838,7 @@ li {
 
           .xia {
             margin: 0 auto;
-            height: 379px;
+            height: 420px;
             margin-top: 36px;
 
             .cards {
@@ -852,6 +846,7 @@ li {
 
               .image {
                 max-width: 292px;
+                margin: 0;
               }
 
               .content {
@@ -859,7 +854,7 @@ li {
 
                 h4 {
                   font-size: 22px;
-                  margin: 62px 0px 34px 0px;
+                  margin: 46px 0px 16px 0px;
                 }
 
                 p {
@@ -1045,17 +1040,22 @@ li {
       .el-carousel__indicators--horizontal {
         display: none;
       }
-      .pc {
-        display: none;
+      img {
+        width: 100%;
+        height: 100%;
+        // object-fit: c over;
       }
-      .phone {
-        display: block;
-        img {
-          object-fit: cover;
-          width: 100%;
-          height: 100%;
-        }
-      }
+      // .pc {
+      //   // display: none;
+      // }
+      // .phone {
+      //   // display: block;
+      //   img {
+      //     object-fit: cover;
+      //     width: 100%;
+      //     height: 100%;
+      //   }
+      // }
     }
     .fourClass {
       flex-wrap: wrap;
@@ -1096,15 +1096,17 @@ li {
               padding: 0 0 10px;
               .image {
                 max-width: 24%;
+                display: none;
               }
 
               .content {
-                max-width: 66%;
+                max-width: 88%;
                 margin: 0 auto;
 
                 h4 {
                   font-size: 18px;
                   margin: 22px 0px 14px 0px;
+                  text-align: center;
                 }
 
                 p {

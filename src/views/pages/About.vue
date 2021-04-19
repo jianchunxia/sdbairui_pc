@@ -63,6 +63,11 @@ export default {
       title7: "敞亮、干净、卫生、温馨的办公环境",
       title8: "践行产教深度融合  助推校企紧密合作",
       hesrc: [],
+      list: [
+        {
+          image: "",
+        },
+      ],
     };
   },
   created() {
