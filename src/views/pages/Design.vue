@@ -11,17 +11,19 @@
         {{ item.content }}
       </div>
     </div>
+    <div class="tit">
+      <h2>项目成果·PROGECT RESULT</h2>
+      <p>因为专业，所以值得信赖</p>
+    </div>
     <el-carousel
-      height="180px"
+      height="200px"
       class="width ban one"
       :autoplay="false"
       arrow="always"
     >
       <el-carousel-item v-for="(item, index) in banners" :key="index">
         <h3 class="small">
-          <img :src="item.src1" alt="" />
-          <img :src="item.src1" alt="" />
-          <img :src="item.src1" alt="" />
+          <img v-for="(url, inx) in item" :key="inx" :src="url.image" alt="" />
         </h3>
       </el-carousel-item>
     </el-carousel>
@@ -33,9 +35,7 @@
     >
       <el-carousel-item v-for="(item, index) in banners" :key="index">
         <h3 class="small">
-          <img :src="item.src1" alt="" />
-          <img :src="item.src2" alt="" />
-          <img :src="item.src3" alt="" />
+          <img v-for="(url, inx) in item" :key="inx" :src="url.image" alt="" />
         </h3>
       </el-carousel-item>
     </el-carousel>
@@ -72,6 +72,7 @@ import {
   getBaiRuiXM,
   getBaiRuiYJ,
   getDesignindex,
+  getBaiRuiSJ,
 } from "../../api/http.js";
 
 export default {
@@ -180,23 +181,31 @@ export default {
         that.sign = res.data.data;
         // console.log(that.sign)
       });
-      getBaiRuiLUn().then((res) => {
-        that.banners = res.data.data;
-        // console.log(that.banners)
-      });
-      // getBaiRuiXM().then(res=>{
-      //   that.list = res.data.data
-      //   // console.log(that.list)
-      // })
-      getBaiRuiYJ().then((res) => {
-        console.log(res);
+      // getBaiRuiLUn().then((res) => {
+      //   that.banners = res.data.data;
+      //   // console.log(that.banners)
+      // });
+      getBaiRuiSJ().then((res) => {
         that.lists = res.data.data;
-        // console.log(that.lists)
+        // console.log(that.list)
+      });
+      getBaiRuiXM().then((res) => {
+        // that.banners = res.data.data;
+        let data = res.data.data;
+        let arr1 = [data[0], data[1], data[2]];
+        let arr2 = [data[3], data[4], data[5]];
+        that.banners = [arr1, arr2];
+        console.log(that.banners);
       });
     },
   },
   created() {
     this.Design();
+    getBaiRuiYJ().then((res) => {
+      console.log(res);
+      this.list = res.data.data;
+      // console.log(that.lists)
+    });
   },
 };
 </script>
@@ -205,7 +214,24 @@ export default {
   margin: 0;
   padding: 0;
 }
-
+// #zhengshu {
+//   .el-carousel__container {
+//     height: 200px;
+//   }
+// }
+.tit {
+  text-align: center;
+  margin-top: 50px;
+  h2 {
+    line-height: 40px;
+    font-weight: 500;
+    color: #4b4b4b;
+  }
+  p {
+    color: #666;
+    margin-bottom: 30px;
+  }
+}
 a {
   text-decoration: none;
   color: #000;
@@ -251,14 +277,19 @@ li {
     // margin-top: 30px;
     box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.36);
     border-radius: 8px;
+
     h3 {
       padding: 40px 0px;
       display: flex;
       justify-content: center;
+      transform: all 1.5s;
       img {
         width: 24%;
         // height: 120px;
         margin: 0 10px;
+      }
+      img:hover {
+        transform: scale(1.05);
       }
     }
     .ban >>> .el-carousel__button {
@@ -269,7 +300,7 @@ li {
     display: none;
   }
   .soft {
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
 
     .title {
       margin: 0 auto;
@@ -302,7 +333,7 @@ li {
 
           img {
             width: 100%;
-            // height: 286px;
+            height: 240px;
           }
         }
 
@@ -332,7 +363,7 @@ li {
 
     .banner {
       img {
-        height: 484px;
+        height: 417px;
       }
     }
 
@@ -347,7 +378,7 @@ li {
       .shao {
         width: 75%;
         padding: 20px;
-        font-size: 24px;
+        font-size: 20px;
       }
     }
     .one {
@@ -362,7 +393,7 @@ li {
     }
 
     .soft {
-      margin-top: 6%;
+      margin-top: 3%;
 
       .title {
         width: 30%;
@@ -415,8 +446,7 @@ li {
 
     .soft {
       width: 94%;
-      margin: 0px auto;
-      margin-top: 8%;
+      margin: 0 auto;
 
       .title {
         width: 70%;
@@ -443,8 +473,16 @@ li {
 
         dl {
           width: 48%;
+          dt {
+            img {
+              height: 140px;
+            }
+          }
         }
       }
+    }
+    .soft:nth-child(2n) {
+      margin-top: 9%;
     }
   }
 }

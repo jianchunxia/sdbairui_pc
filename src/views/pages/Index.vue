@@ -1,12 +1,12 @@
 <template>
   <div id="index">
     <div class="banner">
-      <el-carousel height="580px" class="pc">
+      <el-carousel height="550px" class="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <h3 class="small"><img :src="item.image" alt="" /></h3>
         </el-carousel-item>
       </el-carousel>
-      <el-carousel height="260px" class="phone">
+      <el-carousel height="150px" class="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <h3 class="small"><img :src="item.image" alt="" /></h3>
         </el-carousel-item>
@@ -573,7 +573,7 @@ li {
       .teacherList {
         width: 100%;
         margin: 0 auto;
-        margin-top: 50px;
+        margin-top: 10px;
         display: grid;
         .teacherli {
           border: 2px solid #20b09f;
@@ -807,10 +807,13 @@ li {
   @media screen and (min-width: 1085px) {
     .banner {
       padding-top: 80px;
+      .el-carousel__indicators--horizontal {
+        display: none;
+      }
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        // object-fit: c over;
       }
       .phone {
         display: none;
@@ -1039,7 +1042,9 @@ li {
   @media screen and (max-width: 1080px) {
     .banner {
       padding-top: 60px;
-
+      .el-carousel__indicators--horizontal {
+        display: none;
+      }
       .pc {
         display: none;
       }
@@ -1061,7 +1066,7 @@ li {
 
     .center {
       .core {
-        margin-top: 50px;
+        margin-top: 24px;
         .bo {
           .title {
             font-size: 20px;
@@ -1088,7 +1093,7 @@ li {
             .cards {
               width: 98%;
               margin: 0 auto;
-              padding: 0 0 20px;
+              padding: 0 0 10px;
               .image {
                 max-width: 24%;
               }
@@ -1112,9 +1117,10 @@ li {
                   width: 86px;
                   height: 28px;
                   line-height: 28px;
+                  margin-bottom: 10px;
                   a {
                     position: absolute;
-                    bottom: -24px;
+                    bottom: -20px;
                     right: 0;
                   }
                 }
@@ -1324,8 +1330,8 @@ li {
       }
 
       .pera {
-        padding-top: 49px;
-        padding-bottom: 59px;
+        padding-top: 20px;
+        padding-bottom: 20px;
 
         .bo {
           .title {

@@ -267,8 +267,8 @@ export default {
       text-align: center;
     }
     .main6 {
-      width: 1200px;
-      margin: 5% auto;
+      width: 1080px;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       .main6left {
@@ -318,13 +318,13 @@ export default {
       }
       .main6img {
         width: 90%;
-        margin: 5% auto;
+        // margin: 5% auto;
         img {
           object-fit: cover;
           width: 100%;
-          height: 300px;
+          // height: 300px;
         }
-        height: 300px;
+        // height: 300px;
       }
     }
   }
@@ -392,19 +392,19 @@ export default {
         background: #fff;
         box-shadow: 0px 2px 35px 0px rgba(129, 128, 128, 0.31);
         border-radius: 5px;
+        font-size: 12px;
         dt {
           text-align: center;
           width: 100%;
           img {
             width: 100%;
-            height: 210px;
+            height: 140px;
           }
         }
         dd {
           width: 100%;
-          text-align: center;
           margin: 0 auto;
-          padding: 5px 0;
+          padding: 5px 10px;
         }
       }
     }
@@ -426,7 +426,7 @@ export default {
     }
     .main4 {
       width: 95%;
-      margin: 0 auto;
+      margin: 6% auto;
       img {
         width: 100%;
       }

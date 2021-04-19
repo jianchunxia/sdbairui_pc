@@ -1,7 +1,8 @@
 <template>
   <div id="footer">
     <div class="banner">
-      <img src="../assets/guang.png" alt="" />
+      <img src="../assets/guang.jpg" alt="" />
+      <img src="../assets/phone_bot.png" alt="" />
       <!-- <img src="guang" alt="" /> -->
     </div>
     <div class="bot_nav">
@@ -57,6 +58,9 @@
       img {
         width: 100%;
       }
+      img:nth-child(2n) {
+        display: none;
+      }
     }
     .bot_nav {
       width: 70%;
@@ -78,7 +82,7 @@
       }
       .nav {
         margin-left: 40px;
-        margin-top: 20px;
+        margin-top: 70px;
         div {
           display: flex;
         }
@@ -132,6 +136,9 @@
       // background: #20b09f;
       img {
         width: 100%;
+      }
+      img:nth-child(2n-1) {
+        display: none;
       }
     }
 

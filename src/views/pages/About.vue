@@ -2,29 +2,27 @@
   <div id="about">
     <!-- 柏瑞简介 -->
     <div class="brief">
-      <p>{{ title }}</p>
+      <p>{{ jianjie.title }}</p>
       <dl>
-        <dt><img src="../../assets/lou.png" alt="" /></dt>
+        <dt><img :src="jianjie.image" alt="" /></dt>
         <dd>
-          <span class="kong">{{ title1 }}</span>
-          <span>{{ title2 }}</span>
-          <span>{{ title3 }}</span>
+          <div class="kong" v-html="jianjie.content"></div>
         </dd>
       </dl>
     </div>
     <!-- 合作院校 -->
     <div class="cooperation">
       <p>{{ title4 }}</p>
-      <div class="hezuo">
-        <p><img :src="hesrc.image" alt="" /></p>
-        <p><img src="../../assets/hezuo2.png" alt="" /></p>
+      <div class="boxx">
+        <div class="hezuo" v-for="(item, index) in hesrc" :key="index">
+          <p><img :src="item.image" alt="" /></p>
+        </div>
       </div>
     </div>
-
     <div class="lo">
       <dl>
-        <dt><img src="../../assets/lo.png" alt="" /></dt>
-        <dd class="kong">{{ title5 }}</dd>
+        <dt><img :src="wenhua.image" alt="" /></dt>
+        <dd class="kong">{{ wenhua.content }}</dd>
       </dl>
     </div>
     <!-- 公司环境 -->
@@ -33,14 +31,14 @@
       <p class="p2">{{ title7 }}</p>
       <div class="tu">
         <p v-for="(item, index) in list" :key="index">
-          <img :src="item.src" alt="" />
+          <img :src="item.image" alt="" />
         </p>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { getabschool, getabjian, getabban } from "../../api/http.js";
+import { getabschool, getabjian, getabban, getabwen } from "../../api/http.js";
 export default {
   name: "Home",
   components: {
@@ -49,6 +47,8 @@ export default {
   },
   data() {
     return {
+      wenhua: [],
+      jianjie: [],
       title: "柏瑞简介",
       title1:
         "山东柏瑞软件科技有限公司，其前身为泰安市思柏瑞软件科技有限公司，始建于2006年。 主要从事软件开发软件技术咨询服务、互联网技术开发、咨询与服务、非学历性职业技能培训等业务。",
@@ -62,17 +62,7 @@ export default {
       title6: "办公环境",
       title7: "敞亮、干净、卫生、温馨的办公环境",
       title8: "践行产教深度融合  助推校企紧密合作",
-      list: [
-        { src: require("../../assets/c.png") },
-        { src: require("../../assets/c.png") },
-        { src: require("../../assets/c.png") },
-        { src: require("../../assets/c.png") },
-        { src: require("../../assets/c.png") },
-        { src: require("../../assets/c.png") },
-      ],
-      hesrc: {
-        image: "",
-      },
+      hesrc: [],
     };
   },
   created() {
@@ -82,14 +72,18 @@ export default {
     setabout() {
       var that = this;
       getabschool().then((res) => {
-        console.log(res);
-        that.hesrc = res.data.data.list[0];
+        that.hesrc = res.data.data.list;
       });
       getabjian().then((rea) => {
-        console.log(rea);
+        this.jianjie = rea.data.data;
       });
       getabban().then((reb) => {
-        console.log(reb);
+        this.list = reb.data.data.list;
+        console.log(reb.data.data.list, "5555");
+      });
+      getabwen().then((res) => {
+        this.wenhua = res.data.data;
+        // console.log(res.data.data,"5555")
       });
     },
   },
@@ -102,7 +96,8 @@ export default {
   // pc端
   @media only screen and (min-width: 1085px) {
     .kong {
-      text-indent: 20px;
+      text-indent: 2em;
+      margin: 0;
     }
     .brief {
       // border: 1px solid red;
@@ -120,7 +115,7 @@ export default {
         margin: 0 auto;
         box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         padding: 20px;
         padding-bottom: 30px;
         dt {
@@ -141,7 +136,7 @@ export default {
           font-family: Microsoft YaHei;
           font-weight: 400;
           color: #666666;
-          line-height: 40px;
+          line-height: 30px;
         }
       }
     }
@@ -153,15 +148,16 @@ export default {
         font-weight: 400;
         text-align: center;
       }
-      .hezuo {
+      .boxx {
         width: 1200px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        p {
-          width: 600px;
+        .hezuo {
+          width: 49%;
           img {
             width: 100%;
+            // border: 2px dashed #EFEFEF;
           }
         }
       }
@@ -232,9 +228,9 @@ export default {
   @media only screen and (max-width: 1080px) {
     .brief {
       .kong {
-        text-indent: 20px;
+        text-indent: 2em;
       }
-      // margin-top: 90px;
+      margin-top: 20px;
       p {
         font-size: 24px;
         color: #333333;
@@ -261,17 +257,18 @@ export default {
             display: block;
             width: 90%;
           }
-          width: 100%;
+          width: 88%;
           font-size: 15px;
           font-family: Microsoft YaHei;
           font-weight: 400;
           color: #666666;
           line-height: 30px;
+          margin-left: 24px;
         }
       }
     }
     .cooperation {
-      margin-top: 90px;
+      margin-top: 20px;
       p {
         font-size: 24px;
         color: #333333;

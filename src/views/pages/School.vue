@@ -72,10 +72,16 @@
           <p class="text">{{ liang }}</p>
         </div>
         <div class="tuw">
-          <dl v-for="(item, index) in tese" :key="index">
+          <!-- <dl v-for="(item, index) in tese" :key="index">
             <dt><img :src="item.image" /></dt>
             <dd>{{ item.title }}</dd>
-          </dl>
+          </dl> -->
+          <div v-for="(item, index) in tese" :key="index" class="tuw_content">
+            <div class="tuw_img">
+              <img :src="item.image" alt="" />
+            </div>
+            <div class="tuw_tit">{{ item.title }}</div>
+          </div>
         </div>
       </div>
       <!-- 合作院校 -->
@@ -401,7 +407,7 @@ export default {
       .bg {
         background: url("../../assets/zhize.png") no-repeat center center;
         background-size: 100% 100%;
-        margin: 1rem auto 0;
+        margin: 1rem auto 20px;
       }
 
       .zhize {
@@ -411,7 +417,7 @@ export default {
         display: flex;
 
         dl {
-          margin: 3rem 0;
+          margin: 1rem 0;
 
           img {
             width: 40%;
@@ -778,22 +784,9 @@ export default {
         .tuw {
           width: 100%;
           flex-wrap: wrap;
-
-          dl {
-            width: 47%;
-            margin-top: 1rem;
-
-            dd {
-              line-height: 1.6rem;
-              font-size: 13px;
-            }
-
-            .name {
-              font-size: 14px !important;
-            }
-            img {
-              height: 140px;
-            }
+          .tuw_content {
+            width: 40%;
+            text-align: center;
           }
         }
       }

@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 // 获取你要的数据
+
+//banner
+export function getIndexBan() {
+	return request({
+		url: 'api/index/index',
+		method: 'GET',
+	})
+}
+
 // 联系我们内容
 export function getUS() {
 	return request({
@@ -17,7 +26,7 @@ export function getUSbanner() {
 // 关于我们合作校园
 export function getabschool() {
 	return request({
-		url: '/api/about/tog-school',
+		url: '/api/about/school',
 		method: 'GET',
 	})
 }
@@ -159,6 +168,12 @@ export function getBaiRuiXM() {
 export function getBaiRuiYJ() {
 	return request({
 		url: "api/design/salarytwo",
+		method: "GET"
+	})
+}
+export function getBaiRuiSJ() {
+	return request({
+		url: "api/design/salarythree",
 		method: "GET"
 	})
 }

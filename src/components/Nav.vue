@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <div class="logo">
+    <div class="logo" @click="toindex">
       <img src="../assets/logo.png" />
       <span>山东柏瑞软件科技有限公司</span>
     </div>
@@ -200,6 +200,9 @@ export default {
           this.back = 4;
           break;
       }
+    },
+    toindex() {
+      this.$router.push("index");
     },
   },
   computed: {

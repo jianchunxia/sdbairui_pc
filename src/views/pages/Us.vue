@@ -25,11 +25,27 @@
         <div class="right">
           <p class="liuy"><img :src="liuyan" />{{ liuy }}</p>
           <form>
-            <input type="text" placeholder="姓名:" />
-            <input class="email" type="email" placeholder="邮箱:" />
-            <input class="tel" type="tel" placeholder="电话:" />
-            <textarea rows="10" placeholder="请输入留言..."></textarea>
-            <input class="sub" type="submit" />
+            <input type="text" placeholder="姓名:" v-model="name" />
+            <input
+              class="email"
+              type="email"
+              placeholder="邮箱:"
+              v-model="email"
+              @blur="blur"
+            />
+            <input
+              class="tel"
+              type="tel"
+              placeholder="电话:"
+              v-model="tel"
+              @blur="blur2"
+            />
+            <textarea
+              rows="10"
+              placeholder="请输入留言..."
+              v-model="place"
+            ></textarea>
+            <button class="sub" type="button" @click="sub()">提交</button>
           </form>
         </div>
       </div>
@@ -66,6 +82,10 @@ export default {
   components: {},
   data() {
     return {
+      name: "",
+      tel: "",
+      email: "",
+      place: "",
       location: { lng: 116.8087874398422, lat: 36.5170277099317 },
       zoom: 16,
       image: "",
@@ -84,6 +104,52 @@ export default {
   },
 
   methods: {
+    blur() {
+      var email = this.email;
+      var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      if (reg.test(email)) {
+      } else {
+        this.$message({
+          showClose: true,
+          message: "邮箱格式不正确",
+          type: "error",
+        });
+      }
+    },
+    blur2() {
+      var tel = this.tel;
+      var phone = /^((0\d{2,3}-?\d{7,8})|(1[3-9]\d{9}))$/;
+      if (phone.test(tel)) {
+      } else {
+        this.$message({
+          showClose: true,
+          message: "手机格式不正确",
+          type: "error",
+        });
+      }
+    },
+
+    //提交
+    sub() {
+      if (
+        this.name == "" ||
+        this.email == "" ||
+        this.tel == "" ||
+        this.place == ""
+      ) {
+        this.$message({
+          showClose: true,
+          message: "请完善信息",
+          type: "error",
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "提交成功",
+          type: "success",
+        });
+      }
+    },
     getLocationPoint(e) {
       this.lng = e.point.lng;
       this.lat = e.point.lat;
