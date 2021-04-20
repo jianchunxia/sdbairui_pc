@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 // 获取你要的数据
+
+//banner
+export function getIndexBan() {
+	return request({
+		url: 'api/index/index',
+		method: 'GET',
+	})
+}
+
 // 联系我们内容
 export function getUS() {
 	return request({
@@ -17,7 +26,7 @@ export function getUSbanner() {
 // 关于我们合作校园
 export function getabschool() {
 	return request({
-		url: '/api/about/tog-school',
+		url: '/api/about/school',
 		method: 'GET',
 	})
 }
@@ -74,6 +83,13 @@ export function getinduhuan() {
 export function getindushen() {
 	return request({
 		url: '/api/industry/ecology',
+		method: 'GET',
+	})
+}
+// 产业事业部课程体系
+export function getinduke() {
+	return request({
+		url: '/api/industry/course',
 		method: 'GET',
 	})
 }
@@ -155,6 +171,12 @@ export function getBaiRuiYJ() {
 		method: "GET"
 	})
 }
+export function getBaiRuiSJ() {
+	return request({
+		url: "api/design/salarythree",
+		method: "GET"
+	})
+}
 export function getSchoolban() {
 	return request({
 		url: '/api/Pcschool/banner',
@@ -218,9 +240,12 @@ export function getMajorbanner() {
 	})
 }
 
-export function getPcschooladv() {
+
+
+
+export function getIndexBanner() {
 	return request({
-		url: '/api/index/advertis',
-		method: 'GET',
+		url: "/api/index/index",
+		method: 'GET'
 	})
 }

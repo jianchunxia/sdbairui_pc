@@ -1,10 +1,10 @@
 import axios from 'axios'
- 
+
 // const token ='你自己的token'
 // create an axios instance
 const service = axios.create({
   baseURL: 'https://api.sdbairui.com/',
-  timeout: 5000 // request timeout
+  timeout: 15000 // request timeout
 })
 service.interceptors.request.use(
   config => {
@@ -16,15 +16,15 @@ service.interceptors.request.use(
     Promise.reject(error)
   }
 )
- 
+
 // response interceptor
 service.interceptors.response.use(
   response => response,
- 
+
   error => {
     console.log('err' + error) // for debug
     return Promise.reject(error)
   }
 )
- 
+
 export default service

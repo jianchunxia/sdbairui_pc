@@ -2,7 +2,7 @@
   <div class="contact">
     <!-- banner -->
     <div class="banner">
-      <img :src="ban" alt="" />
+      <img :src="image" alt="" />
     </div>
     <!-- 内容 -->
     <div class="con">
@@ -25,11 +25,27 @@
         <div class="right">
           <p class="liuy"><img :src="liuyan" />{{ liuy }}</p>
           <form>
-            <input type="text" placeholder="姓名:" />
-            <input class="email" type="email" placeholder="邮箱:" />
-            <input class="tel" type="tel" placeholder="电话:" />
-            <textarea rows="10" placeholder="请输入留言..."></textarea>
-            <input class="sub" type="submit" />
+            <input type="text" placeholder="姓名:" v-model="name" />
+            <input
+              class="email"
+              type="email"
+              placeholder="邮箱:"
+              v-model="email"
+              @blur="blur"
+            />
+            <input
+              class="tel"
+              type="tel"
+              placeholder="电话:"
+              v-model="tel"
+              @blur="blur2"
+            />
+            <textarea
+              rows="10"
+              placeholder="请输入留言..."
+              v-model="place"
+            ></textarea>
+            <button class="sub" type="button" @click="sub()">提交</button>
           </form>
         </div>
       </div>
@@ -66,9 +82,13 @@ export default {
   components: {},
   data() {
     return {
+      name: "",
+      tel: "",
+      email: "",
+      place: "",
       location: { lng: 116.8087874398422, lat: 36.5170277099317 },
       zoom: 16,
-      ban: require("../../assets/conban.png"),
+      image: "",
       liuyan: require("../../assets/liuy.png"),
       liuy: "填写留言",
       title: {
@@ -84,6 +104,52 @@ export default {
   },
 
   methods: {
+    blur() {
+      var email = this.email;
+      var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      if (reg.test(email)) {
+      } else {
+        this.$message({
+          showClose: true,
+          message: "邮箱格式不正确",
+          type: "error",
+        });
+      }
+    },
+    blur2() {
+      var tel = this.tel;
+      var phone = /^((0\d{2,3}-?\d{7,8})|(1[3-9]\d{9}))$/;
+      if (phone.test(tel)) {
+      } else {
+        this.$message({
+          showClose: true,
+          message: "手机格式不正确",
+          type: "error",
+        });
+      }
+    },
+
+    //提交
+    sub() {
+      if (
+        this.name == "" ||
+        this.email == "" ||
+        this.tel == "" ||
+        this.place == ""
+      ) {
+        this.$message({
+          showClose: true,
+          message: "请完善信息",
+          type: "error",
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "提交成功",
+          type: "success",
+        });
+      }
+    },
     getLocationPoint(e) {
       this.lng = e.point.lng;
       this.lat = e.point.lat;
@@ -108,6 +174,10 @@ export default {
       getUSbanner().then((re) => {
         console.log(re);
         that.ban = re.data.data.image;
+      });
+      getUSbanner().then((re) => {
+        console.log(re.data.data.image);
+        that.image = re.data.data.image;
       });
     },
   },
@@ -208,9 +278,9 @@ export default {
   }
 
   @media screen and (min-width: 1085px) {
-    .banner img {
-      height: 558px;
-    }
+    // .banner img {
+    //   height: 558px;
+    // }
 
     .con {
       max-width: 1284px;
@@ -256,9 +326,9 @@ export default {
   }
 
   @media screen and (max-width: 1080px) {
-    .banner img {
-      height: 318px;
-    }
+    // .banner img {
+    //   height: 318px;
+    // }
 
     .con {
       width: 100%;

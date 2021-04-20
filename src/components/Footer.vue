@@ -1,8 +1,9 @@
 <template>
   <div id="footer">
     <div class="banner">
-      <!-- <img src="../assets/guang.png" alt="" /> -->
-      <img :src="image" alt="" />
+      <img src="../assets/guang.jpg" alt="" />
+      <img src="../assets/phone_bot.png" alt="" />
+      <!-- <img src="guang" alt="" /> -->
     </div>
     <div class="bot_nav">
       <div class="nav">
@@ -31,7 +32,7 @@
           <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信公众号</div>
         </div>
-        <div class="woc" style="width: 80px"></div>
+        <div class="woc" style="width: 30px"></div>
         <div class="wx_item">
           <img src="../assets/gongzhonghao.png" alt="" />
           <div>微信小程序</div>
@@ -57,6 +58,9 @@
       img {
         width: 100%;
       }
+      img:nth-child(2n) {
+        display: none;
+      }
     }
     .bot_nav {
       width: 70%;
@@ -72,13 +76,13 @@
       }
       .address {
         display: flex;
-        div:nth-child(2n-1) {
-          width: 100px;
-        }
+        // div:nth-child(2n-1) {
+        //   width: 100px;
+        // }
       }
       .nav {
         margin-left: 40px;
-        margin-top: 20px;
+        margin-top: 70px;
         div {
           display: flex;
         }
@@ -132,6 +136,9 @@
       // background: #20b09f;
       img {
         width: 100%;
+      }
+      img:nth-child(2n-1) {
+        display: none;
       }
     }
 
@@ -195,6 +202,16 @@
         width: 100%;
         height: auto;
         flex-direction: column-reverse;
+        margin-top: 20px;
+        padding-bottom: 20px;
+        .nav {
+          // width: 100%;
+          .address {
+            div:nth-child(2n) {
+              width: 90%;
+            }
+          }
+        }
         .wx {
           margin: auto;
           // display: none;
@@ -238,10 +255,10 @@ export default {
           url: "/industry",
           title: "产业事业部",
         },
-        {
-          url: "/design",
-          title: "柏瑞设计",
-        },
+        // {
+        //   url: "/design",
+        //   title: "柏瑞设计",
+        // },
         {
           url: "/about",
           title: "关于我们",
@@ -265,10 +282,9 @@ export default {
           title: "后台管理",
         },
       ],
-      address:
-        "济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座济南创新谷西城软件园A3座",
+      address: "济南创新谷2号楼孵化器五楼(长清区海棠路与芙蓉路交叉路口东南)",
       copyright:
-        "123123asfasfasf啊发顺丰阿斯弗啊按时发我发顺丰阿萨阿斯弗阿斯弗阿斯弗阿斯弗阿三安抚阿斯弗阿斯弗阿三",
+        "Shandong Bairui Software Technology Co., Ltd. 山东柏瑞软件科技有限公司版权所有 鲁ICP备17006298号-1",
     };
   },
   methods: {

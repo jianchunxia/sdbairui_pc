@@ -2,16 +2,18 @@
   <div class="school">
     <!-- banner -->
     <div class="banner">
-      <el-carousel height="580px" id="pc">
+      <el-carousel :height="winwid + 'px'" class="pc">
+        <el-carousel-item v-for="(item, index) in banner" :key="index">
+          <h3 class="small">
+            <img :src="item.image" alt="山东柏瑞科技有限公司" />
+          </h3>
+        </el-carousel-item>
+      </el-carousel>
+      <!-- <el-carousel height="260px" id="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <img :src="item.image" />
         </el-carousel-item>
-      </el-carousel>
-      <el-carousel height="260px" id="phone">
-        <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <img :src="item.image" />
-        </el-carousel-item>
-      </el-carousel>
+      </el-carousel> -->
     </div>
     <!-- 中间盒子 -->
     <div class="con">
@@ -22,13 +24,13 @@
         <div class="zhize">
           <dl v-for="(item, index) in zzfw" :key="index">
             <dt><img :src="item.image" /></dt>
-            <dd>{{ item.title}}</dd>
+            <dd>{{ item.title }}</dd>
           </dl>
         </div>
       </div>
       <!-- 山东交通职业学院泰山校区 -->
       <div class="second">
-        <p class="title">{{xiao1}}</p>
+        <p class="title">{{ xiao1 }}</p>
         <p class="bg"></p>
         <div class="tuw">
           <dl v-for="(item, index) in xiao" :key="index">
@@ -40,7 +42,7 @@
       </div>
       <!-- 山东交通职业学院泰山校区 -->
       <div class="second">
-        <p class="title">{{xiao2}}</p>
+        <p class="title">{{ xiao2 }}</p>
         <p class="bg"></p>
         <div class="tuw">
           <dl v-for="(item, index) in fu" :key="index">
@@ -52,7 +54,7 @@
       </div>
       <!-- 山东交通职业学院泰山校区 -->
       <div class="second">
-        <p class="title">{{xiao3}}</p>
+        <p class="title">{{ xiao3 }}</p>
         <p class="bg"></p>
         <div class="tuw">
           <dl v-for="(item, index) in zi" :key="index">
@@ -72,10 +74,16 @@
           <p class="text">{{ liang }}</p>
         </div>
         <div class="tuw">
-          <dl v-for="(item, index) in tese" :key="index">
+          <!-- <dl v-for="(item, index) in tese" :key="index">
             <dt><img :src="item.image" /></dt>
             <dd>{{ item.title }}</dd>
-          </dl>
+          </dl> -->
+          <div v-for="(item, index) in tese" :key="index" class="tuw_content">
+            <div class="tuw_img">
+              <img :src="item.image" alt="" />
+            </div>
+            <div class="tuw_tit">{{ item.title }}</div>
+          </div>
         </div>
       </div>
       <!-- 合作院校 -->
@@ -100,7 +108,15 @@
 </template>
 
 <script>
-import { getSchoolban,getSchoolduty,getSchoolSchooles,getSchoolSchooltwo,getSchoolSchoolthree,getSchooldutytwo,getSchoolSchools} from "../../api/http.js";
+import {
+  getSchoolban,
+  getSchoolduty,
+  getSchoolSchooles,
+  getSchoolSchooltwo,
+  getSchoolSchoolthree,
+  getSchooldutytwo,
+  getSchoolSchools,
+} from "../../api/http.js";
 
 export default {
   name: "School",
@@ -110,25 +126,29 @@ export default {
   },
   data() {
     return {
-      banner:[],
+      banner: [],
       numindex: null,
       zhize: "我们的职责范围",
       xiao1: "山东交通职业学院泰山校区",
       xiao2: "山东省城市服务技师学院",
       xiao3: "淄博市技师学院",
-      zi:[],
-      zzfw:[],
-      xiao:[],
+      zzfw: [],
+      xiao: [],
       liang: "特色亮点",
       hezuo: "合作院校",
       yuanx1: "我们一直与众多院校建立友好的合作关系",
-      yuanxi:[],
-      tese:[],
-      fu:[],
+      yuanx: [],
+      fu: [],
+      zi: [],
+      tese: [],
+      yuanxi: [],
+      screenWidth: 1920,
+      winwid: 736,
     };
   },
   methods: {
     aaa(index) {
+      // console.log(index);
       this.numindex = index;
     },
     setschool() {
@@ -136,35 +156,40 @@ export default {
 
       getSchoolban().then((res) => {
         that.banner = res.data.data;
+        // console.log(that.banner);
       });
 
       getSchoolduty().then((res) => {
         that.zzfw = res.data.data.list;
+        // console.log(that.zzfw);
       });
-      
+
       getSchoolSchooles().then((res) => {
         that.xiao = res.data.data.list;
+        // console.log(that.xiao);
       });
-      
+
       getSchoolSchooltwo().then((res) => {
         that.fu = res.data.data.list;
+        // console.log(that.fu);
       });
 
       getSchoolSchoolthree().then((res) => {
         that.zi = res.data.data.list;
+        // console.log(that.zi);
       });
-      
+
       var that = this;
       getSchooldutytwo().then((res) => {
         that.tese = res.data.data.list;
+        // console.log(that.tese);
       });
-      
+
       var that = this;
       getSchoolSchools().then((res) => {
         that.yuanxi = res.data.data.list;
+        // console.log(that.yuanxi);
       });
-
-      
     },
 
     // setduty() {
@@ -173,6 +198,18 @@ export default {
   created() {
     this.setschool();
     // this.setduty();
+    this.winwid = parseInt(document.body.clientWidth / 2.6);
+  },
+  mounted() {
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth;
+        this.winwid = parseInt(this.screenWidth / 2.6);
+        // // console.log(this.winwid);
+        // // console.log(this.screenWidth);
+      })();
+    };
   },
 };
 </script>
@@ -236,7 +273,7 @@ export default {
       .bg {
         background: url("../../assets/zhize.png") no-repeat center center;
         background-size: 100% 100%;
-        margin: 1rem auto 0;
+        margin: 1rem auto 20px;
       }
 
       .zhize {
@@ -246,7 +283,7 @@ export default {
         display: flex;
 
         dl {
-          margin: 3rem 0;
+          margin: 1rem 0;
 
           img {
             width: 40%;
@@ -280,6 +317,12 @@ export default {
         justify-content: space-around;
         display: flex;
 
+        .tuw_content {
+          .tuw_img {
+            text-align: center;
+          }
+        }
+
         dl {
           box-shadow: 2px 4px 20px 8px #e8e8e8;
           padding-bottom: 0.5rem;
@@ -287,6 +330,8 @@ export default {
 
           img {
             width: 100%;
+            height: 210px;
+            display: inline-block;
           }
 
           dd {
@@ -334,7 +379,19 @@ export default {
       .tuw {
         justify-content: space-between;
         display: flex;
-
+        div {
+          margin-top: 20px;
+        }
+        .tuw_content {
+          margin-top: 20px;
+          .tuw_img {
+            text-align: center;
+            margin-bottom: 20px;
+            img {
+              width: 40px;
+            }
+          }
+        }
         dl {
           dd {
             text-align: center;
@@ -408,9 +465,7 @@ export default {
   }
   @media screen and (min-width: 1085px) {
     .banner {
-      #pc {
-        display: block;
-      }
+      
 
       #phone {
         display: none;
@@ -491,8 +546,9 @@ export default {
       .tuw {
         max-width: 1200px;
         margin: 0 auto;
-        margin-top: 6rem;
-
+        margin-top: 3rem;
+        // justify-content: center !important;
+       
         dl {
           width: 25%;
 
@@ -546,7 +602,11 @@ export default {
   @media screen and (max-width: 1080px) {
     .banner {
       #pc {
-        display: none;
+        // display: none;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       #phone {
@@ -594,35 +654,27 @@ export default {
         }
       }
     }
+    .con {
+      .second {
+        width: 96%;
+        margin-top: 3rem;
 
-    .second {
-      width: 96%;
-      margin-top: 3rem;
+        .title {
+          font-size: 18px;
+        }
 
-      .title {
-        font-size: 18px;
-      }
+        .bg {
+          width: 50%;
+          height: 8px;
+        }
 
-      .bg {
-        width: 50%;
-        height: 8px;
-      }
-
-      .tuw {
-        width: 100%;
-        flex-wrap: wrap;
-
-        dl {
-          width: 47%;
-          margin-top: 1rem;
-
-          dd {
-            line-height: 1.6rem;
-            font-size: 13px;
-          }
-
-          .name {
-            font-size: 14px !important;
+        .tuw {
+          width: 96%;
+          flex-wrap: wrap;
+          margin: auto;
+          .tuw_content {
+            width: 40%;
+            text-align: center;
           }
         }
       }
@@ -648,22 +700,40 @@ export default {
       }
 
       .tuw {
-        width: 100%;
+        width: 94%;
+        margin: 0 auto;
         flex-wrap: wrap;
         margin-top: 0%;
 
+          justify-content: center !important;
+        .tuw_content {
+          width: 48%;
+          margin-top: 20px;
+          // border: 1px solid #000;
+          font-size: 13px;
+          text-align: center;
+          // margin-left: 2%;
+          .tuw_img {
+            text-align: center;
+            margin-bottom: 20px;
+            img {
+              width: 40px;
+            }
+          }
+        }
+
         dl {
-          width: 50%;
+          width: 48%;
           margin-top: 4rem;
 
           img {
-            width: 10%;
-            margin-left: 40%;
+            // width: 10%;
+            // margin-left: 40%;
             height: 2rem;
           }
 
           dd {
-            font-size: 14px !important;
+            font-size: 12px !important;
           }
         }
       }
@@ -687,7 +757,7 @@ export default {
 
         dl {
           width: 100%;
-          
+
           .name {
             font-size: 15px;
           }

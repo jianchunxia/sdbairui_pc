@@ -1,20 +1,27 @@
 <template>
   <div id="nav">
-    <div class="logo">
+    <div class="logo" @click="toindex">
       <img src="../assets/logo.png" />
+      <span>山东柏瑞软件科技有限公司</span>
     </div>
-    <div class="nav_item" :style="nav_show ? '' : 'display:block'">
+    <div
+      class="nav_item"
+      :style="nav_show ? '' : 'display:block'"
+      @click.self="nav_show = true"
+    >
       <div
         v-for="(item, index) in navList"
         :key="index"
         :class="back == index ? 'back' : ''"
       >
-        <router-link :to="{ path: item.url }" @click.native="back = index">{{
-          item.title
-        }}</router-link>
+        <router-link
+          :to="{ path: item.url }"
+          @click.native="(back = index), (nav_show = true)"
+          >{{ item.title }}</router-link
+        >
       </div>
     </div>
-    <img src="../assets/logo.png" class="but" @click="nav_show = !nav_show" />
+    <img src="../assets/nav.png" class="but" @click="nav_show = !nav_show" />
   </div>
 </template>
 <style scoped lang="scss">
@@ -26,10 +33,17 @@
     display: flex;
     justify-content: space-around;
     .logo {
-      width: 200px;
+      // width: 200px;
       height: 80px;
+      line-height: 80px;
       img {
-        height: 80px;
+        height: 60px;
+        vertical-align: middle;
+      }
+      span {
+        font-size: 24px;
+
+        line-height: 80px;
       }
     }
     .but {
@@ -71,8 +85,8 @@
     height: 60px;
     position: fixed;
     .but {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 24px;
       position: absolute;
       right: 15px;
       top: 15px;
@@ -82,12 +96,36 @@
       position: absolute;
       right: 0;
       top: 60px;
+      width: 100%;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      div {
+        margin: 20px 80px;
+        a {
+          color: #333333;
+          text-decoration: none;
+        }
+      }
+      .back {
+        a {
+          color: #20b09f;
+          // text-decoration: underline;
+          border-bottom: 2px solid #20b09f;
+          padding-bottom: 4px;
+          font-weight: bold;
+        }
+      }
     }
     .logo {
-      width: 200px;
+      // width: 200px;
       height: 60px;
       img {
+        vertical-align: middle;
         height: 100%;
+      }
+      span {
+        // display: none;
+        font-size: 20px;
       }
     }
   }
@@ -112,10 +150,10 @@ export default {
           url: "/industry",
           title: "产业事业部",
         },
-        {
-          url: "/design",
-          title: "柏瑞设计",
-        },
+        // {
+        //   url: "/design",
+        //   title: "柏瑞设计",
+        // },
         {
           url: "/about",
           title: "关于我们",
@@ -162,6 +200,9 @@ export default {
           this.back = 4;
           break;
       }
+    },
+    toindex() {
+      this.$router.push("index");
     },
   },
   computed: {

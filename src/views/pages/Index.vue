@@ -1,16 +1,20 @@
 <template>
   <div id="index">
     <div class="banner">
-      <el-carousel height="580px" class="pc">
+      <el-carousel :height="winwid + 'px'" class="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <h3 class="small"><img :src="item.image" alt="" /></h3>
+          <h3 class="small">
+            <img :src="item.image" />
+          </h3>
         </el-carousel-item>
       </el-carousel>
-      <el-carousel height="260px" class="phone">
+      <!-- <el-carousel :height="winwid + 'px'" class="phone">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
-          <h3 class="small"><img :src="item.image" alt="" /></h3>
+          <h3 class="small">
+            <img :src="item.image" alt="山东柏瑞科技有限公司" />
+          </h3>
         </el-carousel-item>
-      </el-carousel>
+      </el-carousel> -->
     </div>
     <div class="center">
       <div class="core width">
@@ -33,24 +37,20 @@
             </li>
           </ul>
           <div class="xia">
-            <div
-              class="cards"
-              v-for="(item, index) in cards"
-              :key="index"
-              v-show="index == currenta"
-            >
-              <div class="image">
-                <img :src="item.image" alt="" />
-              </div>
-              <div class="content">
-                <h4>{{ item.title }}</h4>
-                <p>{{ item.content }}</p>
-                <div class="tiao">
-                  <!-- {{ item.url }} -->
-                  <!-- <router-link :to="item.url">查看更多>></router-link> -->
+            <block v-for="(item, index) in cards" :key="index">
+              <div class="cards" v-if="index == currenta">
+                <div class="image">
+                  <img :src="hx[index]" alt="" />
+                </div>
+                <div class="content">
+                  <h4>{{ item.title }}</h4>
+                  <p>{{ item.content }}</p>
+                  <div class="tiao">
+                    <router-link :to="loc[index]">查看更多>></router-link>
+                  </div>
                 </div>
               </div>
-            </div>
+            </block>
           </div>
         </div>
       </div>
@@ -61,10 +61,10 @@
         <div class="teacherList">
           <div class="teacherli" v-for="(item, index) in teali" :key="index">
             <div class="title">
-              <img :src="item.src" alt="" />
+              <img :src="item.image" alt="" />
               {{ item.title }}
             </div>
-            <p>{{ item.p }}</p>
+            <p>{{ item.content }}</p>
           </div>
         </div>
       </div>
@@ -77,8 +77,8 @@
             </div>
           </div>
 
-          <div class="list">
-            <dl v-for="(item, index) in training" :key="index">
+          <div class="list fourClass">
+            <!-- <dl v-for="(item, index) in training" :key="index">
               <router-link :to="item.url">
                 <dt>
                   <img :src="item.image" alt="" />
@@ -91,7 +91,58 @@
                   {{ item.title }}
                 </dd>
               </router-link>
-            </dl>
+            </dl> -->
+
+            <div
+              @mouseover="changeOne = require('../../assets/ui-in.png')"
+              @mouseleave="changeOne = require('../../assets/ui-out.png')"
+            >
+              <div class="img">
+                <img :src="changeOne" alt="" />
+                <h4>UI设计</h4>
+                <p>
+                  UI设计是指对软件的人机交互、操作逻辑、界面美观的整体设计。
+                </p>
+              </div>
+            </div>
+            <div
+              @mouseover="changeTwo = require('../../assets/php-in.png')"
+              @mouseleave="changeTwo = require('../../assets/php-out.png')"
+            >
+              <div class="img">
+                <img :src="changeTwo" alt="" />
+
+                <h4>PHP开发</h4>
+                <p>
+                  利于学习，使用广泛，主要适用于Web开发领域的服务端脚本语言。
+                </p>
+              </div>
+            </div>
+            <div
+              @mouseover="changeThree = require('../../assets/java-in.png')"
+              @mouseleave="changeThree = require('../../assets/java-out.png')"
+            >
+              <div class="img">
+                <img :src="changeThree" alt="" />
+                <h4>JAVA开发</h4>
+                <p>
+                  Java语言作为静态面向对象编程语言的代表，允许程序员以优雅的思维方式进行复杂的编程
+                  。
+                </p>
+              </div>
+            </div>
+            <div
+              @mouseover="changeFour = require('../../assets/web-in.png')"
+              @mouseleave="changeFour = require('../../assets/web-out.png')"
+            >
+              <div class="img">
+                <img :src="changeFour" alt="" />
+                <h4>前端开发</h4>
+                <p>
+                  前端开发是用户端效果的代码实现，包括JavaScript、HTML5、CSS3，以及微信小程序等。
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -128,7 +179,9 @@
               <dd class="last">
                 <span>{{ item.create_time }}</span>
                 <span class="more">
-                  <!-- <router-link :to="item.url">查看更多</router-link> -->
+                  <router-link @click.native="open(item.url)" to=""
+                    >查看更多</router-link
+                  >
                 </span>
               </dd>
             </div>
@@ -158,7 +211,7 @@
 // Import Swiper styles
 // import "swiper/swiper-bundle.css";
 import {
-  getIndexBan,
+  getIndexBanner,
   getIndexYwu,
   getIndexBM,
   getIndexCJ,
@@ -174,19 +227,28 @@ export default {
   },
   data() {
     return {
+      changeOne: require("../../assets/ui-out.png"),
+      changeTwo: require("../../assets/php-out.png"),
+      changeThree: require("../../assets/java-out.png"),
+      changeFour: require("../../assets/web-out.png"),
+
       currenta: 0,
       banner: [
-        { src: require("../../assets/index_banner.png") },
-        { src: require("../../assets/index_banner.png") },
-        { src: require("../../assets/index_banner.png") },
-        { src: require("../../assets/index_banner.png") },
+        {
+          // image: require("../../assets/brshej.png"),
+        },
       ],
       title1: "核心业务 · Core Business​",
-      qing: "产教融合，服务大众",
+      qing: "产教融合，教育服务",
       list: [
         { name: "校区事业部" },
         { name: "产业事业部" },
         { name: "柏瑞设计" },
+      ],
+      hx: [
+        require("../../assets/index_core.png"),
+        require("../../assets/chany.png"),
+        require("../../assets/shej.png"),
       ],
       cards: [
         {
@@ -194,26 +256,24 @@ export default {
           title: "校区事业部",
           content:
             "  校区事业部主要负责学生后期的职业技能培养。下设四个校区，分别是济南创新谷软件工厂、山东交通职业学院泰山校区、山东省城市服务技师学院和淄博市技师学院。泰安、烟台和淄博三个校区主要负责学生基本技能的学习和培养。济南创新谷软件工厂主要负责学生后期专业技能的提升和后期的真实项目实训，实现与招聘单位的无缝对接，确保高薪对口就业。",
-          url: "/School",
           more: "查看更多>>",
         },
         {
-          src1: require("../../assets/index_core.png"),
+          src1: require("../../assets/chany.png"),
           title: "产业事业部",
           content:
             " 产业事业部负责学生工学交替、实训实习，下设软件工厂。软件工厂是山东柏瑞为践行 “深度产教融合”而打造的产业基地，同时以“校中厂”的形式进行组织工学交替，学生在实际工作中打磨技术能力，在为项目交付的努力中体会用户体验。经过一年左右的项目研发，积累实际工作经验，把毕业后找工作变为向更高平台的“跳槽”。",
-          url: "Industry",
           more: "查看更多>>",
         },
         {
-          src1: require("../../assets/index_core.png"),
+          src1: require("../../assets/shej.png"),
           title: "柏瑞设计",
           content:
             "最有价值的培养模式，最符合企业需求的课程体系，最科学的授课方式，最完善的就业保障体系，最具有口碑竞争力的教育机构。",
-          url: "Design",
           more: "查看更多>>",
         },
       ],
+      loc: ["school", "industry", "design"],
       teacherImg: require("../../assets/index_teacher.png"),
       teacher: [
         {
@@ -251,36 +311,6 @@ export default {
       ],
       title2: "培养方向· Training Direction",
       foster: "打造企业需求的高技能人才",
-      training: [
-        {
-          src1: require("../../assets/index_tran4.png"),
-          src2: require("../../assets/index_tran44.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Ui",
-        },
-        {
-          src1: require("../../assets/index_tran1.png"),
-          src2: require("../../assets/index_tran11.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Php",
-        },
-        {
-          src1: require("../../assets/index_tran1.png"),
-          src2: require("../../assets/index_tran11.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Javadel",
-        },
-        {
-          src1: require("../../assets/index_tran1.png"),
-          src2: require("../../assets/index_tran11.png"),
-          title: "UI设计",
-          content: "UI设计是指对软件的人机交互操作逻辑、界面美观的整体设计。",
-          url: "Webdel",
-        },
-      ],
       bbg: [
         {
           year: "16",
@@ -347,15 +377,21 @@ export default {
         { dt: require("../../assets/index_coo10.png") },
       ],
       guang: "践行产教深度融合  助推校企紧密合作",
+      screenWidth: 1920,
+      winwid: 736,
     };
   },
   methods: {
+    open(url) {
+      window.open(url);
+    },
+
     onhover(index) {
       this.currenta = index;
     },
     index() {
       var that = this;
-      getIndexBan().then((res) => {
+      getIndexBanner().then((res) => {
         that.banner = res.data.data.data;
         // console.log(that.banner)
       });
@@ -365,13 +401,14 @@ export default {
         // console.log(that.cards)
       });
       getIndexBM().then((res) => {
-        that.teali = res.data.data;
+        // console.log(res);
+        that.teali = res.data.data.data;
         // console.log(that.teali)
       });
-      getIndexPY().then((res) => {
-        that.training = res.data.data.data;
-        // console.log(that.training)
-      });
+      // getIndexPY().then((res) => {
+      //   that.training = res.data.data.data;
+      //   // console.log(that.training)
+      // });
       getIndexCJ().then((res) => {
         that.bbg = res.data.data.data;
         // console.log(that.bbg)
@@ -379,13 +416,28 @@ export default {
       getIndexNew().then((res) => {
         that.news = res.data.data.data;
       });
-      getIndexHz().then((res) => {
-        that.dt = res.data.data.data;
-      });
     },
   },
   created() {
     this.index();
+    getIndexHz();
+    getIndexHz().then((res) => {
+      // console.log(res);
+      this.dt = res.data.data.data;
+    });
+    // console.log(document.body.clientWidth);
+    this.winwid = parseInt(document.body.clientWidth / 2.6);
+  },
+  mounted() {
+    this.screenWidth = document.body.clientWidth;
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth = document.body.clientWidth;
+        this.winwid = parseInt(this.screenWidth / 2.6);
+        // console.log(this.winwid);
+        // console.log(this.screenWidth);
+      })();
+    };
   },
 };
 </script>
@@ -477,7 +529,7 @@ li {
                 text-indent: 2em;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
-                -webkit-line-clamp: 5;
+                // -webkit-line-clamp: 5;
                 overflow: hidden;
               }
 
@@ -514,7 +566,7 @@ li {
       .teacherList {
         width: 100%;
         margin: 0 auto;
-        margin-top: 50px;
+        margin-top: 10px;
         display: grid;
         .teacherli {
           border: 2px solid #20b09f;
@@ -562,64 +614,26 @@ li {
           display: flex;
           justify-self: unset;
           justify-content: space-around;
-          flex-wrap: wrap;
-          dl {
-            box-sizing: border-box;
-            dt {
-              text-align: center;
-              img:nth-child(2) {
-                display: none;
-              }
+          // flex-wrap: wrap;
+          text-align: center;
+          > div {
+            padding: 20px;
+            width: 20%;
+            h4 {
+              margin: 10px auto;
+              font-size: 20px;
             }
-
-            .tit {
-              font-weight: bold;
-              text-align: center;
-              margin: 10px 0;
+            p {
+              text-align: left;
+              font-size: 14px;
             }
-            .con {
-              width: 100%;
-              text-indent: 1em;
-              text-align: center;
-              visibility: hidden;
+            img {
+              width: 60%;
             }
           }
-
-          dl:hover {
+          > div:hover {
             background: #fff;
-            box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
-            border-radius: 8px;
-            dt:hover {
-              text-align: center;
-              img:nth-child(1) {
-                display: none;
-              }
-              img:nth-child(2) {
-                display: block;
-                margin: 0 auto;
-              }
-            }
-            .con {
-              visibility: visible;
-            }
-          }
-          dl:first-child {
-            background: #fff;
-            box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.17);
-            border-radius: 8px;
-            dt {
-              text-align: center;
-              img:nth-child(1) {
-                display: none;
-              }
-              img:nth-child(2) {
-                display: block;
-                margin: 0 auto;
-              }
-            }
-            .con {
-              visibility: visible;
-            }
+            box-shadow: 0 0 10px gainsboro;
           }
         }
       }
@@ -690,6 +704,8 @@ li {
         justify-content: space-between;
         flex-wrap: wrap;
         dl {
+          position: relative;
+
           background: #ffffff;
           box-shadow: 0px 2px 35px 0px rgba(106, 106, 106, 0.51);
           // border-radius: 0px 0px 8px 8px;
@@ -704,13 +720,14 @@ li {
             box-sizing: border-box;
             .tit {
               font-weight: bold;
-              text-align: center;
+              // text-align: left;
               line-height: 40px;
               color: #333333;
             }
 
             .content {
               text-indent: 1em;
+              font-size: 14px;
               width: 100%;
               color: #666666;
               display: -webkit-box;
@@ -724,8 +741,12 @@ li {
               overflow: hidden;
               line-height: 40px;
               margin-top: 10px;
+              position: absolute;
+              bottom: 10px;
+              z-index: 9;
               .more {
                 float: right;
+                margin-right: 40px;
                 a {
                   color: #333333;
                 }
@@ -778,12 +799,17 @@ li {
 
   @media screen and (min-width: 1085px) {
     .banner {
+      padding-top: 80px;
+      .el-carousel__indicators--horizontal {
+        display: none;
+      }
       img {
         width: 100%;
         height: 100%;
+        // object-fit: c over;
       }
       .phone {
-        display: none;
+        // display: none;
         // img {
         //   width: 100%;
         //   height: 100%;
@@ -811,7 +837,7 @@ li {
 
           .xia {
             margin: 0 auto;
-            height: 379px;
+            height: 420px;
             margin-top: 36px;
 
             .cards {
@@ -819,6 +845,7 @@ li {
 
               .image {
                 max-width: 292px;
+                margin: 0;
               }
 
               .content {
@@ -826,11 +853,11 @@ li {
 
                 h4 {
                   font-size: 22px;
-                  margin: 62px 0px 34px 0px;
+                  margin: 46px 0px 16px 0px;
                 }
 
                 p {
-                  font-size: 18px;
+                  // font-size: 16px;
                   line-height: 40px;
                 }
 
@@ -969,14 +996,16 @@ li {
             width: 30%;
 
             div {
-              padding: 23px;
+              // padding: 23px;
+              padding: 20px 20px 50px;
 
               .tit {
-                font-size: 18px;
+                // font-size: 18px;
               }
 
               .last {
                 font-size: 16px;
+                width: 100%;
               }
             }
           }
@@ -1006,21 +1035,37 @@ li {
 
   @media screen and (max-width: 1080px) {
     .banner {
-      .pc {
+      padding-top: 60px;
+      .el-carousel__indicators--horizontal {
         display: none;
       }
-      .phone {
-        display: block;
-        img {
-          width: 100%;
-          height: 100%;
-        }
+      img {
+        width: 100%;
+        height: 100%;
+        // object-fit: c over;
+      }
+      // .pc {
+      //   // display: none;
+      // }
+      // .phone {
+      //   // display: block;
+      //   img {
+      //     object-fit: cover;
+      //     width: 100%;
+      //     height: 100%;
+      //   }
+      // }
+    }
+    .fourClass {
+      flex-wrap: wrap;
+      > div {
+        width: 35% !important;
       }
     }
 
     .center {
       .core {
-        margin-top: 50px;
+        margin-top: 24px;
         .bo {
           .title {
             font-size: 20px;
@@ -1041,24 +1086,26 @@ li {
           .xia {
             width: 94%;
             margin: 0 auto;
-            height: 239px;
+            // height: 239px;
             margin-top: 26px;
 
             .cards {
               width: 98%;
               margin: 0 auto;
-
+              padding: 0 0 10px;
               .image {
                 max-width: 24%;
+                display: none;
               }
 
               .content {
-                max-width: 66%;
+                max-width: 88%;
                 margin: 0 auto;
 
                 h4 {
                   font-size: 18px;
                   margin: 22px 0px 14px 0px;
+                  text-align: center;
                 }
 
                 p {
@@ -1071,6 +1118,12 @@ li {
                   width: 86px;
                   height: 28px;
                   line-height: 28px;
+                  margin-bottom: 10px;
+                  a {
+                    position: absolute;
+                    bottom: -20px;
+                    right: 0;
+                  }
                 }
               }
             }
@@ -1151,7 +1204,11 @@ li {
               margin-top: 0px;
             }
           }
-
+          // .foster {
+          //   .list {
+          //     flex-wrap: wrap !important;
+          //   }
+          // }
           .list {
             dl {
               width: 48%;
@@ -1237,11 +1294,12 @@ li {
         .list {
           dl {
             width: 94%;
-            // margin: 0 auto;
+            margin: 0 auto;
             margin-bottom: 20px;
 
             div {
-              padding: 10px;
+              // padding: 10px;
+              padding: 20px 20px 50px;
 
               .tit {
                 font-size: 14px;
@@ -1256,9 +1314,11 @@ li {
                 color: #666666;
                 overflow: hidden;
                 line-height: 40px;
+                width: 100%;
 
                 .more {
                   float: right;
+                  margin-right: 40px;
 
                   a {
                     color: #333333;
@@ -1271,8 +1331,8 @@ li {
       }
 
       .pera {
-        padding-top: 49px;
-        padding-bottom: 59px;
+        padding-top: 20px;
+        padding-bottom: 20px;
 
         .bo {
           .title {
@@ -1291,6 +1351,9 @@ li {
           dt {
             width: 30%;
             margin-bottom: 15px;
+          }
+          dt:nth-child(10n) {
+            display: none;
           }
         }
       }

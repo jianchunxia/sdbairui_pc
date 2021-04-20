@@ -27,4 +27,7 @@ body {
 .anchorBL {
   display: none;
 }
+.el-carousel__indicators {
+  display: none;
+}
 </style>

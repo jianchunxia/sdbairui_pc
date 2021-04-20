@@ -23,9 +23,7 @@
           </dl>
         </div>
       </div>
-      <div class="page">
-        <!-- <el-pagination layout="prev, pager, next" :total="50">
-        </el-pagination> -->
+      <!-- <div class="page">
         <div class="page-bar">
           <ul>
             <li v-if="cur > 1">
@@ -45,7 +43,7 @@
             <li v-if="cur == all"><a class="banclick">></a></li>
           </ul>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -57,6 +55,15 @@ export default {
       all: 6, //总页数
       cur: 1, //当前页码
       totalPage: 0, //当前条数
+      list: [
+        {
+          content: "",
+          title: "",
+          created_time: "",
+          image: "",
+          url: "",
+        },
+      ],
       // list: [
       //   {
       //     time: "2021-03-25",
@@ -116,27 +123,27 @@ export default {
       window.open(this.list[index].url);
     },
     //请求数据
-    dataListFn: function (index) {
-      this.$axios
-        .get("http://127.0.0.1:8090/demand/selectListByPage", {
-          params: {
-            page: index,
-            limit: "10",
-            state: 0,
-          },
-        })
-        .then((res) => {
-          if (res.data.message == "success") {
-            this.dataList = [];
-            for (let i = 0; i < res.data.data.length; i++) {
-              this.dataList.push(res.data.data[i]);
-            }
-            this.all = res.data.totalPage; //总页数
-            this.cur = res.data.pageNum;
-            this.totalPage = res.data.totalPage;
-          }
-        });
-    },
+    // dataListFn: function (index) {
+    //   this.$axios
+    //     .get("http://127.0.0.1:8090/demand/selectListByPage", {
+    //       params: {
+    //         page: index,
+    //         limit: "10",
+    //         state: 0,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       if (res.data.message == "success") {
+    //         this.dataList = [];
+    //         for (let i = 0; i < res.data.data.length; i++) {
+    //           this.dataList.push(res.data.data[i]);
+    //         }
+    //         this.all = res.data.totalPage; //总页数
+    //         this.cur = res.data.pageNum;
+    //         this.totalPage = res.data.totalPage;
+    //       }
+    //     });
+    // },
     //分页
     btnClick: function (data) {
       //页码点击事件
