@@ -4,7 +4,7 @@
       <el-carousel :height="winwid + 'px'" class="pc">
         <el-carousel-item v-for="(item, index) in banner" :key="index">
           <h3 class="small">
-            <img :src="item.image" alt="山东柏瑞科技有限公司" />
+            <img :src="item.image" />
           </h3>
         </el-carousel-item>
       </el-carousel>
@@ -234,10 +234,9 @@ export default {
 
       currenta: 0,
       banner: [
-        { src: require("../../assets/index_banner.png") },
-        { src: require("../../assets/index_banner.png") },
-        { src: require("../../assets/index_banner.png") },
-        { src: require("../../assets/index_banner.png") },
+        {
+          image: require("../../assets/brshej.png"),
+        },
       ],
       title1: "核心业务 · Core Business​",
       qing: "产教融合，教育服务",
