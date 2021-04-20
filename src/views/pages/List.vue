@@ -365,7 +365,7 @@ li {
             justify-self: unset;
             justify-content: space-between;
             dt {
-              width: 98%;
+              width: 100%;
               position: relative;
               left: 0%;
               bottom: 0;
@@ -374,6 +374,7 @@ li {
               }
             }
             div {
+              width: 100%;
               .title {
                 font-size: 16px;
                 line-height: 40px;

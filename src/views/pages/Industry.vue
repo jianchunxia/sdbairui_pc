@@ -1,6 +1,6 @@
 <template>
   <div id="industry">
-    <swiper
+    <!-- <swiper
       class="swiper"
       :options="swiperOption"
       :style="'height:' + winwid + 'px'"
@@ -8,8 +8,14 @@
       <swiper-slide v-for="(item, index) in banner" :key="index">
         <img :src="item.image" alt="" id="banner" />
       </swiper-slide>
-    </swiper>
-
+    </swiper> -->
+    <el-carousel :height="winwid + 'px'" class="pc">
+        <el-carousel-item v-for="(item, index) in banner" :key="index">
+          <h3 class="small">
+            <img :src="item.image" />
+          </h3>
+        </el-carousel-item>
+      </el-carousel>
     <!-- 公司环境 -->
     <div class="main">
       <p class="title">{{ title }}</p>

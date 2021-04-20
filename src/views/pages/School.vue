@@ -465,9 +465,9 @@ export default {
   }
   @media screen and (min-width: 1085px) {
     .banner {
-      #pc {
-        // display: block;
-      }
+      // #pc {
+      //   // display: block;
+      // }
 
       #phone {
         display: none;
@@ -548,8 +548,8 @@ export default {
       .tuw {
         max-width: 1200px;
         margin: 0 auto;
-        margin-top: 6rem;
-
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         dl {
           width: 25%;
 
@@ -704,7 +704,12 @@ export default {
         width: 100%;
         flex-wrap: wrap;
         margin-top: 0%;
-
+        justify-content: center !important;
+        .tuw_content {
+            width: 46%;
+            font-size: 13px;
+            text-align: center;
+          }
         dl {
           width: 50%;
           margin-top: 4rem;

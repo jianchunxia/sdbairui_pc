@@ -235,7 +235,7 @@ export default {
       currenta: 0,
       banner: [
         {
-          image: require("../../assets/brshej.png"),
+          // image: require("../../assets/brshej.png"),
         },
       ],
       title1: "核心业务 · Core Business​",
@@ -808,13 +808,13 @@ li {
         height: 100%;
         // object-fit: c over;
       }
-      .phone {
-        // display: none;
-        // img {
-        //   width: 100%;
-        //   height: 100%;
-        // }
-      }
+      // .phone {
+      //   // display: none;
+      //   // img {
+      //   //   width: 100%;
+      //   //   height: 100%;
+      //   // }
+      // }
     }
 
     .center {
@@ -999,9 +999,9 @@ li {
               // padding: 23px;
               padding: 20px 20px 50px;
 
-              .tit {
-                // font-size: 18px;
-              }
+              // .tit {
+              //   // font-size: 18px;
+              // }
 
               .last {
                 font-size: 16px;
